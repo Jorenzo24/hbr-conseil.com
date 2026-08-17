@@ -500,12 +500,9 @@ a { color: inherit; }
 .method__step,
 .assurance__item,
 .contact__grid > *,
-.footer-col {
+.footer-col,
+.mission {
     min-width: 0;
-}
-
-.services__item {
-    flex-wrap: wrap;
 }
 
 .section {
@@ -585,42 +582,6 @@ a { color: inherit; }
     flex-wrap: wrap;
     gap: 0.85rem;
     padding-top: 0.5rem;
-}
-
-/* Les trois spécialités annoncées dès le hero, en filets. */
-.hero__index {
-    width: 100%;
-    max-width: 30rem;
-    margin-top: 0.75rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.hero__index li {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.35rem 0.85rem;
-    padding-block: 0.7rem;
-    border-top: 1px solid var(--hairline);
-    font-size: 0.875rem;
-}
-
-.hero__index li:last-child { border-bottom: 1px solid var(--hairline); }
-
-.hero__index .dot {
-    width: 5px;
-    height: 5px;
-    flex: 0 0 5px;
-    transform: translateY(-2px);
-}
-
-.hero__index .scope {
-    margin-left: auto;
-    font-size: 0.6875rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
 }
 
 .hero__media {
@@ -760,10 +721,29 @@ a { color: inherit; }
 
 /* 8.5 — La méthode : une vraie séquence, donc numérotée ------------ */
 
+.method-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+}
+
+.method-figure {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    min-width: 0;
+}
+
+.method-figure__media {
+    aspect-ratio: 4 / 5;
+}
+
 .method {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
     counter-reset: step;
+    min-width: 0;
 }
 
 .method__step {
@@ -798,36 +778,129 @@ a { color: inherit; }
     max-width: 52ch;
 }
 
-/* 8.6 — Prestations classiques : réglure simple -------------------- */
+/* 8.6 — Prestations : blocs à filets et glyphes tracés -------------
+   Remplace une liste en lignes qui faisait « tableau ». Angles vifs et
+   pas de rail d'accent coloré : la carte arrondie à liseré est devenue
+   un tic visuel, on s'en tient au filet.
+   ------------------------------------------------------------------- */
 
-.services {
+.missions {
     display: grid;
-    gap: 0;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
 }
 
-.services__item {
-    border-top: 1px solid var(--hairline);
-    padding-block: 1.15rem;
+/* Le fond du conteneur fait les séparateurs : un seul filet partagé
+   entre deux blocs voisins, jamais deux traits accolés. */
+.mission {
+    background: var(--deep);
+    padding: clamp(1.5rem, 3vw, 2.125rem);
     display: flex;
-    align-items: baseline;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 0.85rem;
+    min-width: 0;
 }
 
-.services__item:last-child { border-bottom: 1px solid var(--hairline); }
-
-.services__item .name {
-    font-family: var(--serif);
-    font-size: 1.125rem;
-    font-variation-settings: 'opsz' 20;
-    color: var(--paper);
-    flex: 0 0 auto;
+.mission__glyph {
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--hairline-hi);
+    display: grid;
+    place-items: center;
+    color: var(--brown-lit);
+    margin-bottom: 0.35rem;
 }
 
-.services__item .desc {
-    font-size: 0.875rem;
+.mission__glyph svg {
+    width: 1.375rem;
+    height: 1.375rem;
+}
+
+.mission p {
+    font-size: 0.9375rem;
     color: var(--muted);
-    margin-left: auto;
-    text-align: right;
+    max-width: 34ch;
+}
+
+/* 8.6b — Carte : chargement au clic -------------------------------- */
+
+.map {
+    position: relative;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    aspect-ratio: 16 / 10;
+    max-height: 30rem;
+    border: 1px solid var(--hairline);
+    background:
+        radial-gradient(90% 80% at 30% 20%, rgba(122, 78, 48, 0.28) 0%, transparent 70%),
+        var(--raise);
+    overflow: hidden;
+}
+
+.map__invite {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--paper-2);
+    transition: background 0.5s var(--ease);
+}
+
+.map__invite:hover { background: rgba(169, 117, 76, 0.07); }
+
+.map__pin {
+    color: var(--brown-lit);
+    transition: transform 0.5s var(--ease);
+}
+
+.map__pin svg { width: 2rem; height: 2rem; }
+
+.map__invite:hover .map__pin { transform: translateY(-3px); }
+
+.map__address {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.125rem, 2.2vw, 1.375rem);
+    font-variation-settings: 'opsz' 24;
+    color: var(--paper);
+}
+
+.map__cue {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tan);
+    border-bottom: 1px solid var(--brown-lit);
+    padding-bottom: 0.25rem;
+}
+
+.map__note {
+    font-size: 0.75rem;
+    color: var(--muted);
+    max-width: 34ch;
+    margin-top: 0.35rem;
+}
+
+/* Une fois chargée, la carte est teintée pour ne pas éblouir sur un
+   fond sombre — les filtres CSS s'appliquent bien aux iframes. */
+.map iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(0.4) sepia(0.2) brightness(0.82) contrast(1.06);
 }
 
 /* 8.7 — Contact ---------------------------------------------------- */
@@ -934,18 +1007,11 @@ a { color: inherit; }
 @media (min-width: 48rem) {
     .cabinet__card { margin: -4rem 3rem 0; }
 
-    .method__step {
-        grid-template-columns: 4rem 14rem 1fr;
-        align-items: baseline;
-        gap: 0 2rem;
-    }
-
-    .method__body { display: contents; }
-    .method__body p { grid-column: 3; }
+    .missions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
     .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
 
-    .contact__grid { grid-template-columns: 1.15fr 1fr; gap: 4rem; }
+    .contact__grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 4rem; }
 }
 
 @media (min-width: 56rem) {
@@ -961,8 +1027,10 @@ a { color: inherit; }
     .specs > :nth-child(2) { margin-top: 3rem; }
     .specs > :nth-child(3) { margin-top: 6rem; }
 
-    .assurance__grid { grid-template-columns: repeat(4, 1fr); }
+    .assurance__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .assurance__item { border-top: none; }
+
+    .missions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (min-width: 62rem) {
@@ -1002,7 +1070,17 @@ a { color: inherit; }
         box-shadow: 0 2rem 4rem rgba(10, 8, 7, 0.55);
     }
 
-    .services__item { padding-block: 1.35rem; }
+    .method-wrap {
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+        gap: 4rem;
+        align-items: start;
+    }
+
+    /* L'image tient en place pendant que les étapes défilent. */
+    .method-figure {
+        position: sticky;
+        top: 6rem;
+    }
 }
 
 @media (min-width: 76rem) {

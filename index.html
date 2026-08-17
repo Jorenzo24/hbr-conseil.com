@@ -9,7 +9,7 @@
     <meta name="robots" content="noindex, nofollow">
 
     <title>HBR Conseil — Cabinet d'expertise comptable à Paris</title>
-    <meta name="description" content="Cabinet d'expertise comptable à Paris. Comptabilité, fiscalité et conseil, avec trois spécialités : professions libérales, location meublée et agriculture.">
+    <meta name="description" content="Cabinet d'expertise comptable à Paris. Comptabilité, fiscalité, social et conseil, pour les sociétés comme pour les indépendants.">
 
     <!-- ⚠️ Domaine provisoire : corriger canonical, og:url et og:image au lancement -->
     <link rel="canonical" href="https://hbr-conseil.com/">
@@ -18,7 +18,7 @@
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="HBR Conseil">
     <meta property="og:title" content="HBR Conseil — Cabinet d'expertise comptable à Paris">
-    <meta property="og:description" content="Comptabilité, fiscalité et conseil. Trois spécialités : professions libérales, location meublée et agriculture.">
+    <meta property="og:description" content="Comptabilité, fiscalité, social et conseil, pour les sociétés comme pour les indépendants.">
     <meta property="og:url" content="https://hbr-conseil.com/">
     <meta property="og:image" content="https://hbr-conseil.com/assets/img/hero-paris-1400.webp">
     <meta name="twitter:card" content="summary_large_image">
@@ -31,19 +31,26 @@
     <link rel="preload" href="assets/fonts/newsreader-var-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-    <link rel="stylesheet" href="css/style.css?v=20260817e">
+    <link rel="stylesheet" href="css/style.css?v=20260817f">
 
-    <!-- TODO — JSON-LD AccountingService, à activer quand on aura la raison
-         sociale exacte, l'adresse, le téléphone et le numéro d'inscription
-         à l'Ordre. Volontairement laissé en commentaire : pas de données
-         structurées inventées, Google les prendrait au mot.
+    <!-- TODO — JSON-LD AccountingService. L'adresse est désormais connue, mais
+         la raison sociale exacte, le téléphone et le numéro d'inscription à
+         l'Ordre manquent encore. Volontairement laissé en commentaire : pas de
+         données structurées à moitié inventées, Google les prendrait au mot.
+         ⚠️ Confirmer aussi le code postal : 75016 ou 75116.
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "AccountingService",
       "name": "…",
-      "address": { "@type": "PostalAddress", "streetAddress": "…", "postalCode": "…", "addressLocality": "Paris", "addressCountry": "FR" },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "76 rue de la Pompe",
+        "postalCode": "75016",
+        "addressLocality": "Paris",
+        "addressCountry": "FR"
+      },
       "telephone": "…",
       "areaServed": "FR",
       "url": "https://…/"
@@ -63,8 +70,8 @@
             <span class="wordmark__kind">Expertise comptable</span>
         </a>
         <nav class="nav" aria-label="Navigation principale">
-            <a href="#specialites">Spécialités</a>
             <a href="#cabinet">Le cabinet</a>
+            <a href="#specialites">Spécialités</a>
             <a href="#methode">Méthode</a>
             <a href="#contact">Contact</a>
         </nav>
@@ -74,18 +81,17 @@
 <main>
 
     <!-- ============================================================
-         Hero — partition asymétrique. Le H1 porte « cabinet
-         d'expertise comptable à Paris » une seule fois : c'est la
-         requête de cette page, et d'aucune autre.
+         Hero — reste sur l'activité standard d'un cabinet : plus de
+         liste des trois spécialités ici, elles arrivent plus bas.
+         Le H1 porte « cabinet d'expertise comptable à Paris » une
+         seule fois : c'est la requête de cette page, et d'aucune autre.
          ============================================================ -->
     <section class="hero">
         <div class="hero__text">
             <p class="hero__eyebrow">
-                <span class="label label--tan">Inscrit à l'Ordre des experts-comptables</span>
+                <span class="label label--tan">Expertise comptable</span>
                 <span class="sep" aria-hidden="true"></span>
-                <span class="label">Paris</span>
-                <span class="sep" aria-hidden="true"></span>
-                <span class="label">Intervention partout en France</span>
+                <span class="label">Sociétés, indépendants et exploitations</span>
             </p>
 
             <h1 class="display h-xl">
@@ -94,32 +100,14 @@
             </h1>
 
             <p class="lede">
-                Comptabilité, fiscalité et conseil pour les entreprises et les indépendants.
-                Avec trois domaines dans lesquels nous allons nettement plus loin.
+                Comptabilité, fiscalité, social et conseil — pour les sociétés comme pour les
+                indépendants. Du premier exercice à la transmission.
             </p>
 
             <div class="hero__cta">
                 <a class="btn btn--solid" href="#contact">Prendre rendez-vous</a>
                 <a class="btn btn--ghost" href="#cabinet">Découvrir le cabinet</a>
             </div>
-
-            <ul class="hero__index">
-                <li>
-                    <span class="dot" style="background: var(--h-bnc);" aria-hidden="true"></span>
-                    <span>Professions libérales &amp; BNC</span>
-                    <span class="scope">Paris et région</span>
-                </li>
-                <li>
-                    <span class="dot" style="background: var(--h-lmnp);" aria-hidden="true"></span>
-                    <span>Location meublée &amp; LMNP</span>
-                    <span class="scope">France entière</span>
-                </li>
-                <li>
-                    <span class="dot" style="background: var(--h-agri);" aria-hidden="true"></span>
-                    <span>Exploitations agricoles</span>
-                    <span class="scope">France entière</span>
-                </li>
-            </ul>
         </div>
 
         <div class="hero__media">
@@ -136,37 +124,80 @@
     </section>
 
     <!-- ============================================================
-         Bandeau de réassurance — uniquement des faits vérifiables.
-         Aucun chiffre d'ancienneté ni de portefeuille : on ne les
-         connaît pas, et la déontologie interdit d'enjoliver.
+         Bandeau — angle « comment ça se passe » plutôt que
+         « nos qualités ». Que des faits vérifiables, aucun chiffre
+         inventé, aucune promesse de résultat.
          ============================================================ -->
-    <section class="assurance" aria-label="Le cabinet en bref">
+    <section class="assurance" aria-label="Comment le cabinet travaille">
         <div class="shell">
             <div class="assurance__grid">
                 <div class="assurance__item">
-                    <span class="assurance__value">Ordre</span>
-                    <span class="label">Cabinet inscrit</span>
+                    <span class="assurance__value">Visio ou cabinet</span>
+                    <span class="label">Paris 16ᵉ, ou entièrement à distance</span>
                 </div>
                 <div class="assurance__item">
-                    <span class="assurance__value">Paris</span>
-                    <span class="label">Rendez-vous sur place</span>
+                    <span class="assurance__value">Lettre de mission</span>
+                    <span class="label">Périmètre et honoraires arrêtés d'avance</span>
                 </div>
                 <div class="assurance__item">
-                    <span class="assurance__value">France entière</span>
-                    <span class="label">Dossiers suivis à distance</span>
+                    <span class="assurance__value">Tous statuts</span>
+                    <span class="label">Sociétés, indépendants, exploitations</span>
                 </div>
                 <div class="assurance__item">
-                    <span class="assurance__value">3 spécialités</span>
-                    <span class="label">BNC · LMNP · Agriculture</span>
+                    <span class="assurance__value">Mission complète</span>
+                    <span class="label">Comptable, fiscal, social, juridique</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================================
-         Spécialités — trois teasers courts et décalés. Deux phrases
-         chacun, volontairement : le contenu de fond appartient aux
-         pages piliers, pas à l'accueil.
+         Le cabinet — remontée avant les spécialités. Chevauchement de
+         la carte texte sur l'image, obtenu en grille.
+         ============================================================ -->
+    <section class="section" id="cabinet">
+        <div class="shell">
+            <div class="cabinet">
+                <div class="cabinet__media duo reveal">
+                    <img src="assets/img/cabinet-salle-1800.webp"
+                         srcset="assets/img/cabinet-salle-900.webp 900w, assets/img/cabinet-salle-1800.webp 1800w"
+                         sizes="(min-width: 62rem) 66vw, 100vw"
+                         width="1800" height="1200" loading="lazy"
+                         alt="Salle de réunion lambrissée de bois sombre, longue table et lustre ancien.">
+                </div>
+
+                <div class="cabinet__card reveal reveal--d1">
+                    <p class="label">Le cabinet</p>
+                    <h2 class="display h-md">Le conseil d'abord, la saisie ensuite</h2>
+                    <p class="pull-quote">
+                        Un bilan juste, c'est le minimum. Ce qui change une situation, c'est
+                        l'arbitrage qu'on prend six mois avant.
+                    </p>
+                    <div class="body-text">
+                        <p>
+                            Nous tenons volontairement un nombre limité de dossiers, pour garder le temps
+                            de regarder chaque situation en détail plutôt que de produire des liasses
+                            en série.
+                        </p>
+                        <p>
+                            Le cabinet reçoit sur rendez-vous à Paris, et suit sans distinction les
+                            dossiers entièrement à distance, partout en France.
+                        </p>
+                    </div>
+                    <a class="arrow-link" href="#contact">
+                        Nous écrire
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                            <path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         Spécialités — teasers courts et décalés. Deux phrases chacun :
+         le contenu de fond appartient aux pages piliers.
 
          TODO — quand les piliers existeront, remplacer href="#contact"
          par les URL définitives et l'ancre par le libellé propriétaire :
@@ -174,7 +205,7 @@
            /expert-comptable-lmnp/
            /expert-comptable-agricole/
          ============================================================ -->
-    <section class="section" id="specialites">
+    <section class="section section--deep" id="specialites">
         <div class="shell">
             <div class="section__head reveal">
                 <div class="rule-spine" aria-hidden="true"></div>
@@ -263,53 +294,9 @@
     </section>
 
     <!-- ============================================================
-         Le cabinet — chevauchement de la carte texte sur l'image,
-         obtenu en grille (pas en position absolue).
-         ============================================================ -->
-    <section class="section section--deep" id="cabinet">
-        <div class="shell">
-            <div class="cabinet">
-                <div class="cabinet__media duo reveal">
-                    <img src="assets/img/cabinet-salle-1800.webp"
-                         srcset="assets/img/cabinet-salle-900.webp 900w, assets/img/cabinet-salle-1800.webp 1800w"
-                         sizes="(min-width: 62rem) 66vw, 100vw"
-                         width="1800" height="1200" loading="lazy"
-                         alt="Salle de réunion lambrissée de bois sombre, longue table et lustre ancien.">
-                </div>
-
-                <div class="cabinet__card reveal reveal--d1">
-                    <p class="label">Le cabinet</p>
-                    <h2 class="display h-md">Le conseil d'abord, la saisie ensuite</h2>
-                    <p class="pull-quote">
-                        Un bilan juste, c'est le minimum. Ce qui change une situation, c'est
-                        l'arbitrage qu'on prend six mois avant.
-                    </p>
-                    <div class="body-text">
-                        <p>
-                            Nous tenons volontairement un nombre limité de dossiers, pour garder le temps
-                            de regarder chaque situation en détail plutôt que de produire des liasses
-                            en série.
-                        </p>
-                        <p>
-                            Le cabinet est à Paris et reçoit sur rendez-vous. Les dossiers de location
-                            meublée et d'exploitation agricole sont suivis à distance, sans que cela
-                            change quoi que ce soit à la qualité du suivi.
-                        </p>
-                    </div>
-                    <a class="arrow-link" href="#contact">
-                        Nous écrire
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                            <path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         Méthode — vraie séquence chronologique, la numérotation
-         porte donc une information (l'ordre), elle ne décore pas.
+         Méthode — l'image d'escalier reste en place au défilement
+         pendant que les étapes défilent. Visuel abstrait à rythme
+         (des marches) plutôt qu'une photo de réunion illustrative.
          ============================================================ -->
     <section class="section" id="methode">
         <div class="shell">
@@ -319,42 +306,55 @@
                 <h2 class="display h-lg">Quatre étapes, dans cet ordre</h2>
             </div>
 
-            <div class="method">
-                <div class="method__step reveal">
-                    <div class="method__body">
-                        <h3 class="h-sm">Premier échange</h3>
-                        <p>
-                            Un rendez-vous, au cabinet ou en visio, pour comprendre votre activité et
-                            votre situation fiscale. Sans engagement et sans facturation.
-                        </p>
+            <div class="method-wrap">
+                <figure class="method-figure reveal">
+                    <div class="method-figure__media duo">
+                        <img src="assets/img/methode-escalier-1100.webp"
+                             srcset="assets/img/methode-escalier-600.webp 600w, assets/img/methode-escalier-1100.webp 1100w"
+                             sizes="(min-width: 62rem) 34vw, 100vw"
+                             width="1100" height="1500" loading="lazy"
+                             alt="Volée de marches dans une cage d'escalier sombre, éclairée par une main courante lumineuse.">
                     </div>
-                </div>
-                <div class="method__step reveal reveal--d1">
-                    <div class="method__body">
-                        <h3 class="h-sm">Diagnostic écrit</h3>
-                        <p>
-                            Ce qui est en place, ce qui mérite d'être revu, et les arbitrages ouverts
-                            à court terme. Vous repartez avec un document, pas avec une impression.
-                        </p>
+                    <figcaption class="label">Une étape après l'autre</figcaption>
+                </figure>
+
+                <div class="method">
+                    <div class="method__step reveal">
+                        <div class="method__body">
+                            <h3 class="h-sm">Premier échange</h3>
+                            <p>
+                                Un rendez-vous, au cabinet ou en visio, pour comprendre votre activité et
+                                votre situation fiscale. Sans engagement et sans facturation.
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="method__step reveal reveal--d2">
-                    <div class="method__body">
-                        <h3 class="h-sm">Mise en place</h3>
-                        <p>
-                            Régime, forme juridique, outils de tenue, calendrier des obligations.
-                            Une lettre de mission détaille le périmètre et les honoraires avant de
-                            commencer.
-                        </p>
+                    <div class="method__step reveal reveal--d1">
+                        <div class="method__body">
+                            <h3 class="h-sm">Diagnostic écrit</h3>
+                            <p>
+                                Ce qui est en place, ce qui mérite d'être revu, et les arbitrages ouverts
+                                à court terme. Vous repartez avec un document, pas avec une impression.
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="method__step reveal reveal--d3">
-                    <div class="method__body">
-                        <h3 class="h-sm">Suivi dans l'année</h3>
-                        <p>
-                            Des points réguliers plutôt qu'un unique rendez-vous de bilan : c'est en
-                            cours d'exercice que les décisions ont encore un effet.
-                        </p>
+                    <div class="method__step reveal reveal--d2">
+                        <div class="method__body">
+                            <h3 class="h-sm">Mise en place</h3>
+                            <p>
+                                Régime, forme juridique, outils de tenue, calendrier des obligations.
+                                Une lettre de mission détaille le périmètre et les honoraires avant de
+                                commencer.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="method__step reveal reveal--d3">
+                        <div class="method__body">
+                            <h3 class="h-sm">Suivi dans l'année</h3>
+                            <p>
+                                Des points réguliers plutôt qu'un unique rendez-vous de bilan : c'est en
+                                cours d'exercice que les décisions ont encore un effet.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -362,10 +362,11 @@
     </section>
 
     <!-- ============================================================
-         Prestations classiques — délibérément succinct. Le détail
-         appartiendra aux futures pages de services, pas ici.
+         Prestations — blocs à filets avec glyphe tracé, en remplacement
+         de la liste en lignes qui faisait tableau. Six entrées pour une
+         grille pleine en trois colonnes.
          ============================================================ -->
-    <section class="section section--deep">
+    <section class="section section--deep" id="prestations">
         <div class="shell">
             <div class="section__head reveal">
                 <div class="rule-spine" aria-hidden="true"></div>
@@ -373,35 +374,83 @@
                 <h2 class="display h-lg">Toutes les missions d'un cabinet complet</h2>
             </div>
 
-            <div class="services reveal">
-                <div class="services__item">
-                    <span class="name">Bilan et liasse fiscale</span>
-                    <span class="desc">Comptes annuels, télétransmission</span>
-                </div>
-                <div class="services__item">
-                    <span class="name">Déclarations de TVA</span>
-                    <span class="desc">Mensuelles, trimestrielles, régimes particuliers</span>
-                </div>
-                <div class="services__item">
-                    <span class="name">Paie et social</span>
-                    <span class="desc">Bulletins, DSN, contrats</span>
-                </div>
-                <div class="services__item">
-                    <span class="name">Création de société</span>
-                    <span class="desc">Choix de forme, statuts, formalités</span>
-                </div>
-                <div class="services__item">
-                    <span class="name">Prévisionnel et financement</span>
-                    <span class="desc">Dossiers bancaires, plans de trésorerie</span>
-                </div>
+            <div class="missions">
+
+                <article class="mission reveal">
+                    <span class="mission__glyph" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25">
+                            <path d="M6 3h9l4 4v14H6z" stroke-linejoin="round"/>
+                            <path d="M15 3v4h4M9 12h7M9 16h7"/>
+                        </svg>
+                    </span>
+                    <h3 class="h-sm">Bilan et liasse fiscale</h3>
+                    <p>Comptes annuels, révision, télétransmission aux impôts.</p>
+                </article>
+
+                <article class="mission reveal reveal--d1">
+                    <span class="mission__glyph" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25">
+                            <circle cx="8" cy="8" r="2.6"/>
+                            <circle cx="16" cy="16" r="2.6"/>
+                            <path d="M18.5 5.5L5.5 18.5" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                    <h3 class="h-sm">Déclarations de TVA</h3>
+                    <p>Mensuelles, trimestrielles, régimes et taux particuliers.</p>
+                </article>
+
+                <article class="mission reveal reveal--d2">
+                    <span class="mission__glyph" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25">
+                            <circle cx="9" cy="8" r="3"/>
+                            <path d="M3.5 20c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke-linecap="round"/>
+                            <path d="M16 6.6a3 3 0 010 5.8M17.5 20c0-2.3-.9-4-2.3-5" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                    <h3 class="h-sm">Paie et social</h3>
+                    <p>Bulletins, DSN, contrats de travail, formalités d'embauche.</p>
+                </article>
+
+                <article class="mission reveal">
+                    <span class="mission__glyph" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25">
+                            <path d="M4 21V6l7-3 7 3v15" stroke-linejoin="round"/>
+                            <path d="M9 21v-5h4v5M8 10h1.5M14.5 10H16M8 13h1.5M14.5 13H16"/>
+                        </svg>
+                    </span>
+                    <h3 class="h-sm">Création de société</h3>
+                    <p>Choix de la forme, statuts, immatriculation, apports.</p>
+                </article>
+
+                <article class="mission reveal reveal--d1">
+                    <span class="mission__glyph" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25">
+                            <path d="M4 19h16M4 19V5" stroke-linecap="round"/>
+                            <path d="M7 15l4-5 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <h3 class="h-sm">Prévisionnel et financement</h3>
+                    <p>Plans de trésorerie, dossiers bancaires, business plan.</p>
+                </article>
+
+                <article class="mission reveal reveal--d2">
+                    <span class="mission__glyph" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25">
+                            <circle cx="12" cy="9" r="5"/>
+                            <path d="M9 13.5L8 21l4-2 4 2-1-7.5" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <h3 class="h-sm">Juridique annuel</h3>
+                    <p>Approbation des comptes, assemblées, registres à jour.</p>
+                </article>
+
             </div>
         </div>
     </section>
 
     <!-- ============================================================
-         Contact — coordonnées en attente. Les valeurs marquées
-         « à compléter » ne sont pas des exemples plausibles :
-         mieux vaut un trou visible qu'une fausse adresse crédible.
+         Contact — téléphone et courriel encore à venir (un courriel au
+         nom de domaine sera créé). L'adresse, elle, est connue.
          ============================================================ -->
     <section class="section contact" id="contact">
         <div class="shell">
@@ -422,7 +471,7 @@
                 <div class="contact__lines reveal reveal--d1">
                     <div class="contact__line">
                         <span class="label">Adresse</span>
-                        <span class="val">Paris <span class="todo">à compléter</span></span>
+                        <span class="val">76 rue de la Pompe<br>75016 Paris <span class="todo">code postal à confirmer</span></span>
                     </div>
                     <div class="contact__line">
                         <span class="label">Téléphone</span>
@@ -430,13 +479,32 @@
                     </div>
                     <div class="contact__line">
                         <span class="label">Courriel</span>
-                        <span class="val">— <span class="todo">à compléter</span></span>
+                        <span class="val">— <span class="todo">au nom de domaine</span></span>
                     </div>
                     <div class="contact__line">
                         <span class="label">Périmètre</span>
-                        <span class="val">Paris sur place, France entière à distance</span>
+                        <span class="val">Rendez-vous à Paris, dossiers suivis partout en France</span>
                     </div>
                 </div>
+            </div>
+
+            <!-- Carte à chargement au clic : aucune requête vers Google, donc
+                 aucun cookie tiers et aucun bandeau de consentement, tant que
+                 le visiteur n'a pas cliqué. Pour qu'elle charge d'emblée, voir
+                 la note dans js/main.js. -->
+            <div class="map reveal" id="map"
+                 data-src="https://www.google.com/maps?q=76+rue+de+la+Pompe,+75016+Paris&amp;output=embed">
+                <button class="map__invite" type="button" id="map-load">
+                    <span class="map__pin" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25">
+                            <path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z" stroke-linejoin="round"/>
+                            <circle cx="12" cy="10" r="2.4"/>
+                        </svg>
+                    </span>
+                    <span class="map__address">76 rue de la Pompe, Paris 16<sup>e</sup></span>
+                    <span class="map__cue">Afficher la carte</span>
+                    <span class="map__note">Le plan est fourni par Google Maps et ne se charge qu'à votre demande.</span>
+                </button>
             </div>
         </div>
     </section>
@@ -451,8 +519,8 @@
                     <span class="wordmark__name">HBR Conseil</span>
                 </a>
                 <p style="max-width: 34ch; font-size: 0.9375rem;">
-                    Cabinet d'expertise comptable à Paris. Professions libérales, location meublée
-                    et exploitations agricoles.
+                    Cabinet d'expertise comptable à Paris. Comptabilité, fiscalité, social
+                    et conseil.
                 </p>
             </div>
             <div class="footer-col">
@@ -465,17 +533,19 @@
                 <p class="label">Cabinet</p>
                 <a href="#cabinet">Le cabinet</a>
                 <a href="#methode">Méthode</a>
+                <a href="#prestations">Prestations</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
 
         <div class="footer-legal">
             <span>&copy; <span id="year">2026</span> HBR Conseil</span>
+            <span>76 rue de la Pompe, 75016 Paris</span>
             <span>Société d'expertise comptable inscrite à l'Ordre <span class="todo">mentions à compléter</span></span>
         </div>
     </div>
 </footer>
 
-<script src="js/main.js?v=20260817e"></script>
+<script src="js/main.js?v=20260817f"></script>
 </body>
 </html>
