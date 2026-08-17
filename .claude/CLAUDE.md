@@ -90,6 +90,34 @@ image s'intègre, ce qui compte puisque les visuels actuels sont provisoires.
 Variantes : `.duo--scrim` (voile bas pour asseoir un libellé), et `--tint` en style inline pour
 le voile de teinte propre à chaque spécialité.
 
+### La page d'accueil reste généraliste
+
+Règle posée par Joseph : **l'accueil parle de l'activité standard d'un cabinet d'expertise
+comptable**, pas des spécialités. Celles-ci ne sont qu'un teaser, placé bas dans la page. Ne pas
+réintroduire de liste de spécialités dans le hero.
+
+Ordre des sections (une section supplémentaire viendra s'insérer avant les spécialités) :
+
+1. Hero — généraliste
+2. Bandeau « comment ça se passe » (4 points)
+3. Le cabinet
+4. Trois spécialités *(← une section viendra se glisser au-dessus)*
+5. Méthode — 4 étapes + visuel qui reste en place au défilement
+6. Prestations — 6 blocs à filets
+7. Contact + plan d'accès
+
+Le bandeau des 4 points ne contient **que des faits vérifiables** : ni mention de l'Ordre (jugée
+inutile ici), ni « Paris » seul (les rendez-vous ne sont pas tous sur place), ni chiffre inventé
+d'ancienneté ou de portefeuille.
+
+### Plan d'accès : chargement au clic
+
+La carte Google Maps ne se charge **qu'au clic** (`loadMap()` dans `js/main.js`). Tant que le
+visiteur n'a pas cliqué, aucune requête ne part vers Google : pas de cookie tiers, donc **pas de
+bandeau de consentement à prévoir** — ce qui compte pour le site d'une profession réglementée.
+Pour la charger d'emblée, appeler `loadMap()` au chargement, mais il faudra alors traiter le
+consentement. L'embed utilisé ne demande pas de clé d'API.
+
 ### Effets
 
 - **Grain** : bruit fractal SVG en `data:` URI, superposition fixe à 4 % d'opacité. Casse
@@ -105,6 +133,18 @@ le voile de teinte propre à chaque spécialité.
 
 Voir `assets/CREDITS.md` — sources et licences des images, polices auto-hébergées, chaîne de
 conversion WebP, régénération du favicon.
+
+### ⚠️ Deux pièges CSS déjà rencontrés
+
+**`aspect-ratio` + `max-height` sur un bloc → Chrome déduit la LARGEUR.** Au lieu de laisser
+le bloc remplir l'espace disponible, il calcule `largeur = max-height × ratio`. La carte faisait
+768 px (30rem × 1,6) au lieu de 1120. Solution : ne jamais combiner les deux — poser
+`aspect-ratio` sur mobile, puis `aspect-ratio: auto` + une `height` fixe au-dessus du point de
+rupture.
+
+**Enfants de grille : `min-width: 0`.** Ils valent `min-width: auto` par défaut, donc leur largeur
+min-content peut élargir la piste au-delà du conteneur. Une liste de jetons appliqués aux enfants
+de grille du site existe en section 8 de `style.css` — l'étendre à tout nouvel enfant de grille.
 
 ### ⚠️ Vérifier le rendu mobile : le piège de Chrome headless
 
@@ -297,26 +337,26 @@ Le texte final est validé par le cabinet, au besoin auprès de son conseil rég
 - **Branches** : `feat/nom-feature`, `fix/nom-bug`, `seo/nom-page`
 - **Commits** : en français, présent de l'indicatif (« Ajoute formulaire contact »)
 
+## Décisions arrêtées
+
+- **Adresse du cabinet : 76 rue de la Pompe, Paris 16ᵉ.** ⚠️ Code postal à confirmer : 75016
+  (générique du 16ᵉ) ou 75116 (partie nord). Actuellement 75016 sur le site.
+- **Silo agricole : angle exploitant** (et non investisseur/patrimonial). Donc formes sociétaires,
+  TVA agricole, DEP, MSA, installation, transmission d'exploitation. Pas de GFA/GFV ni de
+  démembrement pour investisseurs parisiens.
+- **Courriel** : sera créé au nom de domaine, une fois celui-ci arrêté.
+
 ## Informations manquantes
 
-**Bloquant** pour la rédaction :
+Aucune ne bloque plus la rédaction des piliers.
 
-1. **Angle du silo agricole — exploitant ou investisseur ?** Détermine mots-clés, ton et clientèle.
-   - *Angle A, l'exploitant* : formes sociétaires, TVA agricole, DEP, MSA, installation. Trafic
-     réel, mais on se bat sans l'argument de proximité qui fait vendre dans ce milieu.
-   - *Angle B, l'investisseur* : foncier agricole et viticole, GFA/GFV, transmission,
-     démembrement. **Paris devient un avantage** — ces clients sont largement parisiens — et le
-     terrain est bien moins concurrentiel.
-
-Non bloquant :
-
+1. Métiers BNC réellement maîtrisés au cabinet — pour que le pilier parle juste
 2. Quel pilier rédiger en premier (proposition : le BNC, seul silo où Paris joue pour nous)
-3. Métiers BNC réellement maîtrisés au cabinet — pour que le pilier parle juste
-4. Page honoraires : oui ou non ?
-5. Nom exact du cabinet, mentions légales, numéro d'inscription à l'Ordre
-6. **Adresse et téléphone à Paris** — pour le JSON-LD et la fiche Google, identiques au caractère près
-7. Domaine final + username cPanel
-8. Photos disponibles (cabinet, équipe, portrait)
+3. Page honoraires : oui ou non ?
+4. Nom exact du cabinet, mentions légales, numéro d'inscription à l'Ordre
+5. Téléphone, et courriel au nom de domaine
+6. Domaine final + username cPanel
+7. Photos réelles du cabinet (les visuels actuels sont des placeholders Unsplash)
 
 ## Structure
 
