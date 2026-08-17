@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,59 +8,474 @@
          À SUPPRIMER au lancement. Voir la checklist dans .claude/CLAUDE.md -->
     <meta name="robots" content="noindex, nofollow">
 
-    <title>HBR Conseil — Cabinet d'expertise comptable</title>
-    <meta name="description" content="Cabinet d'expertise comptable. Accompagnement des professions libérales, des loueurs en meublé et des exploitations agricoles.">
+    <title>HBR Conseil — Cabinet d'expertise comptable à Paris</title>
+    <meta name="description" content="Cabinet d'expertise comptable à Paris. Comptabilité, fiscalité et conseil, avec trois spécialités : professions libérales, location meublée et agriculture.">
 
-    <!-- ⚠️ Domaine provisoire : corriger og:url et le canonical au lancement -->
+    <!-- ⚠️ Domaine provisoire : corriger canonical, og:url et og:image au lancement -->
     <link rel="canonical" href="https://hbr-conseil.com/">
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="HBR Conseil">
-    <meta property="og:title" content="HBR Conseil — Cabinet d'expertise comptable">
-    <meta property="og:description" content="Cabinet d'expertise comptable. Accompagnement des professions libérales, des loueurs en meublé et des exploitations agricoles.">
+    <meta property="og:title" content="HBR Conseil — Cabinet d'expertise comptable à Paris">
+    <meta property="og:description" content="Comptabilité, fiscalité et conseil. Trois spécialités : professions libérales, location meublée et agriculture.">
     <meta property="og:url" content="https://hbr-conseil.com/">
-    <meta property="og:image" content="https://hbr-conseil.com/assets/og-image.jpg">
-
+    <meta property="og:image" content="https://hbr-conseil.com/assets/img/hero-paris-1400.webp">
     <meta name="twitter:card" content="summary_large_image">
 
-    <link rel="icon" href="assets/favicon.ico" sizes="any">
+    <meta name="theme-color" content="#0A0807">
 
-    <link rel="stylesheet" href="css/style.css?v=20260817a">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/favicon.ico" sizes="32x32">
 
-    <!-- TODO : JSON-LD AccountingService — en attente de l'adresse,
-         du téléphone et du numéro d'inscription à l'Ordre. -->
+    <link rel="preload" href="assets/fonts/newsreader-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="css/style.css?v=20260817b">
+
+    <!-- TODO — JSON-LD AccountingService, à activer quand on aura la raison
+         sociale exacte, l'adresse, le téléphone et le numéro d'inscription
+         à l'Ordre. Volontairement laissé en commentaire : pas de données
+         structurées inventées, Google les prendrait au mot.
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AccountingService",
+      "name": "…",
+      "address": { "@type": "PostalAddress", "streetAddress": "…", "postalCode": "…", "addressLocality": "Paris", "addressCountry": "FR" },
+      "telephone": "…",
+      "areaServed": "FR",
+      "url": "https://…/"
+    }
+    </script>
+    -->
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="shell">
-            <p class="wordmark">HBR Conseil</p>
-        </div>
-    </header>
+<div class="grain" aria-hidden="true"></div>
 
-    <main>
-        <div class="shell holding">
-            <p class="label">Site en préparation</p>
-            <h1>Cabinet d'expertise comptable</h1>
-            <p>
-                Le nouveau site du cabinet est en cours de construction. Trois domaines
-                d'accompagnement y seront détaillés.
+<header class="masthead" id="masthead">
+    <div class="shell masthead__inner">
+        <a class="wordmark" href="index.html">
+            <span class="wordmark__name">HBR Conseil</span>
+            <span class="wordmark__rule" aria-hidden="true"></span>
+            <span class="wordmark__kind">Expertise comptable</span>
+        </a>
+        <nav class="nav" aria-label="Navigation principale">
+            <a href="#specialites">Spécialités</a>
+            <a href="#cabinet">Le cabinet</a>
+            <a href="#methode">Méthode</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <!-- ============================================================
+         Hero — partition asymétrique. Le H1 porte « cabinet
+         d'expertise comptable à Paris » une seule fois : c'est la
+         requête de cette page, et d'aucune autre.
+         ============================================================ -->
+    <section class="hero">
+        <div class="hero__text">
+            <p class="hero__eyebrow">
+                <span class="label label--tan">Inscrit à l'Ordre des experts-comptables</span>
+                <span class="sep" aria-hidden="true"></span>
+                <span class="label">Paris</span>
+                <span class="sep" aria-hidden="true"></span>
+                <span class="label">Intervention partout en France</span>
             </p>
-            <p class="branches">
-                <span class="is-bnc">Professions libérales</span>
-                <span class="is-lmnp">Location meublée</span>
-                <span class="is-agri">Agriculture</span>
+
+            <h1 class="display h-xl">
+                Cabinet d'expertise comptable à Paris, pour les dossiers qui ne rentrent pas
+                <em>dans une case</em>.
+            </h1>
+
+            <p class="lede">
+                Comptabilité, fiscalité et conseil pour les entreprises et les indépendants.
+                Avec trois domaines dans lesquels nous allons nettement plus loin.
             </p>
-        </div>
-    </main>
 
-    <footer class="site-footer">
+            <div class="hero__cta">
+                <a class="btn btn--solid" href="#contact">Prendre rendez-vous</a>
+                <a class="btn btn--ghost" href="#cabinet">Découvrir le cabinet</a>
+            </div>
+
+            <ul class="hero__index">
+                <li>
+                    <span class="dot" style="background: var(--h-bnc);" aria-hidden="true"></span>
+                    <span>Professions libérales &amp; BNC</span>
+                    <span class="scope">Paris et région</span>
+                </li>
+                <li>
+                    <span class="dot" style="background: var(--h-lmnp);" aria-hidden="true"></span>
+                    <span>Location meublée &amp; LMNP</span>
+                    <span class="scope">France entière</span>
+                </li>
+                <li>
+                    <span class="dot" style="background: var(--h-agri);" aria-hidden="true"></span>
+                    <span>Exploitations agricoles</span>
+                    <span class="scope">France entière</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="hero__media">
+            <div class="duo">
+                <img src="assets/img/hero-paris-1400.webp"
+                     srcset="assets/img/hero-paris-700.webp 700w, assets/img/hero-paris-1400.webp 1400w"
+                     sizes="(min-width: 62rem) 45vw, 100vw"
+                     width="1400" height="1900"
+                     fetchpriority="high"
+                     alt="Immeuble haussmannien à l'angle d'une rue parisienne, à la tombée du jour, fenêtres éclairées.">
+            </div>
+            <div class="hero__frame" aria-hidden="true"></div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         Bandeau de réassurance — uniquement des faits vérifiables.
+         Aucun chiffre d'ancienneté ni de portefeuille : on ne les
+         connaît pas, et la déontologie interdit d'enjoliver.
+         ============================================================ -->
+    <section class="assurance" aria-label="Le cabinet en bref">
         <div class="shell">
-            <p>&copy; <span id="year">2026</span> HBR Conseil. Tous droits réservés.</p>
+            <div class="assurance__grid">
+                <div class="assurance__item">
+                    <span class="assurance__value">Ordre</span>
+                    <span class="label">Cabinet inscrit</span>
+                </div>
+                <div class="assurance__item">
+                    <span class="assurance__value">Paris</span>
+                    <span class="label">Rendez-vous sur place</span>
+                </div>
+                <div class="assurance__item">
+                    <span class="assurance__value">France entière</span>
+                    <span class="label">Dossiers suivis à distance</span>
+                </div>
+                <div class="assurance__item">
+                    <span class="assurance__value">3 spécialités</span>
+                    <span class="label">BNC · LMNP · Agriculture</span>
+                </div>
+            </div>
         </div>
-    </footer>
+    </section>
 
-    <script src="js/main.js?v=20260817a"></script>
+    <!-- ============================================================
+         Spécialités — trois teasers courts et décalés. Deux phrases
+         chacun, volontairement : le contenu de fond appartient aux
+         pages piliers, pas à l'accueil.
+
+         TODO — quand les piliers existeront, remplacer href="#contact"
+         par les URL définitives et l'ancre par le libellé propriétaire :
+           /expert-comptable-profession-liberale/
+           /expert-comptable-lmnp/
+           /expert-comptable-agricole/
+         ============================================================ -->
+    <section class="section" id="specialites">
+        <div class="shell">
+            <div class="section__head reveal">
+                <div class="rule-spine" aria-hidden="true"></div>
+                <p class="label">Trois spécialités</p>
+                <h2 class="display h-lg">
+                    Un généraliste, et trois terrains où la technique fait vraiment la différence
+                </h2>
+                <p class="lede">
+                    Ce sont trois fiscalités à part, avec leurs dispositifs, leurs pièges et leur
+                    vocabulaire. C'est là que nous passons le plus de temps.
+                </p>
+            </div>
+
+            <div class="specs">
+
+                <article class="spec reveal">
+                    <a class="spec__media duo duo--scrim" href="#contact" style="--tint: var(--h-bnc);" aria-label="Professions libérales et BNC">
+                        <img src="assets/img/specialite-bnc-1100.webp"
+                             sizes="(min-width: 56rem) 30vw, 100vw"
+                             width="1100" height="1375" loading="lazy"
+                             alt="Bureaux sombres en enfilade devant de grandes baies vitrées donnant sur la ville.">
+                        <span class="duo__caption">
+                            <span class="dot" aria-hidden="true"></span>
+                            <span class="label">Professions libérales</span>
+                        </span>
+                    </a>
+                    <div class="spec__text">
+                        <span class="spec__hue" style="--tint: var(--h-bnc);" aria-hidden="true"></span>
+                        <h3 class="h-sm">Médecins, avocats, kinés, consultants</h3>
+                        <p>
+                            Déclaration 2035, arbitrage entre micro-BNC et déclaration contrôlée,
+                            rétrocessions, caisses de retraite : des règles qui n'existent nulle part
+                            ailleurs.
+                        </p>
+                        <p class="spec__soon">Page détaillée en préparation</p>
+                    </div>
+                </article>
+
+                <article class="spec reveal reveal--d1">
+                    <a class="spec__media duo duo--scrim" href="#contact" style="--tint: var(--h-lmnp);" aria-label="Location meublée et LMNP">
+                        <img src="assets/img/specialite-lmnp-1100.webp"
+                             sizes="(min-width: 56rem) 30vw, 100vw"
+                             width="1100" height="1375" loading="lazy"
+                             alt="Séjour d'un appartement meublé en fin de journée, lumière chaude et mobilier clair.">
+                        <span class="duo__caption">
+                            <span class="dot" aria-hidden="true"></span>
+                            <span class="label">Location meublée</span>
+                        </span>
+                    </a>
+                    <div class="spec__text">
+                        <span class="spec__hue" style="--tint: var(--h-lmnp);" aria-hidden="true"></span>
+                        <h3 class="h-sm">Loueurs en meublé, du premier bien au parc</h3>
+                        <p>
+                            Amortissements, passage au régime réel, sortie et revente : le meublé se
+                            joue sur des arbitrages chiffrés. Dossiers suivis intégralement à distance.
+                        </p>
+                        <p class="spec__soon">Page détaillée en préparation</p>
+                    </div>
+                </article>
+
+                <article class="spec reveal reveal--d2">
+                    <a class="spec__media duo duo--scrim" href="#contact" style="--tint: var(--h-agri);" aria-label="Exploitations agricoles">
+                        <img src="assets/img/specialite-agriculture-1100.webp"
+                             sizes="(min-width: 56rem) 30vw, 100vw"
+                             width="1100" height="1375" loading="lazy"
+                             alt="Coteau planté de vignes émergeant d'une mer de brume au lever du jour.">
+                        <span class="duo__caption">
+                            <span class="dot" aria-hidden="true"></span>
+                            <span class="label">Agriculture</span>
+                        </span>
+                    </a>
+                    <div class="spec__text">
+                        <span class="spec__hue" style="--tint: var(--h-agri);" aria-hidden="true"></span>
+                        <h3 class="h-sm">Exploitations, foncier et transmission</h3>
+                        <p>
+                            GAEC, EARL, déduction pour épargne de précaution, transmission du foncier :
+                            une fiscalité à dispositifs propres. Cabinet à Paris, exploitations suivies
+                            partout en France.
+                        </p>
+                        <p class="spec__soon">Page détaillée en préparation</p>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         Le cabinet — chevauchement de la carte texte sur l'image,
+         obtenu en grille (pas en position absolue).
+         ============================================================ -->
+    <section class="section section--deep" id="cabinet">
+        <div class="shell">
+            <div class="cabinet">
+                <div class="cabinet__media duo reveal">
+                    <img src="assets/img/cabinet-salle-1800.webp"
+                         srcset="assets/img/cabinet-salle-900.webp 900w, assets/img/cabinet-salle-1800.webp 1800w"
+                         sizes="(min-width: 62rem) 66vw, 100vw"
+                         width="1800" height="1200" loading="lazy"
+                         alt="Salle de réunion lambrissée de bois sombre, longue table et lustre ancien.">
+                </div>
+
+                <div class="cabinet__card reveal reveal--d1">
+                    <p class="label">Le cabinet</p>
+                    <h2 class="display h-md">Le conseil d'abord, la saisie ensuite</h2>
+                    <p class="pull-quote">
+                        Un bilan juste, c'est le minimum. Ce qui change une situation, c'est
+                        l'arbitrage qu'on prend six mois avant.
+                    </p>
+                    <div class="body-text">
+                        <p>
+                            Nous tenons volontairement un nombre limité de dossiers, pour garder le temps
+                            de regarder chaque situation en détail plutôt que de produire des liasses
+                            en série.
+                        </p>
+                        <p>
+                            Le cabinet est à Paris et reçoit sur rendez-vous. Les dossiers de location
+                            meublée et d'exploitation agricole sont suivis à distance, sans que cela
+                            change quoi que ce soit à la qualité du suivi.
+                        </p>
+                    </div>
+                    <a class="arrow-link" href="#contact">
+                        Nous écrire
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                            <path d="M4 12h15M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         Méthode — vraie séquence chronologique, la numérotation
+         porte donc une information (l'ordre), elle ne décore pas.
+         ============================================================ -->
+    <section class="section" id="methode">
+        <div class="shell">
+            <div class="section__head reveal">
+                <div class="rule-spine" aria-hidden="true"></div>
+                <p class="label">Comment nous travaillons</p>
+                <h2 class="display h-lg">Quatre étapes, dans cet ordre</h2>
+            </div>
+
+            <div class="method">
+                <div class="method__step reveal">
+                    <div class="method__body">
+                        <h3 class="h-sm">Premier échange</h3>
+                        <p>
+                            Un rendez-vous, au cabinet ou en visio, pour comprendre votre activité et
+                            votre situation fiscale. Sans engagement et sans facturation.
+                        </p>
+                    </div>
+                </div>
+                <div class="method__step reveal reveal--d1">
+                    <div class="method__body">
+                        <h3 class="h-sm">Diagnostic écrit</h3>
+                        <p>
+                            Ce qui est en place, ce qui mérite d'être revu, et les arbitrages ouverts
+                            à court terme. Vous repartez avec un document, pas avec une impression.
+                        </p>
+                    </div>
+                </div>
+                <div class="method__step reveal reveal--d2">
+                    <div class="method__body">
+                        <h3 class="h-sm">Mise en place</h3>
+                        <p>
+                            Régime, forme juridique, outils de tenue, calendrier des obligations.
+                            Une lettre de mission détaille le périmètre et les honoraires avant de
+                            commencer.
+                        </p>
+                    </div>
+                </div>
+                <div class="method__step reveal reveal--d3">
+                    <div class="method__body">
+                        <h3 class="h-sm">Suivi dans l'année</h3>
+                        <p>
+                            Des points réguliers plutôt qu'un unique rendez-vous de bilan : c'est en
+                            cours d'exercice que les décisions ont encore un effet.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         Prestations classiques — délibérément succinct. Le détail
+         appartiendra aux futures pages de services, pas ici.
+         ============================================================ -->
+    <section class="section section--deep">
+        <div class="shell">
+            <div class="section__head reveal">
+                <div class="rule-spine" aria-hidden="true"></div>
+                <p class="label">Aussi, et pleinement</p>
+                <h2 class="display h-lg">Toutes les missions d'un cabinet complet</h2>
+            </div>
+
+            <div class="services reveal">
+                <div class="services__item">
+                    <span class="name">Bilan et liasse fiscale</span>
+                    <span class="desc">Comptes annuels, télétransmission</span>
+                </div>
+                <div class="services__item">
+                    <span class="name">Déclarations de TVA</span>
+                    <span class="desc">Mensuelles, trimestrielles, régimes particuliers</span>
+                </div>
+                <div class="services__item">
+                    <span class="name">Paie et social</span>
+                    <span class="desc">Bulletins, DSN, contrats</span>
+                </div>
+                <div class="services__item">
+                    <span class="name">Création de société</span>
+                    <span class="desc">Choix de forme, statuts, formalités</span>
+                </div>
+                <div class="services__item">
+                    <span class="name">Prévisionnel et financement</span>
+                    <span class="desc">Dossiers bancaires, plans de trésorerie</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         Contact — coordonnées en attente. Les valeurs marquées
+         « à compléter » ne sont pas des exemples plausibles :
+         mieux vaut un trou visible qu'une fausse adresse crédible.
+         ============================================================ -->
+    <section class="section contact" id="contact">
+        <div class="shell">
+            <div class="contact__grid">
+                <div class="reveal">
+                    <div class="rule-spine" aria-hidden="true"></div>
+                    <p class="label" style="margin-block: 1.25rem 1rem;">Contact</p>
+                    <h2 class="display h-lg">Un premier échange ne coûte rien et clarifie beaucoup</h2>
+                    <p class="lede" style="margin-top: 1.5rem;">
+                        Décrivez votre situation en deux lignes, nous vous répondons avec un créneau
+                        et les points à préparer.
+                    </p>
+                    <div class="hero__cta" style="margin-top: 2rem;">
+                        <a class="btn btn--solid" href="#contact">Écrire au cabinet</a>
+                    </div>
+                </div>
+
+                <div class="contact__lines reveal reveal--d1">
+                    <div class="contact__line">
+                        <span class="label">Adresse</span>
+                        <span class="val">Paris <span class="todo">à compléter</span></span>
+                    </div>
+                    <div class="contact__line">
+                        <span class="label">Téléphone</span>
+                        <span class="val">— <span class="todo">à compléter</span></span>
+                    </div>
+                    <div class="contact__line">
+                        <span class="label">Courriel</span>
+                        <span class="val">— <span class="todo">à compléter</span></span>
+                    </div>
+                    <div class="contact__line">
+                        <span class="label">Périmètre</span>
+                        <span class="val">Paris sur place, France entière à distance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="shell">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a class="wordmark" href="index.html">
+                    <span class="wordmark__name">HBR Conseil</span>
+                </a>
+                <p style="max-width: 34ch; font-size: 0.9375rem;">
+                    Cabinet d'expertise comptable à Paris. Professions libérales, location meublée
+                    et exploitations agricoles.
+                </p>
+            </div>
+            <div class="footer-col">
+                <p class="label">Spécialités</p>
+                <a href="#specialites">Professions libérales</a>
+                <a href="#specialites">Location meublée</a>
+                <a href="#specialites">Agriculture</a>
+            </div>
+            <div class="footer-col">
+                <p class="label">Cabinet</p>
+                <a href="#cabinet">Le cabinet</a>
+                <a href="#methode">Méthode</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+
+        <div class="footer-legal">
+            <span>&copy; <span id="year">2026</span> HBR Conseil</span>
+            <span>Société d'expertise comptable inscrite à l'Ordre <span class="todo">mentions à compléter</span></span>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js?v=20260817b"></script>
 </body>
 </html>
