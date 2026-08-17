@@ -194,7 +194,7 @@ body {
     max-width: 62ch;
 }
 
-.body-text + .body-text { margin-top: 1rem; }
+.body-text p + p { margin-top: 0.9rem; }
 
 a { color: inherit; }
 
@@ -294,7 +294,10 @@ a { color: inherit; }
     overflow: hidden;
     isolation: isolate;
     text-decoration: none;
-    background: linear-gradient(160deg, var(--brown-deep) 0%, var(--void) 78%);
+    /* Le dégradé reste marron sur toute sa course. En descendant vers le
+       noir, la teinte disparaissait des trois quarts de l'image et le
+       mode « luminosity » rendait un sépia grisâtre au lieu d'un marron. */
+    background: linear-gradient(152deg, #97663E 0%, #43291A 48%, #1A1109 100%);
 }
 
 .duo img {
@@ -302,15 +305,28 @@ a { color: inherit; }
     height: 100%;
     object-fit: cover;
     mix-blend-mode: luminosity;
-    opacity: 0.92;
+    /* Assombri et contrasté : sur un site sombre, une photo à sa
+       luminosité d'origine écrase la typographie. */
+    filter: contrast(1.14) brightness(0.76);
     transform: scale(1.02);
-    transition: transform 1.6s var(--ease), opacity 1.2s var(--ease);
+    transition: transform 1.6s var(--ease), filter 1.2s var(--ease);
 }
 
 .duo:hover img,
 .duo:focus-within img {
     transform: scale(1.055);
-    opacity: 1;
+    filter: contrast(1.08) brightness(0.9);
+}
+
+/* Vignettage sur tous les visuels : c'est ce qui fait qu'une photo
+   paraît cadrée plutôt que collée. */
+.duo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(118% 96% at 50% 34%, transparent 36%, rgba(10, 8, 7, 0.55) 100%);
 }
 
 /* Voile de teinte propre à chaque spécialité, très faible : il suffit
@@ -325,14 +341,13 @@ a { color: inherit; }
     mix-blend-mode: overlay;
 }
 
-/* Voile sombre en bas, pour asseoir un libellé sur l'image. */
+/* Voile sombre en bas, pour asseoir un libellé sur l'image.
+   Cumulé au vignettage dans la même propriété : deux calques d'un seul
+   pseudo-élément, plutôt qu'un pseudo-élément de plus à empiler. */
 .duo--scrim::before {
-    content: "";
-    position: absolute;
-    inset: 40% 0 0;
-    background: linear-gradient(to bottom, transparent, rgba(10, 8, 7, 0.88));
-    z-index: 1;
-    pointer-events: none;
+    background:
+        linear-gradient(to bottom, transparent 52%, rgba(10, 8, 7, 0.92) 100%),
+        radial-gradient(118% 96% at 50% 34%, transparent 36%, rgba(10, 8, 7, 0.55) 100%);
 }
 
 .duo__caption {
@@ -911,10 +926,11 @@ a { color: inherit; }
         align-items: start;
     }
 
-    /* Décalage vertical : la composition respire et cesse de ressembler
-       à trois cartes alignées. */
-    .specs > :nth-child(2) { margin-top: 4.5rem; }
-    .specs > :nth-child(3) { margin-top: 2rem; }
+    /* Décalage vertical en escalier régulier. Un décalage irrégulier
+       (0 / 4,5 / 2) se lit comme un défaut d'alignement ; une descente
+       constante se lit comme une intention. */
+    .specs > :nth-child(2) { margin-top: 3rem; }
+    .specs > :nth-child(3) { margin-top: 6rem; }
 
     .assurance__grid { grid-template-columns: repeat(4, 1fr); }
     .assurance__item { border-top: none; }
@@ -951,9 +967,10 @@ a { color: inherit; }
     }
 
     .cabinet__card {
-        grid-column: 1 / 6;
+        grid-column: 1 / 7;
         grid-row: 1;
         margin: 0;
+        box-shadow: 0 2rem 4rem rgba(10, 8, 7, 0.55);
     }
 
     .services__item { padding-block: 1.35rem; }
