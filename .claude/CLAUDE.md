@@ -106,6 +106,38 @@ le voile de teinte propre à chaque spécialité.
 Voir `assets/CREDITS.md` — sources et licences des images, polices auto-hébergées, chaîne de
 conversion WebP, régénération du favicon.
 
+### ⚠️ Vérifier le rendu mobile : le piège de Chrome headless
+
+`--window-size=390,…` **ne donne pas un viewport de 390 px**. Chrome (ancien mode *et*
+`--headless=new`) plafonne la fenêtre à **500 px de large minimum** sur macOS : la page est mise
+en page à 500 px, puis l'image est simplement recadrée à 390. Résultat : du texte paraît coupé à
+droite et on croit à un débordement horizontal qui n'existe pas. Mesuré :
+`innerWidth === clientWidth === scrollWidth === 500`.
+
+**Contournement** — encapsuler le site dans une iframe à la largeur voulue, qui établit son
+propre viewport (GitHub Pages n'envoie pas `X-Frame-Options`, le cadrage fonctionne) :
+
+```html
+<!-- /tmp/harness.html -->
+<style>html,body{margin:0}iframe{width:390px;height:5600px;border:0;display:block}</style>
+<iframe src="https://jorenzo24.github.io/hbr-conseil.com/"></iframe>
+```
+
+```
+chrome --headless --hide-scrollbars --force-prefers-reduced-motion \
+       --window-size=500,5600 --virtual-time-budget=12000 \
+       --screenshot=/tmp/m390.png file:///tmp/harness.html
+magick /tmp/m390.png -crop 390x5600+0+0 +repage /tmp/m390c.png
+```
+
+Deux autres points pour capturer utilement :
+
+- **`--force-prefers-reduced-motion` est indispensable** : sinon les éléments `.reveal` restent à
+  `opacity: 0` (l'`IntersectionObserver` ne se déclenche jamais hors viewport) et toutes les
+  sections apparaissent noires sur la capture.
+- Chrome **ne rend pas la main** après `--screenshot` : l'image est bien écrite, il faut tuer le
+  processus (`pkill -f "user-data-dir=…"`).
+
 ## Conventions
 
 - **Mobile-first** : styles mobile d'abord, puis `@media (min-width: …)`

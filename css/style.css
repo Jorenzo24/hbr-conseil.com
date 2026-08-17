@@ -626,7 +626,10 @@ a { color: inherit; }
 .hero__media {
     position: relative;
     z-index: 1;
-    min-height: 62vw;
+    /* Généreux sur mobile : à 62vw l'immeuble était trop rogné et
+       l'image passait pour un bandeau plutôt que pour un visuel. */
+    min-height: 88vw;
+    max-height: 32rem;
 }
 
 .hero__media .duo {
@@ -977,7 +980,7 @@ a { color: inherit; }
         justify-content: center;
     }
 
-    .hero__media { min-height: 100%; }
+    .hero__media { min-height: 100%; max-height: none; }
 
     /* Chevauchement de la carte sur l'image, en grille plutôt qu'en
        positionnement absolu : aucun risque de recouvrement accidentel. */
