@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Monogramme H : jambages champagne, barre marron.
+       Formes géométriques et non typographiques, pour rester net à 16 px. -->
+  <rect width="32" height="32" fill="#0A0807"/>
+  <rect x="8.6" y="7.5" width="2.6" height="17" fill="#E8D5BE"/>
+  <rect x="20.8" y="7.5" width="2.6" height="17" fill="#E8D5BE"/>
+  <rect x="8.6" y="14.7" width="14.8" height="2.2" fill="#A9754C"/>
+</svg>

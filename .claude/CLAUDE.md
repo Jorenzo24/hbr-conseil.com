@@ -49,6 +49,63 @@ du plus critique (le `noindex`).
 - Pas de build step, pas de bundler
 - Tout est servi en statique
 
+## Système de design
+
+Registre visé : **cabinet haut de gamme, sobre**. Le repère est le grand livre relié — réglures,
+alignements, cuir et acajou — et non le noir-et-or qui est devenu le cliché du site « premium ».
+
+### Palette (jetons dans `css/style.css`, section 3)
+
+Le noir est **chaud**, biaisé vers le marron plutôt que vers le bleu : c'est ce qui empêche le
+marron de paraître plaqué sur du gris.
+
+| Rôle | Jeton | Valeur |
+|---|---|---|
+| Fond | `--void` | `#0A0807` |
+| Surface / surface haute | `--deep` / `--raise` | `#12100D` / `#1B1712` |
+| Filets | `--hairline` / `--hairline-hi` | `#2B2520` / `#3D352E` |
+| Marron profond → cognac | `--brown-deep` / `--brown` / `--brown-lit` | `#4A2F1E` / `#7A4E30` / `#A9754C` |
+| Accents clairs | `--tan` / `--champagne` | `#C9A47C` / `#E8D5BE` |
+| Encres | `--paper` / `--paper-2` / `--muted` | `#F4EFE8` / `#C6BAAC` / `#8C7F72` |
+| Teintes de spécialité | `--h-bnc` / `--h-lmnp` / `--h-agri` | `#8FA2AE` / `#C9A47C` / `#8A9469` |
+
+Jamais de blanc pur ni de noir pur. Les trois teintes de spécialité sont deux terres et une note
+froide, pour se distinguer sans se battre.
+
+### Typographie
+
+- **Newsreader** (serif variable 300–600) pour les titres, via la classe `.display` et
+  l'échelle `.h-xl` / `.h-lg` / `.h-md` / `.h-sm`. Utiliser `font-variation-settings: 'opsz'`
+  selon la taille de rendu.
+- **Archivo** (variable 400–600) pour le texte courant et l'interface.
+- Libellés : classe `.label` — capitales, `letter-spacing: 0.18em`, petite taille.
+- Chiffres alignés : `font-variant-numeric: tabular-nums`.
+
+### Traitement d'image — duotone marron
+
+Section 5 de `style.css`. Un dégradé marron dans le conteneur `.duo`, l'image par-dessus en
+`mix-blend-mode: luminosity`. **La couleur vient du calque, pas de la photo** : n'importe quelle
+image s'intègre, ce qui compte puisque les visuels actuels sont provisoires.
+
+Variantes : `.duo--scrim` (voile bas pour asseoir un libellé), et `--tint` en style inline pour
+le voile de teinte propre à chaque spécialité.
+
+### Effets
+
+- **Grain** : bruit fractal SVG en `data:` URI, superposition fixe à 4 % d'opacité. Casse
+  l'aplat numérique des grands fonds sombres.
+- **Chevauchements** : obtenus **en grille** (`grid-column` / `grid-row` sur la même cellule),
+  jamais en `position: absolute` — pas de recouvrement accidentel au redimensionnement.
+- **Révélations au défilement** : classe `.reveal` + `IntersectionObserver`, avec
+  `.reveal--d1/d2/d3` pour l'échelonnement. Garde-fou `.no-js` : si `main.js` ne se charge pas,
+  rien ne reste invisible.
+- `prefers-reduced-motion` est respecté partout : tout s'affiche, plus aucune transition.
+
+### Ressources
+
+Voir `assets/CREDITS.md` — sources et licences des images, polices auto-hébergées, chaîne de
+conversion WebP, régénération du favicon.
+
 ## Conventions
 
 - **Mobile-first** : styles mobile d'abord, puis `@media (min-width: …)`
@@ -100,17 +157,40 @@ contrat anti-cannibalisation : une requête n'appartient qu'à une seule page.
 | Honoraires | `/honoraires/` | tarif / prix expert-comptable | informationnelle |
 | Contact | `/contact/` | — (NAP) | conversion |
 | **Pilier BNC** | `/expert-comptable-profession-liberale/` | expert-comptable profession libérale, comptable BNC | commerciale |
-| Satellite BNC | `/declaration-2035/` | déclaration 2035, formulaire 2035 | informationnelle |
-| Satellite BNC | `/micro-bnc-ou-declaration-controlee/` | micro-BNC ou réel, seuil micro-BNC | comparaison |
+| Satellite BNC | `…-profession-liberale/declaration-2035/` | déclaration 2035, formulaire 2035 | informationnelle |
+| Satellite BNC | `…-profession-liberale/micro-bnc-ou-declaration-controlee/` | micro-BNC ou réel, seuil micro-BNC | comparaison |
 | **Pilier LMNP** | `/expert-comptable-lmnp/` | expert-comptable LMNP, comptable location meublée | commerciale |
-| Satellite LMNP | `/amortissement-lmnp/` | amortissement LMNP | informationnelle |
-| Satellite LMNP | `/plus-value-lmnp/` | plus-value LMNP, réintégration des amortissements | informationnelle |
+| Satellite LMNP | `…-lmnp/amortissement-lmnp/` | amortissement LMNP | informationnelle |
+| Satellite LMNP | `…-lmnp/plus-value-lmnp/` | plus-value LMNP, réintégration des amortissements | informationnelle |
 | **Pilier Agriculture** | `/expert-comptable-agricole/` | expert-comptable agricole, comptabilité agricole | commerciale |
-| Satellite Agriculture | `/comptabilite-gaec-earl/` | comptabilité GAEC, EARL | comparaison |
+| Satellite Agriculture | `…-agricole/comptabilite-gaec-earl/` | comptabilité GAEC, EARL | comparaison |
 
-Chaque **pilier** est commercial (on cherche un prestataire), chaque **satellite** est
-informationnel (on cherche une réponse). Deux intentions différentes ne se concurrencent pas,
-même sur un vocabulaire voisin.
+### Cocon sémantique : les satellites sont imbriqués dans l'URL du pilier
+
+Deux niveaux maximum. La structure d'URL rend le cocon explicite et donne du sens au fil
+d'Ariane. Un satellite n'appartient qu'à **un seul** pilier — s'il en concernait deux, c'est
+qu'il est mal découpé.
+
+### Deux formats de page, jamais mélangés
+
+C'est ce qui matérialise la séparation d'intention, et donc la protection anti-cannibalisation :
+
+- **Piliers = format page de vente.** Bénéfices, preuves, réassurance, appels à l'action
+  répétés. On cherche la prise de contact.
+- **Satellites = format article.** Titre de question, chapô, sous-titres, exemples chiffrés,
+  ton pédagogique. **Pas** de pavé commercial : un seul renvoi discret vers le pilier en fin
+  d'article, plus les liens contextuels dans le corps du texte.
+
+### Agriculture : national assumé, sans page par département
+
+Décision de Joseph : on ne localise pas la branche agricole. La page pilier **nomme de gros
+départements agricoles** (Corrèze, etc.) et précise que le cabinet est à Paris et suit les
+dossiers à distance.
+
+⚠️ À savoir : cette liste de départements **ne fera pas ranker** sur « comptable agricole
+Corrèze » — il faudrait une page par département, ce qu'on refuse. Elle sert à **rassurer le
+visiteur humain** sur le fait que la distance n'est pas un obstacle. C'est assumé, ce n'est pas
+un oubli d'optimisation.
 
 ### Pages explicitement refusées
 

@@ -1,9 +1,41 @@
 /* =====================================================================
    hbr-conseil.com — feuille de style
    ⚠️ Toute modification ici = bumper ?v=AAAAMMJJx dans les pages HTML
+   =====================================================================
+   Sommaire
+     1. Polices auto-hébergées
+     2. Reset
+     3. Jetons (couleur, type, grille)
+     4. Primitives (conteneur, libellés, titres, liens, boutons)
+     5. Traitement d'image (duotone marron)
+     6. Grain et texture
+     7. Chrome (en-tête, pied)
+     8. Sections
+     9. Révélations au défilement
    ===================================================================== */
 
-/* --- Reset ---------------------------------------------------------- */
+/* --- 1. Polices auto-hébergées --------------------------------------
+   Pas de Google Fonts en CDN : requête externe, dépendance réseau et
+   zone grise RGPD. Fichiers variables servis depuis assets/fonts/.
+   -------------------------------------------------------------------- */
+
+@font-face {
+    font-family: 'Newsreader';
+    src: url('../assets/fonts/newsreader-var-latin.woff2') format('woff2');
+    font-weight: 300 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Archivo';
+    src: url('../assets/fonts/archivo-var-latin.woff2') format('woff2');
+    font-weight: 400 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* --- 2. Reset -------------------------------------------------------- */
 
 *,
 *::before,
@@ -20,11 +52,6 @@ html {
     font-size: 16px;
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
-}
-
-body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    line-height: 1.6;
 }
 
 img,
@@ -49,193 +76,889 @@ ol[class] {
     list-style: none;
 }
 
-a {
-    color: inherit;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-    }
-}
-
-/* --- Jetons de couleur ---------------------------------------------
-   Palette provisoire, direction « grand livre » : bleu-noir profond,
-   filets fins, accent vert-de-gris, une teinte par branche.
-   À valider / ajuster avant le développement du design.
-   ------------------------------------------------------------------- */
+/* --- 3. Jetons ------------------------------------------------------- */
 
 :root {
-    --ground:      #0B0E11;
-    --surface:     #12171C;
-    --hairline:    #232B34;
-    --ink:         #E9EDEF;
-    --ink-2:       #B4BDC4;
-    --muted:       #848E97;
-    --accent:      #8FB8A3;
-    --accent-dim:  #5E7F6E;
+    /* Fonds : noir chaud, biaisé vers le marron plutôt que vers le bleu.
+       C'est ce qui fait que le marron ne paraît pas plaqué sur du gris. */
+    --void:        #0A0807;
+    --deep:        #12100D;
+    --raise:       #1B1712;
+    --raise-2:     #221D17;
+    --hairline:    #2B2520;
+    --hairline-hi: #3D352E;
 
-    --bnc:         #93ADCB;
-    --lmnp:        #CBA97F;
-    --agri:        #9BB484;
+    /* Marron : le cuir, l'acajou, le cognac. */
+    --brown-deep:  #4A2F1E;
+    --brown:       #7A4E30;
+    --brown-lit:   #A9754C;
+    --tan:         #C9A47C;
+    --champagne:   #E8D5BE;
 
-    --serif: "Hoefler Text", "Iowan Old Style", Palatino, Georgia, serif;
-    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    /* Encres : blanc cassé chaud, jamais de blanc pur. */
+    --paper:       #F4EFE8;
+    --paper-2:     #C6BAAC;
+    --muted:       #8C7F72;
+
+    /* Une teinte par spécialité. Deux terres et une note froide,
+       pour que les trois se distinguent sans se battre. */
+    --h-bnc:       #8FA2AE;
+    --h-lmnp:      #C9A47C;
+    --h-agri:      #8A9469;
+
+    --serif: 'Newsreader', "Hoefler Text", "Iowan Old Style", Palatino, Georgia, serif;
+    --sans: 'Archivo', ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+    --maxw: 78rem;
+    --gutter: clamp(1.25rem, 5vw, 4rem);
+    --section-y: clamp(4.5rem, 11vw, 9.5rem);
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* --- Mise en page provisoire ---------------------------------------- */
-
 body {
-    background: var(--ground);
-    color: var(--ink-2);
-    min-height: 100vh;
+    background: var(--void);
+    color: var(--paper-2);
+    font-family: var(--sans);
+    font-size: 1rem;
+    line-height: 1.68;
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* --- 4. Primitives --------------------------------------------------- */
+
+.shell {
+    width: 100%;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+}
+
+/* Filet vertical de marge, motif récurrent du site : la réglure du
+   grand livre. Purement décoratif, retiré des lecteurs d'écran. */
+.rule-spine {
+    width: 1px;
+    height: clamp(2.5rem, 7vw, 5rem);
+    background: linear-gradient(to bottom, var(--brown-lit), transparent);
+}
+
+.label {
+    font-family: var(--sans);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.label--tan { color: var(--tan); }
+
+.display {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: 'opsz' 48;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    text-wrap: balance;
+}
+
+.display em {
+    font-style: normal;
+    color: var(--tan);
+}
+
+.h-xl { font-size: clamp(2.5rem, 7.4vw, 5rem); }
+.h-lg { font-size: clamp(2rem, 4.6vw, 3.25rem); }
+.h-md { font-size: clamp(1.5rem, 2.9vw, 2rem); font-variation-settings: 'opsz' 32; }
+.h-sm {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+    font-variation-settings: 'opsz' 24;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--paper);
+}
+
+.lede {
+    font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
+    line-height: 1.62;
+    color: var(--paper-2);
+    max-width: 46ch;
+}
+
+.body-text {
+    max-width: 62ch;
+}
+
+.body-text + .body-text { margin-top: 1rem; }
+
+a { color: inherit; }
+
+:focus-visible {
+    outline: 2px solid var(--tan);
+    outline-offset: 4px;
+}
+
+/* Lien fléché : le trait se dessine, la flèche avance. */
+.arrow-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--tan);
+    text-decoration: none;
+    padding-bottom: 0.35rem;
+    position: relative;
+}
+
+.arrow-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--brown-lit);
+    transform: scaleX(0.28);
+    transform-origin: left;
+    transition: transform 0.6s var(--ease);
+}
+
+.arrow-link:hover::after,
+.arrow-link:focus-visible::after { transform: scaleX(1); }
+
+.arrow-link svg {
+    width: 1.1em;
+    height: 1.1em;
+    flex: 0 0 auto;
+    transition: transform 0.5s var(--ease);
+}
+
+.arrow-link:hover svg { transform: translateX(0.3rem); }
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.05rem 1.9rem;
+    border: 1px solid transparent;
+    transition: background 0.45s var(--ease), color 0.45s var(--ease), border-color 0.45s var(--ease);
+}
+
+.btn--solid {
+    background: var(--brown);
+    color: var(--paper);
+    border-color: var(--brown);
+}
+
+.btn--solid:hover,
+.btn--solid:focus-visible {
+    background: var(--brown-lit);
+    border-color: var(--brown-lit);
+}
+
+.btn--ghost {
+    color: var(--paper);
+    border-color: var(--hairline-hi);
+}
+
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+    border-color: var(--tan);
+    color: var(--tan);
+}
+
+/* --- 5. Traitement d'image ------------------------------------------
+   Duotone réel : un dégradé marron dans le conteneur, l'image en
+   mode « luminosity » par-dessus. L'image ne conserve que ses valeurs,
+   la couleur vient du calque. Résultat homogène quelle que soit la
+   photo — ce qui compte puisque ces visuels seront remplacés.
+   -------------------------------------------------------------------- */
+
+.duo {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    text-decoration: none;
+    background: linear-gradient(160deg, var(--brown-deep) 0%, var(--void) 78%);
+}
+
+.duo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: luminosity;
+    opacity: 0.92;
+    transform: scale(1.02);
+    transition: transform 1.6s var(--ease), opacity 1.2s var(--ease);
+}
+
+.duo:hover img,
+.duo:focus-within img {
+    transform: scale(1.055);
+    opacity: 1;
+}
+
+/* Voile de teinte propre à chaque spécialité, très faible : il suffit
+   à différencier les trois panneaux sans colorer franchement. */
+.duo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--tint, transparent);
+    opacity: 0.16;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+/* Voile sombre en bas, pour asseoir un libellé sur l'image. */
+.duo--scrim::before {
+    content: "";
+    position: absolute;
+    inset: 40% 0 0;
+    background: linear-gradient(to bottom, transparent, rgba(10, 8, 7, 0.88));
+    z-index: 1;
+    pointer-events: none;
+}
+
+.duo__caption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.duo__caption .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--tint, var(--tan));
+    flex: 0 0 6px;
+}
+
+/* --- 6. Grain -------------------------------------------------------
+   Bruit fractal SVG en superposition fixe. À très faible opacité, il
+   casse l'aspect « aplat numérique » des grands fonds sombres.
+   -------------------------------------------------------------------- */
+
+.grain {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --- 7. Chrome ------------------------------------------------------- */
+
+.masthead {
+    position: sticky;
+    top: 0;
+    z-index: 80;
+    border-bottom: 1px solid transparent;
+    transition: background 0.5s var(--ease), border-color 0.5s var(--ease), backdrop-filter 0.5s var(--ease);
+}
+
+.masthead.is-stuck {
+    background: rgba(10, 8, 7, 0.86);
+    backdrop-filter: blur(14px) saturate(1.1);
+    border-bottom-color: var(--hairline);
+}
+
+.masthead__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 1.25rem;
+}
+
+.wordmark {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    text-decoration: none;
+}
+
+.wordmark__name {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.375rem;
+    font-variation-settings: 'opsz' 24;
+    letter-spacing: 0.01em;
+    color: var(--paper);
+}
+
+.wordmark__rule {
+    width: 1.75rem;
+    height: 1px;
+    background: var(--brown-lit);
+}
+
+.wordmark__kind {
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.nav {
+    display: none;
+    align-items: center;
+    gap: 2.25rem;
+}
+
+.nav a {
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--paper-2);
+    padding-block: 0.35rem;
+    transition: color 0.35s var(--ease);
+}
+
+.nav a:hover { color: var(--tan); }
+
+.site-footer {
+    border-top: 1px solid var(--hairline);
+    padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
+}
+
+.footer-grid {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.footer-col a {
+    font-size: 0.9375rem;
+    text-decoration: none;
+    color: var(--paper-2);
+    transition: color 0.35s var(--ease);
+}
+
+.footer-col a:hover { color: var(--tan); }
+
+.footer-legal {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+/* --- 8. Sections ----------------------------------------------------- */
+
+.section {
+    padding-block: var(--section-y);
+}
+
+.section--deep { background: var(--deep); }
+
+.section__head {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.section__head .display { max-width: 34ch; }
+
+/* 8.1 — Hero : partition asymétrique, l'image sort par la droite --- */
+
+.hero {
+    position: relative;
+    display: grid;
+    gap: 0;
+    border-bottom: 1px solid var(--hairline);
+}
+
+/* Réglure verticale très ténue, uniquement dans le hero. */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent calc(100% / 7 - 1px),
+        rgba(169, 117, 76, 0.07) calc(100% / 7 - 1px),
+        rgba(169, 117, 76, 0.07) calc(100% / 7)
+    );
+    pointer-events: none;
+}
+
+.hero__text {
+    position: relative;
+    z-index: 2;
+    padding: clamp(3rem, 9vw, 6rem) var(--gutter) clamp(3.5rem, 8vw, 5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.75rem;
+}
+
+.hero__eyebrow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.9rem;
+}
+
+.hero__eyebrow .sep {
+    width: 3px;
+    height: 3px;
+    background: var(--brown-lit);
+    flex: 0 0 3px;
+}
+
+.hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    padding-top: 0.5rem;
+}
+
+/* Les trois spécialités annoncées dès le hero, en filets. */
+.hero__index {
+    width: 100%;
+    max-width: 30rem;
+    margin-top: 0.75rem;
     display: flex;
     flex-direction: column;
 }
 
-.shell {
-    width: 100%;
-    max-width: 60rem;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+.hero__index li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    padding-block: 0.7rem;
+    border-top: 1px solid var(--hairline);
+    font-size: 0.875rem;
 }
 
-.site-header {
-    padding: 2rem 0;
+.hero__index li:last-child { border-bottom: 1px solid var(--hairline); }
+
+.hero__index .dot {
+    width: 5px;
+    height: 5px;
+    flex: 0 0 5px;
+    transform: translateY(-2px);
+}
+
+.hero__index .scope {
+    margin-left: auto;
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.hero__media {
+    position: relative;
+    z-index: 1;
+    min-height: 62vw;
+}
+
+.hero__media .duo {
+    position: absolute;
+    inset: 0;
+}
+
+/* Filet décalé par-dessus l'image : la superposition qui donne
+   l'impression d'un cadrage travaillé plutôt que d'une photo posée. */
+.hero__frame {
+    position: absolute;
+    z-index: 3;
+    inset: clamp(1rem, 3vw, 2.25rem);
+    border: 1px solid rgba(232, 213, 190, 0.22);
+    pointer-events: none;
+}
+
+/* 8.2 — Bandeau de réassurance ------------------------------------- */
+
+.assurance {
+    background: var(--deep);
     border-bottom: 1px solid var(--hairline);
 }
 
-.wordmark {
-    font-family: var(--serif);
-    font-size: 1.25rem;
-    font-weight: 400;
-    letter-spacing: 0.01em;
-    color: var(--ink);
+.assurance__grid {
+    display: grid;
+    gap: 0;
 }
 
-main {
-    flex: 1;
+.assurance__item {
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--hairline);
     display: flex;
-    align-items: center;
-    padding: 4rem 0;
+    flex-direction: column;
+    gap: 0.3rem;
 }
 
-.holding {
+.assurance__item:first-child { border-top: none; }
+
+.assurance__value {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.25rem;
+    font-variation-settings: 'opsz' 24;
+    color: var(--paper);
+    font-variant-numeric: tabular-nums;
+}
+
+/* 8.3 — Les trois spécialités : panneaux hauts, décalés ------------ */
+
+.specs {
+    display: grid;
+    gap: 3rem;
+}
+
+.spec {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.spec__media {
+    display: block;
+    aspect-ratio: 4 / 5;
+    width: 100%;
+}
+
+.spec__hue {
+    height: 2px;
+    width: 3.5rem;
+    background: var(--tint);
+}
+
+.spec__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    align-items: flex-start;
+}
+
+.spec__text p {
+    font-size: 0.9375rem;
+    color: var(--paper-2);
+    max-width: 38ch;
+}
+
+.spec__soon {
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+/* 8.4 — Le cabinet : chevauchement carte / image ------------------- */
+
+.cabinet {
+    display: grid;
+    gap: 0;
+}
+
+.cabinet__media {
+    aspect-ratio: 3 / 2;
+}
+
+.cabinet__card {
+    background: var(--raise);
+    border: 1px solid var(--hairline);
+    padding: clamp(1.75rem, 4vw, 2.75rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin: -2.5rem 1rem 0;
+    position: relative;
+    z-index: 2;
+}
+
+.pull-quote {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(1.25rem, 2.4vw, 1.625rem);
+    font-variation-settings: 'opsz' 32;
+    line-height: 1.32;
+    letter-spacing: -0.01em;
+    color: var(--paper);
+    border-left: 2px solid var(--brown);
+    padding-left: 1.25rem;
+}
+
+/* 8.5 — La méthode : une vraie séquence, donc numérotée ------------ */
+
+.method {
+    display: grid;
+    gap: 0;
+    counter-reset: step;
+}
+
+.method__step {
+    counter-increment: step;
+    border-top: 1px solid var(--hairline);
+    padding-block: 1.75rem;
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 0 1.25rem;
+}
+
+.method__step:last-child { border-bottom: 1px solid var(--hairline); }
+
+.method__step::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-variation-settings: 'opsz' 24;
+    line-height: 1.1;
+    color: var(--brown-lit);
+    font-variant-numeric: tabular-nums;
+}
+
+.method__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.method__body p {
+    font-size: 0.9375rem;
+    max-width: 52ch;
+}
+
+/* 8.6 — Prestations classiques : réglure simple -------------------- */
+
+.services {
+    display: grid;
+    gap: 0;
+}
+
+.services__item {
+    border-top: 1px solid var(--hairline);
+    padding-block: 1.15rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.services__item:last-child { border-bottom: 1px solid var(--hairline); }
+
+.services__item .name {
+    font-family: var(--serif);
+    font-size: 1.125rem;
+    font-variation-settings: 'opsz' 20;
+    color: var(--paper);
+    flex: 0 0 auto;
+}
+
+.services__item .desc {
+    font-size: 0.875rem;
+    color: var(--muted);
+    margin-left: auto;
+    text-align: right;
+}
+
+/* 8.7 — Contact ---------------------------------------------------- */
+
+.contact {
+    background:
+        radial-gradient(120% 90% at 12% 0%, rgba(74, 47, 30, 0.55) 0%, transparent 62%),
+        var(--deep);
+    border-top: 1px solid var(--hairline);
+}
+
+.contact__grid {
+    display: grid;
+    gap: 3rem;
+}
+
+.contact__lines {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
-.holding .label {
-    font-family: var(--mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--muted);
-}
-
-.holding h1 {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(2rem, 6vw, 3.25rem);
-    line-height: 1.1;
-    letter-spacing: -0.015em;
-    color: var(--ink);
-    text-wrap: balance;
-    max-width: 26ch;
-}
-
-.holding p {
-    max-width: 52ch;
-    color: var(--ink-2);
-}
-
-.branches {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem 2rem;
-    padding-top: 0.75rem;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-
-.branches span {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-}
-
-.branches span::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    background: currentColor;
-    flex: 0 0 6px;
-}
-
-.branches .is-bnc  { color: var(--bnc); }
-.branches .is-lmnp { color: var(--lmnp); }
-.branches .is-agri { color: var(--agri); }
-
-.site-footer {
-    padding: 2rem 0;
-    border-top: 1px solid var(--hairline);
-    font-family: var(--mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-}
-
-/* --- Page 404 ------------------------------------------------------- */
-
-.error-page {
-    flex: 1;
+.contact__line {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 4rem 0;
+    gap: 0.25rem;
 }
 
-.error-page .code {
+.contact__line .val {
     font-family: var(--serif);
-    font-size: clamp(5rem, 20vw, 10rem);
-    line-height: 0.85;
-    color: var(--accent-dim);
-}
-
-.error-page h1 {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    color: var(--ink);
-}
-
-.back-link {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
+    font-size: 1.25rem;
+    font-variation-settings: 'opsz' 24;
+    color: var(--paper);
     text-decoration: none;
-    border-bottom: 1px solid var(--accent-dim);
-    padding-bottom: 0.2em;
-    margin-top: 0.5rem;
 }
 
-.back-link:hover,
-.back-link:focus-visible {
-    color: var(--ink);
-    border-bottom-color: var(--ink);
+.contact__line a.val:hover { color: var(--tan); }
+
+.todo {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brown-lit);
+    border: 1px dashed var(--brown);
+    padding: 0.15em 0.5em;
+    margin-left: 0.5rem;
+    vertical-align: middle;
 }
 
-:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
+/* --- 9. Révélations au défilement ------------------------------------ */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(1.75rem);
+    transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+
+.reveal.is-in {
+    opacity: 1;
+    transform: none;
+}
+
+.reveal--d1 { transition-delay: 0.1s; }
+.reveal--d2 { transition-delay: 0.2s; }
+.reveal--d3 { transition-delay: 0.3s; }
+
+/* Si JS est absent, rien ne doit rester invisible. */
+.no-js .reveal {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .duo img,
+    .arrow-link::after,
+    .arrow-link svg {
+        transition: none;
+    }
+
+    .duo:hover img { transform: scale(1.02); }
+}
+
+/* =====================================================================
+   Points de rupture — mobile-first, on n'ajoute qu'en montant
+   ===================================================================== */
+
+@media (min-width: 34rem) {
+    .assurance__grid { grid-template-columns: 1fr 1fr; }
+    .assurance__item { padding-inline-end: 1.5rem; }
+    .assurance__item:nth-child(2) { border-top: none; }
+}
+
+@media (min-width: 48rem) {
+    .cabinet__card { margin: -4rem 3rem 0; }
+
+    .method__step {
+        grid-template-columns: 4rem 14rem 1fr;
+        align-items: baseline;
+        gap: 0 2rem;
+    }
+
+    .method__body { display: contents; }
+    .method__body p { grid-column: 3; }
+
+    .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+
+    .contact__grid { grid-template-columns: 1.15fr 1fr; gap: 4rem; }
+}
+
+@media (min-width: 56rem) {
+    .specs {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        align-items: start;
+    }
+
+    /* Décalage vertical : la composition respire et cesse de ressembler
+       à trois cartes alignées. */
+    .specs > :nth-child(2) { margin-top: 4.5rem; }
+    .specs > :nth-child(3) { margin-top: 2rem; }
+
+    .assurance__grid { grid-template-columns: repeat(4, 1fr); }
+    .assurance__item { border-top: none; }
+}
+
+@media (min-width: 62rem) {
+    .nav { display: flex; }
+
+    .hero {
+        grid-template-columns: 1fr 45%;
+        align-items: stretch;
+        min-height: min(88vh, 54rem);
+    }
+
+    .hero__text {
+        padding-left: max(var(--gutter), calc((100vw - var(--maxw)) / 2 + var(--gutter)));
+        padding-right: clamp(2rem, 4vw, 3.5rem);
+        justify-content: center;
+    }
+
+    .hero__media { min-height: 100%; }
+
+    /* Chevauchement de la carte sur l'image, en grille plutôt qu'en
+       positionnement absolu : aucun risque de recouvrement accidentel. */
+    .cabinet {
+        grid-template-columns: repeat(12, 1fr);
+        align-items: center;
+    }
+
+    .cabinet__media {
+        grid-column: 4 / -1;
+        grid-row: 1;
+        aspect-ratio: 16 / 11;
+    }
+
+    .cabinet__card {
+        grid-column: 1 / 6;
+        grid-row: 1;
+        margin: 0;
+    }
+
+    .services__item { padding-block: 1.35rem; }
+}
+
+@media (min-width: 76rem) {
+    .hero__text { gap: 2rem; }
 }
