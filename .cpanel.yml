@@ -1,0 +1,16 @@
+---
+# ⚠️ DEPLOYPATH contient un identifiant cPanel factice.
+# Le remplacer par le vrai username avant de connecter le dépôt
+# dans cPanel > Git Version Control. Tant que ce n'est pas fait,
+# ce fichier est inerte : rien ne se déploie.
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/USERNAME_CPANEL_A_REMPLACER/public_html/
+    - /bin/cp -R css $DEPLOYPATH
+    - /bin/cp -R js $DEPLOYPATH
+    - /bin/cp -R assets $DEPLOYPATH
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp 404.html $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH
+    - /bin/cp robots.txt $DEPLOYPATH
+    - /bin/cp sitemap.xml $DEPLOYPATH

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ⚠️ Les URL ci-dessous utilisent un domaine provisoire (hbr-conseil.com).
+  À corriger au lancement si le domaine final diffère.
+  Ajouter une entrée à chaque nouvelle page, avec un lastmod réel.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://hbr-conseil.com/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+
+    <title>Page introuvable — HBR Conseil</title>
+    <meta name="description" content="Cette page n'existe pas.">
+
+    <!-- Cette page est volontairement AUTONOME : styles en ligne, aucune
+         ressource externe. Une 404 est servie depuis n'importe quelle
+         profondeur d'URL (/a/b/c/), où des chemins relatifs comme
+         css/style.css ne résoudraient pas — la page s'afficherait nue.
+         C'est la seule exception à la règle « chemins relatifs partout ». -->
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        * { margin: 0; padding: 0; }
+        html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+        body {
+            --ground: #0B0E11;
+            --hairline: #232B34;
+            --ink: #E9EDEF;
+            --ink-2: #B4BDC4;
+            --muted: #848E97;
+            --accent: #8FB8A3;
+            --accent-dim: #5E7F6E;
+            --serif: "Hoefler Text", "Iowan Old Style", Palatino, Georgia, serif;
+            --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+            background: var(--ground);
+            color: var(--ink-2);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .shell {
+            width: 100%;
+            max-width: 60rem;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        header, footer { border-color: var(--hairline); border-style: solid; border-width: 0; }
+        header { padding: 2rem 0; border-bottom-width: 1px; }
+        footer {
+            padding: 2rem 0;
+            border-top-width: 1px;
+            font-family: var(--mono);
+            font-size: 0.6875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .wordmark {
+            font-family: var(--serif);
+            font-size: 1.25rem;
+            color: var(--ink);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+        }
+
+        .error { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+
+        .code {
+            font-family: var(--serif);
+            font-size: clamp(5rem, 20vw, 10rem);
+            line-height: 0.85;
+            color: var(--accent-dim);
+        }
+
+        h1 {
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: var(--ink);
+            text-wrap: balance;
+        }
+
+        p.msg { max-width: 46ch; }
+
+        .back-link {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-dim);
+            padding-bottom: 0.2em;
+            margin-top: 0.5rem;
+        }
+
+        .back-link:hover, .back-link:focus-visible {
+            color: var(--ink);
+            border-bottom-color: var(--ink);
+        }
+
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="shell">
+            <p class="wordmark">HBR Conseil</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="shell error">
+            <p class="code">404</p>
+            <h1>Cette page n'existe pas</h1>
+            <p class="msg">Elle a peut-être été déplacée, ou l'adresse comporte une erreur.</p>
+            <a class="back-link" id="home" href="/">Retour à l'accueil</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="shell">
+            <p>&copy; <span id="year">2026</span> HBR Conseil. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Sur GitHub Pages le site vit dans un sous-dossier (/hbr-conseil.com/),
+        // pas à la racine du domaine : on recale le lien retour.
+        if (location.hostname.endsWith('github.io')) {
+            const base = location.pathname.split('/')[1];
+            if (base) document.getElementById('home').href = '/' + base + '/';
+        }
+    </script>
+</body>
+</html>

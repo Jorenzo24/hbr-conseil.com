@@ -1,0 +1,21 @@
+# =====================================================================
+#  PHASE PREVIEW — GitHub Pages
+#  Le site est exposé publiquement sur jorenzo24.github.io.
+#  On bloque toute indexation pour ne pas créer de contenu dupliqué
+#  avec le vrai domaine au lancement.
+#
+#  ⚠️ AU LANCEMENT : supprimer le bloc ci-dessous et décommenter
+#  le bloc PRODUCTION. Voir la checklist dans .claude/CLAUDE.md
+# =====================================================================
+
+User-agent: *
+Disallow: /
+
+# =====================================================================
+#  PRODUCTION — à activer le jour de la mise en ligne
+# =====================================================================
+#
+# User-agent: *
+# Allow: /
+#
+# Sitemap: https://hbr-conseil.com/sitemap.xml
