@@ -826,11 +826,13 @@ a { color: inherit; }
 
 /* 8.6b — Carte : chargement au clic -------------------------------- */
 
+/* ⚠️ Pas de max-height ici. Combiné à aspect-ratio, Chrome en déduit la
+   LARGEUR (30rem × 1,6 = 768 px) au lieu de laisser le bloc remplir la
+   place disponible. La hauteur est fixée en dur au-dessus de 48rem. */
 .map {
     position: relative;
     margin-top: clamp(2.5rem, 5vw, 4rem);
     aspect-ratio: 16 / 10;
-    max-height: 30rem;
     border: 1px solid var(--hairline);
     background:
         radial-gradient(90% 80% at 30% 20%, rgba(122, 78, 48, 0.28) 0%, transparent 70%),
@@ -1008,6 +1010,11 @@ a { color: inherit; }
     .cabinet__card { margin: -4rem 3rem 0; }
 
     .missions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .map {
+        aspect-ratio: auto;
+        height: 26rem;
+    }
 
     .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
 
