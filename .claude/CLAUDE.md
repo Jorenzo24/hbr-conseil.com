@@ -81,23 +81,87 @@ Stratégie complète : https://claude.ai/code/artifact/b7e5c7d8-3446-46c7-a9bd-c
 génériques d'expertise comptable sont saturées par les plateformes (Dougs, Indy, Pennylane) ;
 on entre par les niches.
 
-**Trois silos**, à traiter différemment car ce sont trois marchés distincts :
+### Implantation : Paris, intervention nationale
 
-| Silo | Géographie | URL pilier |
-|---|---|---|
-| BNC / professions libérales | locale, métier par métier | `/expert-comptable-bnc/` |
-| LMNP / location meublée | **nationale**, 100 % à distance | `/expert-comptable-lmnp/` |
-| Agriculture | départementale, par filière | `/expert-comptable-agricole/` |
+Le cabinet est à **Paris** et intervient à peu près partout en France. Conséquence majeure :
+**la branche agricole n'a plus d'ancrage local** (pas d'exploitation à Paris), elle est traitée
+en national/thématique comme le LMNP. C'est une correction de la v1 de la stratégie, qui
+recommandait à tort de prioriser l'agriculture sur des requêtes départementales.
 
-- **Maillage** : chaque satellite pointe vers son pilier. **Jamais de lien entre deux silos** —
-  les piliers ne sont reliés qu'à l'accueil.
+### Plan de pages — 12 pages, une intention chacune
+
+⚠️ **Ne jamais rédiger une page absente de ce tableau sans l'y ajouter d'abord.** C'est le
+contrat anti-cannibalisation : une requête n'appartient qu'à une seule page.
+
+| Page | URL | Requêtes possédées | Intention |
+|---|---|---|---|
+| Accueil | `/` | expert-comptable Paris | commerciale |
+| Le cabinet | `/le-cabinet/` | — (marque) | confiance |
+| Honoraires | `/honoraires/` | tarif / prix expert-comptable | informationnelle |
+| Contact | `/contact/` | — (NAP) | conversion |
+| **Pilier BNC** | `/expert-comptable-profession-liberale/` | expert-comptable profession libérale, comptable BNC | commerciale |
+| Satellite BNC | `/declaration-2035/` | déclaration 2035, formulaire 2035 | informationnelle |
+| Satellite BNC | `/micro-bnc-ou-declaration-controlee/` | micro-BNC ou réel, seuil micro-BNC | comparaison |
+| **Pilier LMNP** | `/expert-comptable-lmnp/` | expert-comptable LMNP, comptable location meublée | commerciale |
+| Satellite LMNP | `/amortissement-lmnp/` | amortissement LMNP | informationnelle |
+| Satellite LMNP | `/plus-value-lmnp/` | plus-value LMNP, réintégration des amortissements | informationnelle |
+| **Pilier Agriculture** | `/expert-comptable-agricole/` | expert-comptable agricole, comptabilité agricole | commerciale |
+| Satellite Agriculture | `/comptabilite-gaec-earl/` | comptabilité GAEC, EARL | comparaison |
+
+Chaque **pilier** est commercial (on cherche un prestataire), chaque **satellite** est
+informationnel (on cherche une réponse). Deux intentions différentes ne se concurrencent pas,
+même sur un vocabulaire voisin.
+
+### Pages explicitement refusées
+
+Elles paraissent évidentes et créeraient toutes une cannibalisation :
+
+- ❌ `/expert-comptable-bnc/` en plus du pilier « profession libérale » — même intention.
+  « BNC » est le mot du comptable, « profession libérale » celui du client : **une seule page**,
+  dont le titre porte les deux vocabulaires.
+- ❌ `/expert-comptable-paris/` en plus de l'accueil — **l'accueil EST la page Paris**. Une page
+  dédiée diviserait le signal entre deux URL.
+- ❌ Les pages d'arrondissement (`/expert-comptable-paris-8/`…) — volume dérisoire, contenu
+  quasi identique. Le générateur de cannibalisation le plus efficace qui existe.
+- ❌ `/fiscalite-agricole/` — recouvre le champ du pilier. Un satellite agricole doit nommer un
+  **dispositif précis** (GAEC, DEP, transmission), jamais un domaine entier.
+
+### Géographie
+
+**Une seule localité sur tout le site : Paris, portée par l'accueil.** Le travail local passe par
+la fiche Google d'établissement, pas par des pages.
+
+| Silo | Géographie |
+|---|---|
+| Accueil | Paris — seule page géolocalisée |
+| BNC | Paris et région, mais **par le métier**, jamais par le quartier |
+| LMNP | aucune — national |
+| Agriculture | aucune — national et thématique |
+
+Seule extension locale propre, si un jour besoin : `métier × ville`
+(`/expert-comptable-medecin-paris/`). Jamais `ville × ville`.
+
+### Six règles anti-cannibalisation
+
+1. Une intention par page, décidée **avant** d'écrire (tableau ci-dessus)
+2. Une requête n'appartient qu'à une page — si deux pages peuvent la revendiquer, on fusionne
+3. **Discipline des ancres internes** : le pilier LMNP se lie toujours avec l'ancre
+   « expert-comptable LMNP », et cette ancre ne pointe jamais ailleurs
+4. **Aucun lien entre deux silos** — les satellites remontent vers leur pilier, les piliers ne
+   sont reliés qu'à l'accueil
+5. Canonical auto-référent sur chaque page
+6. **Détection** : deux URL sur la même requête dans Search Console plusieurs semaines de suite
+   = cannibalisation → fusionner ou désoptimiser la moins bonne
+
+### Règles on-page
+
 - **URL** : un dossier par page avec `index.html` dedans (URL propres sans mod_rewrite)
 - Title unique 50-60 caractères, meta description 150-160, Open Graph complet sur chaque page
-- Schema.org JSON-LD : `AccountingService` (accueil + pages locales), `Service` (piliers),
+- Schema.org JSON-LD : `AccountingService` (accueil), `Service` (piliers),
   `FAQPage` (satellites qui traitent une question), `BreadcrumbList` partout
 - Mettre à jour `sitemap.xml` à chaque ajout de page, avec un `lastmod` réel
-- **Pas de contenu dupliqué entre pages locales** — piège classique des pages « ville »
 - Mesure : préférer Plausible ou Matomo auto-hébergé (pas de bandeau cookies, site plus léger)
+- **Aucune donnée fiscale publiée sans validation du cabinet** (seuils, dispositifs, taux)
 
 ## Déontologie — contraintes de rédaction
 
@@ -123,15 +187,23 @@ Le texte final est validé par le cabinet, au besoin auprès de son conseil rég
 
 ## Informations manquantes
 
-Bloquant pour la rédaction du contenu :
+**Bloquant** pour la rédaction :
 
-1. **Ville et département du cabinet** — toute la partie locale et le silo agricole en dépendent
-2. Périmètre d'intervention : clients LMNP/BNC à distance partout en France, ou régional ?
-3. Métiers BNC déjà maîtrisés au cabinet
-4. Filières agricoles du secteur (viticulture, élevage, céréales, maraîchage…)
+1. **Angle du silo agricole — exploitant ou investisseur ?** Détermine mots-clés, ton et clientèle.
+   - *Angle A, l'exploitant* : formes sociétaires, TVA agricole, DEP, MSA, installation. Trafic
+     réel, mais on se bat sans l'argument de proximité qui fait vendre dans ce milieu.
+   - *Angle B, l'investisseur* : foncier agricole et viticole, GFA/GFV, transmission,
+     démembrement. **Paris devient un avantage** — ces clients sont largement parisiens — et le
+     terrain est bien moins concurrentiel.
+
+Non bloquant :
+
+2. Quel pilier rédiger en premier (proposition : le BNC, seul silo où Paris joue pour nous)
+3. Métiers BNC réellement maîtrisés au cabinet — pour que le pilier parle juste
+4. Page honoraires : oui ou non ?
 5. Nom exact du cabinet, mentions légales, numéro d'inscription à l'Ordre
-6. Domaine final + username cPanel
-7. Honoraires affichés ou non
+6. **Adresse et téléphone à Paris** — pour le JSON-LD et la fiche Google, identiques au caractère près
+7. Domaine final + username cPanel
 8. Photos disponibles (cabinet, équipe, portrait)
 
 ## Structure
