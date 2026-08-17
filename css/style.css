@@ -492,6 +492,22 @@ a { color: inherit; }
 
 /* --- 8. Sections ----------------------------------------------------- */
 
+/* Même garde-fou que pour le hero, appliqué à tous les enfants de grille
+   susceptibles d'avoir un contenu large (texte long, image, tableau). */
+.spec,
+.cabinet__media,
+.cabinet__card,
+.method__step,
+.assurance__item,
+.contact__grid > *,
+.footer-col {
+    min-width: 0;
+}
+
+.services__item {
+    flex-wrap: wrap;
+}
+
 .section {
     padding-block: var(--section-y);
 }
@@ -529,6 +545,15 @@ a { color: inherit; }
         rgba(169, 117, 76, 0.07) calc(100% / 7)
     );
     pointer-events: none;
+}
+
+/* ⚠️ min-width: 0 obligatoire. Un enfant de grille vaut min-width: auto
+   par défaut : sa largeur min-content élargit la piste, qui dépasse alors
+   le viewport. C'était la cause d'un débordement horizontal sur mobile,
+   masqué par overflow-x: hidden mais bien réel (texte coupé à droite). */
+.hero__text,
+.hero__media {
+    min-width: 0;
 }
 
 .hero__text {
@@ -573,8 +598,9 @@ a { color: inherit; }
 
 .hero__index li {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
-    gap: 0.85rem;
+    gap: 0.35rem 0.85rem;
     padding-block: 0.7rem;
     border-top: 1px solid var(--hairline);
     font-size: 0.875rem;
