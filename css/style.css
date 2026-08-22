@@ -636,16 +636,17 @@ a { color: inherit; }
 
 /* Guilloche, l'entrelacs grave des titres et des certificats. Sert de
    filigrane et donne a la section une matiere qu'un aplat n'a pas. */
+/* Sur mobile il se replie dans l'angle : au centre droit, il passait
+   au milieu de la colonne de lecture. */
 .band-light::before {
     content: "";
     position: absolute;
-    top: 50%;
-    right: -7rem;
-    width: 26rem;
-    height: 26rem;
-    transform: translateY(-50%);
+    right: -9rem;
+    bottom: -7rem;
+    width: 20rem;
+    height: 20rem;
     background: url('../assets/guilloche.svg') center / contain no-repeat;
-    opacity: 0.34;
+    opacity: 0.2;
     pointer-events: none;
 }
 
@@ -1145,6 +1146,16 @@ a { color: inherit; }
     .why__item:last-child { border-bottom: 0; padding-right: 0; }
     .why__item:nth-child(2),
     .why__item:nth-child(3) { border-top: 0; border-bottom: 0; }
+
+    .band-light::before {
+        top: 50%;
+        bottom: auto;
+        right: -7rem;
+        width: 26rem;
+        height: 26rem;
+        transform: translateY(-50%);
+        opacity: 0.34;
+    }
 
     .method-wrap {
         grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
