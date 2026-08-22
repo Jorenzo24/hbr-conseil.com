@@ -147,6 +147,19 @@ styler avec les jetons habituels et il s'inversera tout seul.
 
 Une seule section claire dans la page. En ajouter d'autres casserait l'effet de respiration.
 
+Elle porte un **guilloche** en filigrane, `assets/guilloche.svg`, l'entrelacs grave des titres et
+des certificats. Trace en SVG par un script (rosettes hypotrochoides imbriquees), 28 Ko. C'est ce
+qui donne de la matiere a la section, un aplat seul faisait maquette inachevee. Sur mobile il se
+replie dans l'angle inferieur droit, sinon il passe au milieu de la colonne de lecture.
+
+Regles de composition de cette section, posees par Joseph :
+
+- pas de barre verticale `.rule-spine` ni de sur-titre `.label`, le H2 suffit
+- pas de « a Paris » dans le H2, deja present dans le H1 et sans objet pour un cabinet national
+- **les quatre titres tiennent sur une ligne et les quatre textes sur trois lignes**, sinon les
+  blocs se desalignent et la section prend de la hauteur pour rien
+- pas d'icones, un filet court `.why__rule` a la place
+
 ### Plan d'accès : chargement au clic
 
 La carte Google Maps ne se charge **qu'au clic** (`loadMap()` dans `js/main.js`). Tant que le
