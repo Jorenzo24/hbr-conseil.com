@@ -610,7 +610,7 @@ a { color: inherit; }
 
 .band-light {
     /* On redefinit les jetons au lieu de reecrire chaque composant :
-       .label, .display, .h-sm, .why__glyph suivent automatiquement.
+       .label, .display, .h-sm, .why__rule suivent automatiquement.
        Creme chaud plutot que blanc pur, pour rester dans la meme
        famille chromatique que le reste du site. */
     --paper:       #1A1410;
@@ -626,6 +626,32 @@ a { color: inherit; }
     color: var(--paper-2);
     border-top: 1px solid #E3D9CA;
     border-bottom: 1px solid #E3D9CA;
+
+    /* Plus courte que les autres sections : elle sert de respiration,
+       pas de chapitre. */
+    padding-block: clamp(2.75rem, 5.5vw, 4.5rem);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Guilloche, l'entrelacs grave des titres et des certificats. Sert de
+   filigrane et donne a la section une matiere qu'un aplat n'a pas. */
+.band-light::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -7rem;
+    width: 26rem;
+    height: 26rem;
+    transform: translateY(-50%);
+    background: url('../assets/guilloche.svg') center / contain no-repeat;
+    opacity: 0.34;
+    pointer-events: none;
+}
+
+.band-light .shell {
+    position: relative;
+    z-index: 1;
 }
 
 /* 8.2  Pourquoi nous choisir, seule section claire ----------------
@@ -642,7 +668,7 @@ a { color: inherit; }
 
 .why__item {
     min-width: 0;
-    padding-block: 1.75rem;
+    padding-block: 1.5rem;
     border-top: 1px solid var(--hairline);
     display: flex;
     flex-direction: column;
@@ -652,20 +678,12 @@ a { color: inherit; }
 
 .why__item:last-child { border-bottom: 1px solid var(--hairline); }
 
-.why__glyph {
-    width: 2.75rem;
-    height: 2.75rem;
-    border: 1px solid var(--hairline-hi);
-    display: grid;
-    place-items: center;
-    color: var(--brown-lit);
-    margin-bottom: 0.35rem;
+.why__rule {
+    width: 2.25rem;
+    height: 2px;
+    background: var(--brown-lit);
     flex: 0 0 auto;
-}
-
-.why__glyph svg {
-    width: 1.375rem;
-    height: 1.375rem;
+    margin-bottom: 0.15rem;
 }
 
 .why__item p {
@@ -1120,7 +1138,7 @@ a { color: inherit; }
     .why__item {
         border-top: 0;
         border-left: 1px solid var(--hairline);
-        padding: 2.25rem 2rem 2.25rem 2rem;
+        padding: 0 2rem;
     }
 
     .why__item:first-child { border-left: 0; padding-left: 0; }
