@@ -98,17 +98,20 @@ réintroduire de liste de spécialités dans le hero.
 
 Ordre des sections (une section supplémentaire viendra s'insérer avant les spécialités) :
 
-1. Hero : généraliste
-2. Bandeau « comment ça se passe » (4 points)
+1. Hero, généraliste
+2. **Pourquoi nous choisir**, 4 raisons, seule section sur fond clair
 3. Le cabinet
-4. Trois spécialités *(← une section viendra se glisser au-dessus)*
-5. Méthode : 4 étapes + visuel qui reste en place au défilement
-6. Pourquoi nous choisir, 4 raisons en colonnes séparées par un filet
-7. Contact + plan d'accès
+4. Trois spécialités *(une section viendra se glisser au-dessus)*
+5. Méthode, 4 étapes et un visuel qui reste en place au défilement
+6. Prestations, 6 blocs à filets
+7. Contact et plan d'accès
 
-Le bandeau des 4 points ne contient **que des faits vérifiables** : ni mention de l'Ordre (jugée
-inutile ici), ni « Paris » seul (les rendez-vous ne sont pas tous sur place), ni chiffre inventé
-d'ancienneté ou de portefeuille.
+La section 2 était au départ un bandeau de 4 points courts. Elle est devenue une vraie section de
+raisons, sur le modèle des pages « pourquoi nous choisir » des cabinets en ligne. Contraintes qui
+subsistent : aucune comparaison avec des confrères, aucune promesse de résultat, aucune note ni
+avis tant qu'il n'y en a pas de réels, et aucun chiffre inventé d'ancienneté ou de portefeuille.
+Ne pas y remettre la mention de l'Ordre, jugée inutile, ni « Paris » seul, les rendez-vous
+n'étant pas tous sur place.
 
 ### Écriture : aucun marqueur IA
 
@@ -130,14 +133,19 @@ Vérification rapide avant tout commit :
 grep -rn "$(printf '\u2014\\|\u2013')" . --exclude-dir=.git
 ```
 
-### Pas de liste de prestations sur l'accueil
+### La section claire, et comment elle est faite
 
-Une section énumérant bilan, TVA, paie, création de société a été retirée : ces missions vont de
-soi pour un cabinet complet et n'apportent aucun argument. Elle est remplacée par **Pourquoi nous
-choisir**, quatre raisons concrètes. Ne pas réintroduire de catalogue de prestations sur l'accueil.
+Le site est sombre de bout en bout, sauf la section **Pourquoi nous choisir**, posée haut dans la
+page pour casser la succession de fonds sombres. Fond crème chaud `#F6F1E9`, pas blanc pur, pour
+rester dans la même famille chromatique.
 
-Contrainte déontologique sur cette section : aucune comparaison avec des confrères, aucune
-promesse de résultat, aucune note ou avis tant qu'il n'y en a pas de réels.
+Technique : la classe `.band-light` **redéfinit les jetons de couleur dans sa propre portée**
+(`--paper`, `--paper-2`, `--muted`, `--hairline`, `--hairline-hi`, `--brown-lit`, `--tan`). Les
+composants existants (`.label`, `.display`, `.h-sm`, `.why__glyph`) suivent automatiquement, sans
+qu'aucun d'eux ait à être réécrit en version claire. Pour ajouter un composant à cette section, le
+styler avec les jetons habituels et il s'inversera tout seul.
+
+Une seule section claire dans la page. En ajouter d'autres casserait l'effet de respiration.
 
 ### Plan d'accès : chargement au clic
 
