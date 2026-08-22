@@ -498,9 +498,9 @@ a { color: inherit; }
 .cabinet__media,
 .cabinet__card,
 .method__step,
-.assurance__item,
 .contact__grid > *,
 .footer-col,
+.mission,
 .why__item {
     min-width: 0;
 }
@@ -608,35 +608,70 @@ a { color: inherit; }
     pointer-events: none;
 }
 
-/* 8.2  Bandeau de réassurance ------------------------------------- */
+.band-light {
+    /* On redefinit les jetons au lieu de reecrire chaque composant :
+       .label, .display, .h-sm, .why__glyph suivent automatiquement.
+       Creme chaud plutot que blanc pur, pour rester dans la meme
+       famille chromatique que le reste du site. */
+    --paper:       #1A1410;
+    --paper-2:     #4E443B;
+    --muted:       #857868;
+    --hairline:    #E3D9CA;
+    --hairline-hi: #CCBDA8;
+    --brown-lit:   #8A5730;
+    --tan:         #7A4A28;
+    --accent-dim:  #B99A76;
 
-.assurance {
-    background: var(--deep);
-    border-bottom: 1px solid var(--hairline);
+    background: #F6F1E9;
+    color: var(--paper-2);
+    border-top: 1px solid #E3D9CA;
+    border-bottom: 1px solid #E3D9CA;
 }
 
-.assurance__grid {
+/* 8.2  Pourquoi nous choisir, seule section claire ----------------
+   Pas de boîtes ni de cartes arrondies. Les colonnes sont posées sur le
+   fond et séparées par un filet vertical, ce qui laisse respirer et
+   évite le rendu « rangée de cartes ».
+   ------------------------------------------------------------------- */
+
+.why {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
 }
 
-.assurance__item {
-    padding-block: 1.5rem;
+.why__item {
+    min-width: 0;
+    padding-block: 1.75rem;
     border-top: 1px solid var(--hairline);
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0.85rem;
+    align-items: flex-start;
 }
 
-.assurance__item:first-child { border-top: none; }
+.why__item:last-child { border-bottom: 1px solid var(--hairline); }
 
-.assurance__value {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: 1.25rem;
-    font-variation-settings: 'opsz' 24;
-    color: var(--paper);
-    font-variant-numeric: tabular-nums;
+.why__glyph {
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--hairline-hi);
+    display: grid;
+    place-items: center;
+    color: var(--brown-lit);
+    margin-bottom: 0.35rem;
+    flex: 0 0 auto;
+}
+
+.why__glyph svg {
+    width: 1.375rem;
+    height: 1.375rem;
+}
+
+.why__item p {
+    font-size: 0.9375rem;
+    color: var(--paper-2);
+    max-width: 34ch;
 }
 
 /* 8.3  Les trois spécialités, panneaux hauts, décalés ------------ */
@@ -778,31 +813,31 @@ a { color: inherit; }
     max-width: 52ch;
 }
 
-/* 8.6  Pourquoi nous choisir, colonnes séparées par des filets ---
-   Pas de boîtes ni de cartes arrondies. Les colonnes sont posées sur le
-   fond et séparées par un filet vertical, ce qui laisse respirer et
-   évite le rendu « rangée de cartes ».
+/* 8.6  Prestations, blocs à filets et glyphes tracés --------------
+   Angles vifs et pas de rail d'accent coloré, la carte arrondie à
+   liseré est devenue un tic visuel, on s'en tient au filet.
    ------------------------------------------------------------------- */
 
-.why {
+.missions {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 0;
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
 }
 
-.why__item {
-    min-width: 0;
-    padding-block: 1.75rem;
-    border-top: 1px solid var(--hairline);
+/* Le fond du conteneur fait les séparateurs : un seul filet partagé
+   entre deux blocs voisins, jamais deux traits accolés. */
+.mission {
+    background: var(--deep);
+    padding: clamp(1.5rem, 3vw, 2.125rem);
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
-    align-items: flex-start;
+    min-width: 0;
 }
 
-.why__item:last-child { border-bottom: 1px solid var(--hairline); }
-
-.why__glyph {
+.mission__glyph {
     width: 2.75rem;
     height: 2.75rem;
     border: 1px solid var(--hairline-hi);
@@ -810,17 +845,16 @@ a { color: inherit; }
     place-items: center;
     color: var(--brown-lit);
     margin-bottom: 0.35rem;
-    flex: 0 0 auto;
 }
 
-.why__glyph svg {
+.mission__glyph svg {
     width: 1.375rem;
     height: 1.375rem;
 }
 
-.why__item p {
+.mission p {
     font-size: 0.9375rem;
-    color: var(--paper-2);
+    color: var(--muted);
     max-width: 34ch;
 }
 
@@ -1001,13 +1035,12 @@ a { color: inherit; }
    ===================================================================== */
 
 @media (min-width: 34rem) {
-    .assurance__grid { grid-template-columns: 1fr 1fr; }
-    .assurance__item { padding-inline-end: 1.5rem; }
-    .assurance__item:nth-child(2) { border-top: none; }
 }
 
 @media (min-width: 48rem) {
     .cabinet__card { margin: -4rem 3rem 0; }
+
+    .missions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
     .why { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.5rem; }
     .why__item:nth-child(2) { border-top: 1px solid var(--hairline); }
@@ -1024,6 +1057,8 @@ a { color: inherit; }
 }
 
 @media (min-width: 56rem) {
+    .missions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
     .specs {
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
@@ -1035,9 +1070,6 @@ a { color: inherit; }
        constante se lit comme une intention. */
     .specs > :nth-child(2) { margin-top: 3rem; }
     .specs > :nth-child(3) { margin-top: 6rem; }
-
-    .assurance__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .assurance__item { border-top: none; }
 
 }
 
