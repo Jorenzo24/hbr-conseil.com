@@ -1,6 +1,6 @@
 # Ressources externes du dossier assets/
 
-## Images — PLACEHOLDERS À REMPLACER
+## Images : PLACEHOLDERS À REMPLACER
 
 Photos issues d'Unsplash, sous [licence Unsplash](https://unsplash.com/license)
 (usage commercial autorisé, attribution non obligatoire). Ce sont des **images
@@ -18,7 +18,7 @@ Retéléchargement d'un original : `https://unsplash.com/photos/<ID>/download?w=
 
 Le traitement duotone marron est appliqué **en CSS** (`.duo`, section 5 de
 `style.css`), pas dans les fichiers. Les remplaçantes hériteront donc du même
-rendu sans retouche — il suffit de respecter les mêmes dimensions et rapports :
+rendu sans retouche : il suffit de respecter les mêmes dimensions et rapports :
 
 - hero : 1400×1900 et 700×950 (portrait 
   ~3:4)
@@ -29,14 +29,14 @@ Chaîne de conversion utilisée :
 `magick <src> -strip -resize "LxH^" -gravity center -extent "LxH" -quality 92 tmp.jpg`
 puis `cwebp -q 78 -m 6 tmp.jpg -o <dest>.webp`
 
-## Polices — auto-hébergées
+## Polices : auto-hébergées
 
 | Fichier | Famille | Licence |
 |---|---|---|
 | `fonts/newsreader-var-latin.woff2` | Newsreader (variable, 300–600) | SIL Open Font License 1.1 |
 | `fonts/archivo-var-latin.woff2` | Archivo (variable, 400–600) | SIL Open Font License 1.1 |
 
-Sous-ensemble **latin uniquement** — suffisant pour le français, y compris `œ`
+Sous-ensemble **latin uniquement** : suffisant pour le français, y compris `œ`
 (U+0153). L'italique de Newsreader a été volontairement écartée : 144 Ko pour un
 usage ponctuel.
 
@@ -47,7 +47,7 @@ dossier.
 ## Favicon
 
 `favicon.svg` (source) et `favicon.ico` (32 et 16 px, généré depuis le SVG).
-Monogramme H en formes géométriques — jambages champagne, barre marron — et non
+Monogramme H en formes géométriques, jambages champagne, barre marron, et non
 en glyphe typographique, pour rester net à 16 px.
 
 Régénérer l'ico après modification du SVG :

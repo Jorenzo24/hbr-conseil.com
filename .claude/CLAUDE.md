@@ -1,27 +1,27 @@
-# hbr-conseil.com — Contexte projet
+# hbr-conseil.com : Contexte projet
 
 Site vitrine d'un **cabinet d'expertise comptable**. Prestation client : le donneur d'ordre est
-le comptable, qui valide les textes. Profession réglementée — voir la section Déontologie.
+le comptable, qui valide les textes. Profession réglementée, voir la section Déontologie.
 
 ## Phase actuelle : PREVIEW sur GitHub Pages
 
 Le domaine définitif n'est pas encore arrêté. Le site est publié temporairement sur GitHub Pages
 pour pouvoir itérer et le montrer au client.
 
-- **Dépôt** : `Jorenzo24/hbr-conseil.com` (public — Pages sur dépôt privé exige un compte payant)
+- **Dépôt** : `Jorenzo24/hbr-conseil.com` (public, Pages sur dépôt privé exige un compte payant)
 - **URL de preview** : https://jorenzo24.github.io/hbr-conseil.com/
 - **Déclencheur** : chaque push sur `main` reconstruit Pages (~1 min)
 
 ⚠️ **Pages n'a ni Apache ni PHP.** Donc : `.htaccess` est ignoré (aucune redirection, aucun cache,
-aucun header de sécurité), et `send-mail.php` ne fonctionnera pas — le formulaire de contact ne
+aucun header de sécurité), et `send-mail.php` ne fonctionnera pas, le formulaire de contact ne
 sera testable qu'une fois sur cPanel. Le cache-busting n'est pas non plus observable sur Pages.
 
 ## Phase cible : VPS Hetzner / cPanel
 
 - **Hébergement** : VPS Hetzner avec cPanel
-- **Username cPanel** : ⚠️ **inconnu** — `USERNAME_CPANEL_A_REMPLACER` dans `.cpanel.yml`
+- **Username cPanel** : ⚠️ **inconnu**, `USERNAME_CPANEL_A_REMPLACER` dans `.cpanel.yml`
 - **Deploy path** : `/home/<username>/public_html/`
-- **Méthode** : cPanel Git Version Control — chaque push sur `main` déploie via `.cpanel.yml`
+- **Méthode** : cPanel Git Version Control, chaque push sur `main` déploie via `.cpanel.yml`
 - **Domaine** : non arrêté. `hbr-conseil.com` est utilisé comme provisoire.
 
 ## ✅ Checklist de mise en ligne
@@ -30,18 +30,18 @@ sera testable qu'une fois sur cPanel. Le cache-busting n'est pas non plus observ
 un `og:url` et un `sitemap.xml` corrects sans faire la passe complète, ce qui protège de l'oubli
 du plus critique (le `noindex`).
 
-1. **`robots.txt`** — supprimer le bloc `Disallow: /`, décommenter le bloc PRODUCTION
-2. **`index.html` et toute page ajoutée** — supprimer `<meta name="robots" content="noindex, nofollow">`
+1. **`robots.txt`** : supprimer le bloc `Disallow: /`, décommenter le bloc PRODUCTION
+2. **`index.html` et toute page ajoutée**, supprimer `<meta name="robots" content="noindex, nofollow">`
 3. **Domaine réel** partout où il est absolu : `<link rel="canonical">`, `og:url`, `og:image`,
    `sitemap.xml`, la ligne `Sitemap:` de `robots.txt`
-4. **`.cpanel.yml`** — remplacer `USERNAME_CPANEL_A_REMPLACER` par le vrai username, retirer le commentaire d'avertissement
+4. **`.cpanel.yml`** : remplacer `USERNAME_CPANEL_A_REMPLACER` par le vrai username, retirer le commentaire d'avertissement
 5. **Renommer le dépôt** si le domaine diffère : `gh repo rename <nouveau-nom>` puis
    `git remote set-url origin <nouvelle-url>` (GitHub redirige l'ancienne URL automatiquement)
 6. **Connecter** le dépôt dans cPanel > Git Version Control, puis pousser pour déclencher le déploiement
 7. **Désactiver GitHub Pages** (ou le garder en préproduction, mais alors `noindex` doit y rester)
-8. **Search Console** — ajouter la propriété du vrai domaine, soumettre le sitemap
-9. **Fiche Google d'établissement** — créer/valider, NAP identique au site au caractère près
-10. **JSON-LD** — compléter le `AccountingService` (adresse, téléphone, horaires) dans `index.html`
+8. **Search Console** : ajouter la propriété du vrai domaine, soumettre le sitemap
+9. **Fiche Google d'établissement** : créer/valider, NAP identique au site au caractère près
+10. **JSON-LD** : compléter le `AccountingService` (adresse, téléphone, horaires) dans `index.html`
 
 ## Stack
 
@@ -51,8 +51,8 @@ du plus critique (le `noindex`).
 
 ## Système de design
 
-Registre visé : **cabinet haut de gamme, sobre**. Le repère est le grand livre relié — réglures,
-alignements, cuir et acajou — et non le noir-et-or qui est devenu le cliché du site « premium ».
+Registre visé : **cabinet haut de gamme, sobre**. Le repère est le grand livre relié, réglures,
+alignements, cuir et acajou : et non le noir-et-or qui est devenu le cliché du site « premium ».
 
 ### Palette (jetons dans `css/style.css`, section 3)
 
@@ -78,10 +78,10 @@ froide, pour se distinguer sans se battre.
   l'échelle `.h-xl` / `.h-lg` / `.h-md` / `.h-sm`. Utiliser `font-variation-settings: 'opsz'`
   selon la taille de rendu.
 - **Archivo** (variable 400–600) pour le texte courant et l'interface.
-- Libellés : classe `.label` — capitales, `letter-spacing: 0.18em`, petite taille.
+- Libellés : classe `.label`, capitales, `letter-spacing: 0.18em`, petite taille.
 - Chiffres alignés : `font-variant-numeric: tabular-nums`.
 
-### Traitement d'image — duotone marron
+### Traitement d'image : duotone marron
 
 Section 5 de `style.css`. Un dégradé marron dans le conteneur `.duo`, l'image par-dessus en
 `mix-blend-mode: luminosity`. **La couleur vient du calque, pas de la photo** : n'importe quelle
@@ -98,12 +98,12 @@ réintroduire de liste de spécialités dans le hero.
 
 Ordre des sections (une section supplémentaire viendra s'insérer avant les spécialités) :
 
-1. Hero — généraliste
+1. Hero : généraliste
 2. Bandeau « comment ça se passe » (4 points)
 3. Le cabinet
 4. Trois spécialités *(← une section viendra se glisser au-dessus)*
-5. Méthode — 4 étapes + visuel qui reste en place au défilement
-6. Prestations — 6 blocs à filets
+5. Méthode : 4 étapes + visuel qui reste en place au défilement
+6. Prestations : 6 blocs à filets
 7. Contact + plan d'accès
 
 Le bandeau des 4 points ne contient **que des faits vérifiables** : ni mention de l'Ordre (jugée
@@ -114,7 +114,7 @@ d'ancienneté ou de portefeuille.
 
 La carte Google Maps ne se charge **qu'au clic** (`loadMap()` dans `js/main.js`). Tant que le
 visiteur n'a pas cliqué, aucune requête ne part vers Google : pas de cookie tiers, donc **pas de
-bandeau de consentement à prévoir** — ce qui compte pour le site d'une profession réglementée.
+bandeau de consentement à prévoir** : ce qui compte pour le site d'une profession réglementée.
 Pour la charger d'emblée, appeler `loadMap()` au chargement, mais il faudra alors traiter le
 consentement. L'embed utilisé ne demande pas de clé d'API.
 
@@ -123,7 +123,7 @@ consentement. L'embed utilisé ne demande pas de clé d'API.
 - **Grain** : bruit fractal SVG en `data:` URI, superposition fixe à 4 % d'opacité. Casse
   l'aplat numérique des grands fonds sombres.
 - **Chevauchements** : obtenus **en grille** (`grid-column` / `grid-row` sur la même cellule),
-  jamais en `position: absolute` — pas de recouvrement accidentel au redimensionnement.
+  jamais en `position: absolute` : pas de recouvrement accidentel au redimensionnement.
 - **Révélations au défilement** : classe `.reveal` + `IntersectionObserver`, avec
   `.reveal--d1/d2/d3` pour l'échelonnement. Garde-fou `.no-js` : si `main.js` ne se charge pas,
   rien ne reste invisible.
@@ -131,20 +131,20 @@ consentement. L'embed utilisé ne demande pas de clé d'API.
 
 ### Ressources
 
-Voir `assets/CREDITS.md` — sources et licences des images, polices auto-hébergées, chaîne de
+Voir `assets/CREDITS.md` : sources et licences des images, polices auto-hébergées, chaîne de
 conversion WebP, régénération du favicon.
 
 ### ⚠️ Deux pièges CSS déjà rencontrés
 
 **`aspect-ratio` + `max-height` sur un bloc → Chrome déduit la LARGEUR.** Au lieu de laisser
 le bloc remplir l'espace disponible, il calcule `largeur = max-height × ratio`. La carte faisait
-768 px (30rem × 1,6) au lieu de 1120. Solution : ne jamais combiner les deux — poser
+768 px (30rem × 1,6) au lieu de 1120. Solution, ne jamais combiner les deux, poser
 `aspect-ratio` sur mobile, puis `aspect-ratio: auto` + une `height` fixe au-dessus du point de
 rupture.
 
 **Enfants de grille : `min-width: 0`.** Ils valent `min-width: auto` par défaut, donc leur largeur
 min-content peut élargir la piste au-delà du conteneur. Une liste de jetons appliqués aux enfants
-de grille du site existe en section 8 de `style.css` — l'étendre à tout nouvel enfant de grille.
+de grille du site existe en section 8 de `style.css`, l'étendre à tout nouvel enfant de grille.
 
 ### ⚠️ Vérifier le rendu mobile : le piège de Chrome headless
 
@@ -154,7 +154,7 @@ en page à 500 px, puis l'image est simplement recadrée à 390. Résultat : du 
 droite et on croit à un débordement horizontal qui n'existe pas. Mesuré :
 `innerWidth === clientWidth === scrollWidth === 500`.
 
-**Contournement** — encapsuler le site dans une iframe à la largeur voulue, qui établit son
+**Contournement** : encapsuler le site dans une iframe à la largeur voulue, qui établit son
 propre viewport (GitHub Pages n'envoie pas `X-Frame-Options`, le cadrage fonctionne) :
 
 ```html
@@ -183,7 +183,7 @@ Deux autres points pour capturer utilement :
 - **Mobile-first** : styles mobile d'abord, puis `@media (min-width: …)`
 - **Images** : WebP en priorité, fallback JPEG/PNG si nécessaire
 - **SVG** : inline dans le HTML pour les icônes (permet `currentColor`)
-- **Jamais de hotlink** d'images externes — tout héberger dans `assets/`
+- **Jamais de hotlink** d'images externes, tout héberger dans `assets/`
 - **Alt text obligatoire** sur toutes les images
 - **Chemins relatifs uniquement** : `css/style.css` et pas `/css/style.css`. Sinon le site casse
   en `file://` **et** sur GitHub Pages, où il vit dans le sous-dossier `/hbr-conseil.com/`.
@@ -217,7 +217,7 @@ Le cabinet est à **Paris** et intervient à peu près partout en France. Consé
 en national/thématique comme le LMNP. C'est une correction de la v1 de la stratégie, qui
 recommandait à tort de prioriser l'agriculture sur des requêtes départementales.
 
-### Plan de pages — 12 pages, une intention chacune
+### Plan de pages : 12 pages, une intention chacune
 
 ⚠️ **Ne jamais rédiger une page absente de ce tableau sans l'y ajouter d'abord.** C'est le
 contrat anti-cannibalisation : une requête n'appartient qu'à une seule page.
@@ -225,9 +225,9 @@ contrat anti-cannibalisation : une requête n'appartient qu'à une seule page.
 | Page | URL | Requêtes possédées | Intention |
 |---|---|---|---|
 | Accueil | `/` | expert-comptable Paris | commerciale |
-| Le cabinet | `/le-cabinet/` | — (marque) | confiance |
+| Le cabinet | `/le-cabinet/` | : (marque) | confiance |
 | Honoraires | `/honoraires/` | tarif / prix expert-comptable | informationnelle |
-| Contact | `/contact/` | — (NAP) | conversion |
+| Contact | `/contact/` | : (NAP) | conversion |
 | **Pilier BNC** | `/expert-comptable-profession-liberale/` | expert-comptable profession libérale, comptable BNC | commerciale |
 | Satellite BNC | `…-profession-liberale/declaration-2035/` | déclaration 2035, formulaire 2035 | informationnelle |
 | Satellite BNC | `…-profession-liberale/micro-bnc-ou-declaration-controlee/` | micro-BNC ou réel, seuil micro-BNC | comparaison |
@@ -240,7 +240,7 @@ contrat anti-cannibalisation : une requête n'appartient qu'à une seule page.
 ### Cocon sémantique : les satellites sont imbriqués dans l'URL du pilier
 
 Deux niveaux maximum. La structure d'URL rend le cocon explicite et donne du sens au fil
-d'Ariane. Un satellite n'appartient qu'à **un seul** pilier — s'il en concernait deux, c'est
+d'Ariane. Un satellite n'appartient qu'à **un seul** pilier, s'il en concernait deux, c'est
 qu'il est mal découpé.
 
 ### Deux formats de page, jamais mélangés
@@ -260,7 +260,7 @@ départements agricoles** (Corrèze, etc.) et précise que le cabinet est à Par
 dossiers à distance.
 
 ⚠️ À savoir : cette liste de départements **ne fera pas ranker** sur « comptable agricole
-Corrèze » — il faudrait une page par département, ce qu'on refuse. Elle sert à **rassurer le
+Corrèze » : il faudrait une page par département, ce qu'on refuse. Elle sert à **rassurer le
 visiteur humain** sur le fait que la distance n'est pas un obstacle. C'est assumé, ce n'est pas
 un oubli d'optimisation.
 
@@ -268,14 +268,14 @@ un oubli d'optimisation.
 
 Elles paraissent évidentes et créeraient toutes une cannibalisation :
 
-- ❌ `/expert-comptable-bnc/` en plus du pilier « profession libérale » — même intention.
+- ❌ `/expert-comptable-bnc/` en plus du pilier « profession libérale », même intention.
   « BNC » est le mot du comptable, « profession libérale » celui du client : **une seule page**,
   dont le titre porte les deux vocabulaires.
-- ❌ `/expert-comptable-paris/` en plus de l'accueil — **l'accueil EST la page Paris**. Une page
+- ❌ `/expert-comptable-paris/` en plus de l'accueil, **l'accueil EST la page Paris**. Une page
   dédiée diviserait le signal entre deux URL.
-- ❌ Les pages d'arrondissement (`/expert-comptable-paris-8/`…) — volume dérisoire, contenu
+- ❌ Les pages d'arrondissement (`/expert-comptable-paris-8/`…), volume dérisoire, contenu
   quasi identique. Le générateur de cannibalisation le plus efficace qui existe.
-- ❌ `/fiscalite-agricole/` — recouvre le champ du pilier. Un satellite agricole doit nommer un
+- ❌ `/fiscalite-agricole/` : recouvre le champ du pilier. Un satellite agricole doit nommer un
   **dispositif précis** (GAEC, DEP, transmission), jamais un domaine entier.
 
 ### Géographie
@@ -285,10 +285,10 @@ la fiche Google d'établissement, pas par des pages.
 
 | Silo | Géographie |
 |---|---|
-| Accueil | Paris — seule page géolocalisée |
+| Accueil | Paris : seule page géolocalisée |
 | BNC | Paris et région, mais **par le métier**, jamais par le quartier |
-| LMNP | aucune — national |
-| Agriculture | aucune — national et thématique |
+| LMNP | aucune : national |
+| Agriculture | aucune : national et thématique |
 
 Seule extension locale propre, si un jour besoin : `métier × ville`
 (`/expert-comptable-medecin-paris/`). Jamais `ville × ville`.
@@ -296,10 +296,10 @@ Seule extension locale propre, si un jour besoin : `métier × ville`
 ### Six règles anti-cannibalisation
 
 1. Une intention par page, décidée **avant** d'écrire (tableau ci-dessus)
-2. Une requête n'appartient qu'à une page — si deux pages peuvent la revendiquer, on fusionne
+2. Une requête n'appartient qu'à une page, si deux pages peuvent la revendiquer, on fusionne
 3. **Discipline des ancres internes** : le pilier LMNP se lie toujours avec l'ancre
    « expert-comptable LMNP », et cette ancre ne pointe jamais ailleurs
-4. **Aucun lien entre deux silos** — les satellites remontent vers leur pilier, les piliers ne
+4. **Aucun lien entre deux silos** : les satellites remontent vers leur pilier, les piliers ne
    sont reliés qu'à l'accueil
 5. Canonical auto-référent sur chaque page
 6. **Détection** : deux URL sur la même requête dans Search Console plusieurs semaines de suite
@@ -315,7 +315,7 @@ Seule extension locale propre, si un jour besoin : `métier × ville`
 - Mesure : préférer Plausible ou Matomo auto-hébergé (pas de bandeau cookies, site plus léger)
 - **Aucune donnée fiscale publiée sans validation du cabinet** (seuils, dispositifs, taux)
 
-## Déontologie — contraintes de rédaction
+## Déontologie : contraintes de rédaction
 
 L'expertise comptable est une profession réglementée, sa communication est encadrée par le code de
 déontologie de l'Ordre. **À ne jamais écrire :**
@@ -350,7 +350,7 @@ Le texte final est validé par le cabinet, au besoin auprès de son conseil rég
 
 Aucune ne bloque plus la rédaction des piliers.
 
-1. Métiers BNC réellement maîtrisés au cabinet — pour que le pilier parle juste
+1. Métiers BNC réellement maîtrisés au cabinet, pour que le pilier parle juste
 2. Quel pilier rédiger en premier (proposition : le BNC, seul silo où Paris joue pour nous)
 3. Page honoraires : oui ou non ?
 4. Nom exact du cabinet, mentions légales, numéro d'inscription à l'Ordre
@@ -364,7 +364,7 @@ Aucune ne bloque plus la rédaction des piliers.
 hbr-conseil.com/
 ├── .claude/CLAUDE.md       # ce fichier
 ├── .cpanel.yml             # déploiement cPanel (username à remplacer)
-├── .htaccess               # Apache — ignoré par GitHub Pages
+├── .htaccess               # Apache, ignoré par GitHub Pages
 ├── .gitignore
 ├── robots.txt              # ⚠️ Disallow: / pendant la phase preview
 ├── sitemap.xml

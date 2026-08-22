@@ -1,5 +1,5 @@
 /* =====================================================================
-   hbr-conseil.com — comportements
+   hbr-conseil.com : comportements
    ⚠️ Toute modification ici = bumper ?v=AAAAMMJJx dans les pages HTML
    ===================================================================== */
 
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* --- Carte : chargement au clic ------------------------------------
        Tant que le visiteur n'a pas cliqué, aucune requête ne part vers
        Google : pas de cookie tiers, donc pas de bandeau de consentement
-       à prévoir. Pour la charger d'emblée, appeler loadMap() ici même —
+       à prévoir. Pour la charger d'emblée, appeler loadMap() ici même, 
        mais il faudra alors traiter le consentement.
        ------------------------------------------------------------------ */
 
