@@ -33,8 +33,8 @@ puis `cwebp -q 78 -m 6 tmp.jpg -o <dest>.webp`
 
 | Fichier | Famille | Licence |
 |---|---|---|
-| `fonts/newsreader-var-latin.woff2` | Newsreader (variable, 300–600) | SIL Open Font License 1.1 |
-| `fonts/archivo-var-latin.woff2` | Archivo (variable, 400–600) | SIL Open Font License 1.1 |
+| `fonts/newsreader-var-latin.woff2` | Newsreader (variable, 300 à 600) | SIL Open Font License 1.1 |
+| `fonts/archivo-var-latin.woff2` | Archivo (variable, 400 à 600) | SIL Open Font License 1.1 |
 
 Sous-ensemble **latin uniquement** : suffisant pour le français, y compris `œ`
 (U+0153). L'italique de Newsreader a été volontairement écartée : 144 Ko pour un

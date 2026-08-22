@@ -74,10 +74,10 @@ froide, pour se distinguer sans se battre.
 
 ### Typographie
 
-- **Newsreader** (serif variable 300–600) pour les titres, via la classe `.display` et
+- **Newsreader** (serif variable 300 à 600) pour les titres, via la classe `.display` et
   l'échelle `.h-xl` / `.h-lg` / `.h-md` / `.h-sm`. Utiliser `font-variation-settings: 'opsz'`
   selon la taille de rendu.
-- **Archivo** (variable 400–600) pour le texte courant et l'interface.
+- **Archivo** (variable 400 à 600) pour le texte courant et l'interface.
 - Libellés : classe `.label`, capitales, `letter-spacing: 0.18em`, petite taille.
 - Chiffres alignés : `font-variant-numeric: tabular-nums`.
 
@@ -103,12 +103,41 @@ Ordre des sections (une section supplémentaire viendra s'insérer avant les sp�
 3. Le cabinet
 4. Trois spécialités *(← une section viendra se glisser au-dessus)*
 5. Méthode : 4 étapes + visuel qui reste en place au défilement
-6. Prestations : 6 blocs à filets
+6. Pourquoi nous choisir, 4 raisons en colonnes séparées par un filet
 7. Contact + plan d'accès
 
 Le bandeau des 4 points ne contient **que des faits vérifiables** : ni mention de l'Ordre (jugée
 inutile ici), ni « Paris » seul (les rendez-vous ne sont pas tous sur place), ni chiffre inventé
 d'ancienneté ou de portefeuille.
+
+### Écriture : aucun marqueur IA
+
+⚠️ **Règle universelle posée par Joseph.** Aucun tiret cadratin (U+2014) ni demi-cadratin
+(U+2013), nulle part : texte visible, balises `title`, meta descriptions, commentaires de code,
+documentation. Une virgule, un point ou une parenthèse à la place.
+
+Éviter aussi les tics qui trahissent un texte généré :
+
+- les tournures en balancier, « ce n'est pas X, c'est Y », « X, pas Y », « plutôt que »
+- les énumérations systématiquement en trois termes
+- les deux-points qui créent un effet d'annonce
+- les adverbes de posture répétés, « volontairement », « délibérément »
+- les emoji en tête de section dans le contenu visible
+
+Vérification rapide avant tout commit :
+
+```
+grep -rn "$(printf '\u2014\\|\u2013')" . --exclude-dir=.git
+```
+
+### Pas de liste de prestations sur l'accueil
+
+Une section énumérant bilan, TVA, paie, création de société a été retirée : ces missions vont de
+soi pour un cabinet complet et n'apportent aucun argument. Elle est remplacée par **Pourquoi nous
+choisir**, quatre raisons concrètes. Ne pas réintroduire de catalogue de prestations sur l'accueil.
+
+Contrainte déontologique sur cette section : aucune comparaison avec des confrères, aucune
+promesse de résultat, aucune note ou avis tant qu'il n'y en a pas de réels.
 
 ### Plan d'accès : chargement au clic
 
