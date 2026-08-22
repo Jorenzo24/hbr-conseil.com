@@ -78,6 +78,11 @@ froide, pour se distinguer sans se battre.
   l'échelle `.h-xl` / `.h-lg` / `.h-md` / `.h-sm`. Utiliser `font-variation-settings: 'opsz'`
   selon la taille de rendu.
 - **Archivo** (variable 400 à 600) pour le texte courant et l'interface.
+- **Newsreader Italic** pour les touches calligraphiques, classe `.cursive`. Vraie italique
+  cursive, pas une inclinaison synthetique. Employee sur un fragment du H2 de la section claire
+  et sur ses quatre sous-titres. Fichier degraisse a 15 Ko : axes figes (`opsz` 28, `wght` 400)
+  puis sous-ensemble latin plus accents francais, via `fontTools`. L'original variable pesait
+  144 Ko.
 - Libellés : classe `.label`, capitales, `letter-spacing: 0.18em`, petite taille.
 - Chiffres alignés : `font-variant-numeric: tabular-nums`.
 
@@ -148,7 +153,14 @@ styler avec les jetons habituels et il s'inversera tout seul.
 Une seule section claire dans la page. En ajouter d'autres casserait l'effet de respiration.
 
 Elle porte un **guilloche** en filigrane, `assets/guilloche.svg`, l'entrelacs grave des titres et
-des certificats. Trace en SVG par un script (rosettes hypotrochoides imbriquees), 28 Ko. C'est ce
+des certificats. Trace en SVG par un script (rosettes hypotrochoides imbriquees), 48 Ko.
+
+⚠️ **Piege du guilloche.** Une rosace `x = A cos t + B cos(f t)` a une symetrie d'ordre `f+1`.
+Melanger deux familles de symetries incompatibles (par exemple `f=9` donc ordre 10, et `f=13`
+donc ordre 14) ne laisse que le diviseur commun, ici 2, et la figure parait bancale. Les
+dephasages arbitraires cassent la symetrie de la meme facon. Regle : **une seule symetrie, ou des
+multiples entre eux** (`f=9` et `f=19`, ordres 10 et 20), et aucun dephasage. Verifier que le
+`viewBox` contient le rayon maximal `A + B`, sinon les lobes exterieurs sont rognes. C'est ce
 qui donne de la matiere a la section, un aplat seul faisait maquette inachevee. Sur mobile il se
 replie dans l'angle inferieur droit, sinon il passe au milieu de la colonne de lecture.
 
@@ -159,6 +171,10 @@ Regles de composition de cette section, posees par Joseph :
 - **les quatre titres tiennent sur une ligne et les quatre textes sur trois lignes**, sinon les
   blocs se desalignent et la section prend de la hauteur pour rien
 - pas d'icones, un filet court `.why__rule` a la place
+- **pas de quadrillage** : seuls les filets verticaux entre colonnes, jamais de trait en haut
+  ni en bas de la grille, et un rembourrage bas pour que les filets descendent sous le texte
+- le titre de cette section est plus petit que les autres titres de section, elle sert de
+  respiration et n'a pas a peser comme un chapitre
 
 ### Plan d'accès : chargement au clic
 
