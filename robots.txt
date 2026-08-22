@@ -1,5 +1,5 @@
 # =====================================================================
-#  PHASE PREVIEW — GitHub Pages
+#  PHASE PREVIEW : GitHub Pages
 #  Le site est exposé publiquement sur jorenzo24.github.io.
 #  On bloque toute indexation pour ne pas créer de contenu dupliqué
 #  avec le vrai domaine au lancement.
@@ -12,7 +12,7 @@ User-agent: *
 Disallow: /
 
 # =====================================================================
-#  PRODUCTION — à activer le jour de la mise en ligne
+#  PRODUCTION : à activer le jour de la mise en ligne
 # =====================================================================
 #
 # User-agent: *

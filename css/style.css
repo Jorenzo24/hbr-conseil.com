@@ -1,5 +1,5 @@
 /* =====================================================================
-   hbr-conseil.com — feuille de style
+   hbr-conseil.com : feuille de style
    ⚠️ Toute modification ici = bumper ?v=AAAAMMJJx dans les pages HTML
    =====================================================================
    Sommaire
@@ -285,7 +285,7 @@ a { color: inherit; }
    Duotone réel : un dégradé marron dans le conteneur, l'image en
    mode « luminosity » par-dessus. L'image ne conserve que ses valeurs,
    la couleur vient du calque. Résultat homogène quelle que soit la
-   photo — ce qui compte puisque ces visuels seront remplacés.
+   photo : ce qui compte puisque ces visuels seront remplacés.
    -------------------------------------------------------------------- */
 
 .duo {
@@ -501,7 +501,7 @@ a { color: inherit; }
 .assurance__item,
 .contact__grid > *,
 .footer-col,
-.mission {
+.why__item {
     min-width: 0;
 }
 
@@ -520,7 +520,7 @@ a { color: inherit; }
 
 .section__head .display { max-width: 34ch; }
 
-/* 8.1 — Hero : partition asymétrique, l'image sort par la droite --- */
+/* 8.1  Hero, partition asymétrique, l'image sort par la droite --- */
 
 .hero {
     position: relative;
@@ -608,7 +608,7 @@ a { color: inherit; }
     pointer-events: none;
 }
 
-/* 8.2 — Bandeau de réassurance ------------------------------------- */
+/* 8.2  Bandeau de réassurance ------------------------------------- */
 
 .assurance {
     background: var(--deep);
@@ -639,7 +639,7 @@ a { color: inherit; }
     font-variant-numeric: tabular-nums;
 }
 
-/* 8.3 — Les trois spécialités : panneaux hauts, décalés ------------ */
+/* 8.3  Les trois spécialités, panneaux hauts, décalés ------------ */
 
 .specs {
     display: grid;
@@ -684,7 +684,7 @@ a { color: inherit; }
     color: var(--muted);
 }
 
-/* 8.4 — Le cabinet : chevauchement carte / image ------------------- */
+/* 8.4  Le cabinet, chevauchement carte / image ------------------- */
 
 .cabinet {
     display: grid;
@@ -719,7 +719,7 @@ a { color: inherit; }
     padding-left: 1.25rem;
 }
 
-/* 8.5 — La méthode : une vraie séquence, donc numérotée ------------ */
+/* 8.5  La méthode, une vraie séquence, donc numérotée ------------ */
 
 .method-wrap {
     display: grid;
@@ -778,32 +778,31 @@ a { color: inherit; }
     max-width: 52ch;
 }
 
-/* 8.6 — Prestations : blocs à filets et glyphes tracés -------------
-   Remplace une liste en lignes qui faisait « tableau ». Angles vifs et
-   pas de rail d'accent coloré : la carte arrondie à liseré est devenue
-   un tic visuel, on s'en tient au filet.
+/* 8.6  Pourquoi nous choisir, colonnes séparées par des filets ---
+   Pas de boîtes ni de cartes arrondies. Les colonnes sont posées sur le
+   fond et séparées par un filet vertical, ce qui laisse respirer et
+   évite le rendu « rangée de cartes ».
    ------------------------------------------------------------------- */
 
-.missions {
+.why {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 1px;
-    background: var(--hairline);
-    border: 1px solid var(--hairline);
+    gap: 0;
 }
 
-/* Le fond du conteneur fait les séparateurs : un seul filet partagé
-   entre deux blocs voisins, jamais deux traits accolés. */
-.mission {
-    background: var(--deep);
-    padding: clamp(1.5rem, 3vw, 2.125rem);
+.why__item {
+    min-width: 0;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--hairline);
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
-    min-width: 0;
+    align-items: flex-start;
 }
 
-.mission__glyph {
+.why__item:last-child { border-bottom: 1px solid var(--hairline); }
+
+.why__glyph {
     width: 2.75rem;
     height: 2.75rem;
     border: 1px solid var(--hairline-hi);
@@ -811,20 +810,21 @@ a { color: inherit; }
     place-items: center;
     color: var(--brown-lit);
     margin-bottom: 0.35rem;
+    flex: 0 0 auto;
 }
 
-.mission__glyph svg {
+.why__glyph svg {
     width: 1.375rem;
     height: 1.375rem;
 }
 
-.mission p {
+.why__item p {
     font-size: 0.9375rem;
-    color: var(--muted);
+    color: var(--paper-2);
     max-width: 34ch;
 }
 
-/* 8.6b — Carte : chargement au clic -------------------------------- */
+/* 8.6b  Carte, chargement au clic -------------------------------- */
 
 /* ⚠️ Pas de max-height ici. Combiné à aspect-ratio, Chrome en déduit la
    LARGEUR (30rem × 1,6 = 768 px) au lieu de laisser le bloc remplir la
@@ -895,7 +895,7 @@ a { color: inherit; }
 }
 
 /* Une fois chargée, la carte est teintée pour ne pas éblouir sur un
-   fond sombre — les filtres CSS s'appliquent bien aux iframes. */
+   fond sombre : les filtres CSS s'appliquent bien aux iframes. */
 .map iframe {
     position: absolute;
     inset: 0;
@@ -905,7 +905,7 @@ a { color: inherit; }
     filter: grayscale(0.4) sepia(0.2) brightness(0.82) contrast(1.06);
 }
 
-/* 8.7 — Contact ---------------------------------------------------- */
+/* 8.7  Contact ---------------------------------------------------- */
 
 .contact {
     background:
@@ -997,7 +997,7 @@ a { color: inherit; }
 }
 
 /* =====================================================================
-   Points de rupture — mobile-first, on n'ajoute qu'en montant
+   Points de rupture : mobile-first, on n'ajoute qu'en montant
    ===================================================================== */
 
 @media (min-width: 34rem) {
@@ -1009,7 +1009,9 @@ a { color: inherit; }
 @media (min-width: 48rem) {
     .cabinet__card { margin: -4rem 3rem 0; }
 
-    .missions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .why { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.5rem; }
+    .why__item:nth-child(2) { border-top: 1px solid var(--hairline); }
+    .why__item:nth-child(3) { border-bottom: 1px solid var(--hairline); }
 
     .map {
         aspect-ratio: auto;
@@ -1037,7 +1039,6 @@ a { color: inherit; }
     .assurance__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .assurance__item { border-top: none; }
 
-    .missions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (min-width: 62rem) {
@@ -1076,6 +1077,24 @@ a { color: inherit; }
         margin: 0;
         box-shadow: 0 2rem 4rem rgba(10, 8, 7, 0.55);
     }
+
+    .why {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        column-gap: 0;
+        border-top: 1px solid var(--hairline);
+        border-bottom: 1px solid var(--hairline);
+    }
+
+    .why__item {
+        border-top: 0;
+        border-left: 1px solid var(--hairline);
+        padding: 2.25rem 2rem 2.25rem 2rem;
+    }
+
+    .why__item:first-child { border-left: 0; padding-left: 0; }
+    .why__item:last-child { border-bottom: 0; padding-right: 0; }
+    .why__item:nth-child(2),
+    .why__item:nth-child(3) { border-top: 0; border-bottom: 0; }
 
     .method-wrap {
         grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
