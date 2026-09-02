@@ -253,6 +253,27 @@ rupture.
 min-content peut élargir la piste au-delà du conteneur. Une liste de jetons appliqués aux enfants
 de grille du site existe en section 8 de `style.css`, l'étendre à tout nouvel enfant de grille.
 
+### Points de rupture et responsif
+
+| Largeur | Ce qui change |
+|---|---|
+| < 24rem (384px) | l'enseigne se reduit au seul nom, le filet et « Expertise comptable » sont masques, sinon l'en-tete se disloque sur deux lignes |
+| 48rem (768px) | `.why`, `.missions` et `.specs` passent a **2 colonnes**, sinon la moitie de la largeur reste vide sur tablette. L'image de la methode passe en 16/10, un portrait 4/5 pleine largeur donnait une image immense |
+| 56rem (896px) | `.why` et `.missions` passent a 3 colonnes, `.specs` aussi avec son decalage en escalier |
+| 62rem (992px) | navigation visible, hero en deux colonnes, methode en deux colonnes avec image collante, chevauchement de la carte cabinet |
+
+**Verification du debordement horizontal.** `body` porte `overflow-x: hidden`, qui masque le
+symptome sans regler la cause : ne jamais se fier a l'oeil. Methode fiable, injecter une sonde
+dans une copie de la page, l'afficher dans des iframes de largeurs variees et lire les mesures :
+
+```js
+const d = document.documentElement;
+const deborde = Math.max(d.scrollWidth, document.body.scrollWidth) > d.clientWidth + 1;
+```
+
+Derniere campagne, 320, 360, 390, 414, 480, 540, 640, 768, 834, 900, 1024 et 1180 px : aucun
+debordement.
+
 ### ⚠️ Vérifier le rendu mobile : le piège de Chrome headless
 
 `--window-size=390,…` **ne donne pas un viewport de 390 px**. Chrome (ancien mode *et*
