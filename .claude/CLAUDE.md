@@ -78,6 +78,8 @@ froide, pour se distinguer sans se battre.
   l'échelle `.h-xl` / `.h-lg` / `.h-md` / `.h-sm`. Utiliser `font-variation-settings: 'opsz'`
   selon la taille de rendu.
 - **Archivo** (variable 400 à 600) pour le texte courant et l'interface.
+- ⚠️ `.btn--solid` fixe sa couleur de texte en dur (`#F6F1E9`) et **non** `var(--paper)`. Dans une
+  section `.is-light` ce jeton est inverse, et le libelle passait en marron fonce sur fond marron.
 - **Newsreader Italic** pour les touches calligraphiques, classe `.cursive`. Vraie italique
   cursive, pas une inclinaison synthetique. Employee sur un fragment du H2 de la section claire
   et sur ses quatre sous-titres. Fichier degraisse a 15 Ko : axes figes (`opsz` 28, `wght` 400)
@@ -193,7 +195,9 @@ Regles de composition de cette section, posees par Joseph :
   meme construction, ce qui sonnait mecanique. Nommer les choses reelles du metier, la 2035, le
   GAEC, la SELARL, l'amortissement du mobilier, l'epargne de precaution, l'adresse. Varier aussi
   la construction des titres d'un bloc a l'autre
-- pas d'icones, un filet court `.why__rule` a la place
+- pas d'icones nulle part, un filet court `.rule-mark` a la place. La section **Prestations** a
+  ete refaite sur ce modele : ses cellules encadrees faisaient quadrillage et ses glyphes
+  encadres reprenaient exactement ce qui avait deja ete refuse ailleurs
 - appel a l'action en fin de section pour **Trois domaines de spécialisation** et **Le détail des
   prestations**, classe `.cta-row .cta-row--end`
 - pas de mention « Page détaillée en préparation » sur les cartes de spécialité
@@ -202,20 +206,24 @@ Regles de composition de cette section, posees par Joseph :
 - le titre de cette section est plus petit que les autres titres de section, elle sert de
   respiration et n'a pas a peser comme un chapitre
 
-### Plan d'accès : image générée à la construction
+### Plan d'accès : embed Google Maps
 
-La carte est une **image WebP hébergée localement**, composée à partir des tuiles raster
-d'OpenStreetMap. Elle s'affiche donc toujours, sans requête vers un tiers, sans cookie et sans
-bandeau de consentement. Procédure de régénération dans `assets/CREDITS.md`.
+Le client voulait le rendu visuel de Google Maps. Constat apres essais : **le seul moyen d'avoir
+le design Google Maps, c'est Google Maps**. Les fonds raster libres au rendu comparable (CARTO
+Voyager, CARTO Positron) exigent desormais une cle d'API et renvoient une tuile filigranee
+« API KEY REQUIRED » sans elle. Le fond OpenStreetMap standard a un style tres reconnaissable,
+juge trop eloigne.
 
-⚠️ **L'attribution ODbL sous la carte est obligatoire**, ne pas la retirer.
+L'embed utilise (`google.com/maps?q=...&output=embed`) ne demande pas de cle. **Mesure faite : sa
+reponse ne depose aucun cookie.** En revanche l'adresse IP du visiteur est transmise a Google,
+point a mentionner dans la politique de confidentialite du site.
 
-Deux solutions écartées, et pourquoi :
+Solutions essayees puis ecartees, ne pas y revenir sans raison :
 
-- **embed OpenStreetMap** : exige WebGL, et laisse un cadre blanc avec un message d'erreur quand
-  celui-ci manque. Vérifié, le rendu échoue sans accélération graphique.
-- **embed Google Maps** : cookies tiers, donc consentement obligatoire pour une profession
-  réglementée. C'était la raison du chargement au clic, dispositif désormais supprimé.
+- **embed OpenStreetMap** : exige WebGL, cadre blanc avec message d'erreur quand il manque
+- **plan statique compose depuis les tuiles OSM** : fiable et sans tiers, mais style OSM refuse
+- **chargement au clic** : reglait la question du consentement, mais le client veut la carte
+  visible d'emblee
 
 ### Effets
 
