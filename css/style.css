@@ -433,12 +433,20 @@ a { color: inherit; }
 }
 
 .wordmark__name {
+    white-space: nowrap;
     font-family: var(--serif);
     font-weight: 400;
     font-size: 1.375rem;
     font-variation-settings: 'opsz' 24;
     letter-spacing: 0.01em;
     color: var(--paper);
+}
+
+/* Sous 24rem, le nom et la mention passaient sur deux lignes chacun et
+   l'en-tete se disloquait. On ne garde que le nom. */
+.wordmark__rule,
+.wordmark__kind {
+    display: none;
 }
 
 .wordmark__rule {
@@ -1034,8 +1042,25 @@ a { color: inherit; }
 @media (min-width: 34rem) {
 }
 
+@media (min-width: 24rem) {
+    .wordmark__rule,
+    .wordmark__kind { display: block; }
+}
+
 @media (min-width: 48rem) {
     .cabinet__card { margin: -4rem 3rem 0; }
+
+    .why,
+    .missions,
+    .specs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 2.5rem;
+    }
+
+    .specs { row-gap: 2.5rem; }
+
+    /* En pile, un portrait 4/5 pleine largeur donnait une image immense. */
+    .method-figure__media { aspect-ratio: 16 / 10; }
 
 
     .map {
@@ -1152,6 +1177,8 @@ a { color: inherit; }
         position: sticky;
         top: 6rem;
     }
+
+    .method-figure__media { aspect-ratio: 4 / 5; }
 }
 
 @media (min-width: 76rem) {
