@@ -31,13 +31,13 @@
     <link rel="preload" href="assets/fonts/newsreader-var-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-    <link rel="stylesheet" href="css/style.css?v=20260902e">
+    <link rel="stylesheet" href="css/style.css?v=20260902g">
 
     <!-- TODO : JSON-LD AccountingService. L'adresse est désormais connue, mais
          la raison sociale exacte, le téléphone et le numéro d'inscription à
          l'Ordre manquent encore. Volontairement laissé en commentaire : pas de
          données structurées à moitié inventées, Google les prendrait au mot.
-         ⚠️ Confirmer aussi le code postal : 75016 ou 75116.
+         Code postal 75116, confirme par OpenStreetMap.
 
     <script type="application/ld+json">
     {
@@ -47,7 +47,7 @@
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "76 rue de la Pompe",
-        "postalCode": "75016",
+        "postalCode": "75116",
         "addressLocality": "Paris",
         "addressCountry": "FR"
       },
@@ -103,7 +103,7 @@
                 les professions libérales et les exploitations agricoles.
             </p>
 
-            <div class="hero__cta">
+            <div class="cta-row">
                 <a class="btn btn--solid" href="#contact">Prendre rendez-vous</a>
                 <a class="btn btn--ghost" href="#cabinet">Le cabinet</a>
             </div>
@@ -253,7 +253,6 @@
                             Déclaration 2035, micro-BNC ou déclaration contrôlée, rétrocessions, caisses
                         de retraite obligatoires.
                         </p>
-                        <p class="spec__soon">Page détaillée en préparation</p>
                     </div>
                 </article>
 
@@ -275,7 +274,6 @@
                             Amortissements, micro-BIC ou régime réel, plus-value de cession. Dossiers
                         suivis à distance, partout en France.
                         </p>
-                        <p class="spec__soon">Page détaillée en préparation</p>
                     </div>
                 </article>
 
@@ -297,10 +295,13 @@
                             Déduction pour épargne de précaution, TVA agricole, cotisations MSA,
                         transmission du foncier. Exploitations suivies partout en France.
                         </p>
-                        <p class="spec__soon">Page détaillée en préparation</p>
                     </div>
                 </article>
 
+            </div>
+
+            <div class="cta-row cta-row--end reveal">
+                <a class="btn btn--solid" href="#contact">Prendre rendez-vous</a>
             </div>
         </div>
     </section>
@@ -455,6 +456,10 @@
                 </article>
 
             </div>
+
+            <div class="cta-row cta-row--end reveal">
+                <a class="btn btn--solid" href="#contact">Demander une proposition</a>
+            </div>
         </div>
     </section>
 
@@ -462,7 +467,7 @@
          Contact : téléphone et courriel encore à venir (un courriel au
          nom de domaine sera créé). L'adresse, elle, est connue.
          ============================================================ -->
-    <section class="section contact" id="contact">
+    <section class="section contact is-light" id="contact">
         <div class="shell">
             <div class="contact__grid">
                 <div class="reveal">
@@ -472,7 +477,7 @@
                         Décrivez votre situation en deux lignes, nous vous répondons avec un créneau
                         et les points à préparer.
                     </p>
-                    <div class="hero__cta" style="margin-top: 2rem;">
+                    <div class="cta-row" style="margin-top: 2rem;">
                         <a class="btn btn--solid" href="#contact">Écrire au cabinet</a>
                     </div>
                 </div>
@@ -480,15 +485,15 @@
                 <div class="contact__lines reveal reveal--d1">
                     <div class="contact__line">
                         <span class="label">Adresse</span>
-                        <span class="val">76 rue de la Pompe<br>75016 Paris <span class="todo">code postal à confirmer</span></span>
+                        <span class="val">76 rue de la Pompe<br>75116 Paris</span>
                     </div>
                     <div class="contact__line">
                         <span class="label">Téléphone</span>
-                        <span class="val"> : <span class="todo">à compléter</span></span>
+                        <span class="val"><span class="todo">à compléter</span></span>
                     </div>
                     <div class="contact__line">
                         <span class="label">Courriel</span>
-                        <span class="val"> : <span class="todo">au nom de domaine</span></span>
+                        <span class="val"><span class="todo">au nom de domaine</span></span>
                     </div>
                     <div class="contact__line">
                         <span class="label">Périmètre</span>
@@ -497,24 +502,25 @@
                 </div>
             </div>
 
-            <!-- Carte à chargement au clic : aucune requête vers Google, donc
-                 aucun cookie tiers et aucun bandeau de consentement, tant que
-                 le visiteur n'a pas cliqué. Pour qu'elle charge d'emblée, voir
-                 la note dans js/main.js. -->
-            <div class="map reveal" id="map"
-                 data-src="https://www.google.com/maps?q=76+rue+de+la+Pompe,+75016+Paris&amp;output=embed">
-                <button class="map__invite" type="button" id="map-load">
-                    <span class="map__pin" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25">
-                            <path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z" stroke-linejoin="round"/>
-                            <circle cx="12" cy="10" r="2.4"/>
-                        </svg>
-                    </span>
-                    <span class="map__address">76 rue de la Pompe, Paris 16<sup>e</sup></span>
-                    <span class="map__cue">Afficher la carte</span>
-                    <span class="map__note">Le plan est fourni par Google Maps et ne se charge qu'à votre demande.</span>
-                </button>
+            <!-- Plan genere a la construction a partir des tuiles OpenStreetMap,
+                 puis heberge localement. Il s'affiche donc toujours, sans requete
+                 vers un tiers ni cookie, et sans bandeau de consentement.
+                 L'embed OpenStreetMap a ete ecarte : il exige WebGL et laisse un
+                 cadre vide quand celui-ci manque. Regeneration : assets/CREDITS.md.
+                 L'attribution ODbL sous la carte est obligatoire. -->
+            <div class="map reveal">
+                <img src="assets/img/plan-acces-1200.webp"
+                     srcset="assets/img/plan-acces-600.webp 600w, assets/img/plan-acces-1200.webp 1200w"
+                     sizes="(min-width: 62rem) 70rem, 100vw"
+                     width="1200" height="750" loading="lazy"
+                     alt="Plan du quartier autour du 76 rue de la Pompe, dans le 16e arrondissement de Paris.">
             </div>
+            <p class="map__legend">
+                <span>76 rue de la Pompe, 75116 Paris</span>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=76+rue+de+la+Pompe+75116+Paris"
+                   target="_blank" rel="noopener">Itinéraire sur Google Maps</a>
+                <span class="map__credit">Fond de plan &copy; les contributeurs OpenStreetMap</span>
+            </p>
         </div>
     </section>
 
@@ -550,12 +556,12 @@
 
         <div class="footer-legal">
             <span>&copy; <span id="year">2026</span> HBR Conseil</span>
-            <span>76 rue de la Pompe, 75016 Paris</span>
+            <span>76 rue de la Pompe, 75116 Paris</span>
             <span>Société d'expertise comptable inscrite à l'Ordre <span class="todo">mentions à compléter</span></span>
         </div>
     </div>
 </footer>
 
-<script src="js/main.js?v=20260902e"></script>
+<script src="js/main.js?v=20260902g"></script>
 </body>
 </html>

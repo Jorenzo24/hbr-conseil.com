@@ -593,11 +593,15 @@ a { color: inherit; }
     flex: 0 0 3px;
 }
 
-.hero__cta {
+.cta-row {
     display: flex;
     flex-wrap: wrap;
     gap: 0.85rem;
     padding-top: 0.5rem;
+}
+
+.cta-row--end {
+    margin-top: clamp(2.25rem, 4vw, 3.25rem);
 }
 
 .hero__media {
@@ -637,6 +641,11 @@ a { color: inherit; }
     --brown-lit:   #8A5730;
     --tan:         #7A4A28;
     --accent-dim:  #B99A76;
+
+    /* Surfaces, pour que les blocs internes d'une section claire
+       (la carte, par exemple) ne restent pas sombres. */
+    --deep:  #EFE8DC;
+    --raise: #EAE1D2;
 
     /* Les teintes de specialite sont assombries : calees pour un fond
        sombre, elles passaient inapercues sur la creme. */
@@ -758,13 +767,6 @@ a { color: inherit; }
     font-size: 0.9375rem;
     color: var(--paper-2);
     max-width: 38ch;
-}
-
-.spec__soon {
-    font-size: 0.6875rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
 }
 
 /* 8.4  Le cabinet, chevauchement carte / image ------------------- */
@@ -906,85 +908,43 @@ a { color: inherit; }
     max-width: 34ch;
 }
 
-/* 8.6b  Carte, chargement au clic -------------------------------- */
+/* 8.6b  Carte -------------------------------------------------------
+   OpenStreetMap ne depose aucun cookie, la carte charge donc
+   directement. Aucun bandeau de consentement a prevoir.
+   ------------------------------------------------------------------- */
 
-/* ⚠️ Pas de max-height ici. Combiné à aspect-ratio, Chrome en déduit la
-   LARGEUR (30rem × 1,6 = 768 px) au lieu de laisser le bloc remplir la
-   place disponible. La hauteur est fixée en dur au-dessus de 48rem. */
 .map {
     position: relative;
     margin-top: clamp(2.5rem, 5vw, 4rem);
     aspect-ratio: 16 / 10;
     border: 1px solid var(--hairline);
-    background:
-        radial-gradient(90% 80% at 30% 20%, rgba(122, 78, 48, 0.28) 0%, transparent 70%),
-        var(--raise);
+    background: var(--raise);
     overflow: hidden;
 }
 
-.map__invite {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    background: none;
-    border: 0;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    padding: 1.5rem;
-    text-align: center;
-    color: var(--paper-2);
-    transition: background 0.5s var(--ease);
-}
-
-.map__invite:hover { background: rgba(169, 117, 76, 0.07); }
-
-.map__pin {
-    color: var(--brown-lit);
-    transition: transform 0.5s var(--ease);
-}
-
-.map__pin svg { width: 2rem; height: 2rem; }
-
-.map__invite:hover .map__pin { transform: translateY(-3px); }
-
-.map__address {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(1.125rem, 2.2vw, 1.375rem);
-    font-variation-settings: 'opsz' 24;
-    color: var(--paper);
-}
-
-.map__cue {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--tan);
-    border-bottom: 1px solid var(--brown-lit);
-    padding-bottom: 0.25rem;
-}
-
-.map__note {
-    font-size: 0.75rem;
-    color: var(--muted);
-    max-width: 34ch;
-    margin-top: 0.35rem;
-}
-
-/* Une fois chargée, la carte est teintée pour ne pas éblouir sur un
-   fond sombre : les filtres CSS s'appliquent bien aux iframes. */
-.map iframe {
-    position: absolute;
-    inset: 0;
+.map img {
     width: 100%;
     height: 100%;
-    border: 0;
-    filter: grayscale(0.4) sepia(0.2) brightness(0.82) contrast(1.06);
+    object-fit: cover;
+}
+
+.map__legend {
+    margin-top: 0.85rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.25rem;
+    font-size: 0.8125rem;
+    color: var(--muted);
+}
+
+.map__legend a {
+    color: var(--tan);
+    text-underline-offset: 0.2em;
+}
+
+/* Mention obligatoire au titre de la licence ODbL des donnees OSM. */
+.map__credit {
+    margin-left: auto;
 }
 
 /* 8.7  Contact ---------------------------------------------------- */
@@ -994,6 +954,13 @@ a { color: inherit; }
         radial-gradient(120% 90% at 12% 0%, rgba(74, 47, 30, 0.55) 0%, transparent 62%),
         var(--deep);
     border-top: 1px solid var(--hairline);
+}
+
+/* Sur fond clair le meme degre d'opacite virait au brun sale. */
+.contact.is-light {
+    background:
+        radial-gradient(120% 90% at 12% 0%, rgba(122, 78, 48, 0.09) 0%, transparent 62%),
+        #F6F1E9;
 }
 
 .contact__grid {

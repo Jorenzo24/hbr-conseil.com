@@ -153,9 +153,10 @@ retirer `.section--deep`, et c'est tout.
 `.band-light` est distincte : elle ne porte que l'habillage propre à la bande des expertises,
 rembourrage réduit et guilloché. Les deux se cumulent sur cette section.
 
-Deux sections claires à ce jour, **Les expertises** et **Trois domaines de spécialisation**, qui
-alternent avec les sections sombres dans la moitié haute de la page. La moitié basse (méthode,
-prestations, contact) reste sombre d'un bloc.
+Trois sections claires à ce jour, **Les expertises**, **Trois domaines de spécialisation** et
+**Contact**, qui alternent avec les sections sombres. Ajouter `.is-light` à une section et retirer
+`.section--deep` suffit. Cas particulier, `.contact.is-light` réécrit son dégradé, la même opacité
+de brun virait au brun sale sur fond clair.
 
 Elle porte un **guilloche** en filigrane, `assets/guilloche.svg`, l'entrelacs grave des titres et
 des certificats. Trace en SVG par un script (rosettes hypotrochoides imbriquees), 48 Ko.
@@ -193,18 +194,28 @@ Regles de composition de cette section, posees par Joseph :
   GAEC, la SELARL, l'amortissement du mobilier, l'epargne de precaution, l'adresse. Varier aussi
   la construction des titres d'un bloc a l'autre
 - pas d'icones, un filet court `.why__rule` a la place
+- appel a l'action en fin de section pour **Trois domaines de spécialisation** et **Le détail des
+  prestations**, classe `.cta-row .cta-row--end`
+- pas de mention « Page détaillée en préparation » sur les cartes de spécialité
 - **pas de quadrillage** : seuls les filets verticaux entre colonnes, jamais de trait en haut
   ni en bas de la grille, et un rembourrage bas pour que les filets descendent sous le texte
 - le titre de cette section est plus petit que les autres titres de section, elle sert de
   respiration et n'a pas a peser comme un chapitre
 
-### Plan d'accès : chargement au clic
+### Plan d'accès : image générée à la construction
 
-La carte Google Maps ne se charge **qu'au clic** (`loadMap()` dans `js/main.js`). Tant que le
-visiteur n'a pas cliqué, aucune requête ne part vers Google : pas de cookie tiers, donc **pas de
-bandeau de consentement à prévoir** : ce qui compte pour le site d'une profession réglementée.
-Pour la charger d'emblée, appeler `loadMap()` au chargement, mais il faudra alors traiter le
-consentement. L'embed utilisé ne demande pas de clé d'API.
+La carte est une **image WebP hébergée localement**, composée à partir des tuiles raster
+d'OpenStreetMap. Elle s'affiche donc toujours, sans requête vers un tiers, sans cookie et sans
+bandeau de consentement. Procédure de régénération dans `assets/CREDITS.md`.
+
+⚠️ **L'attribution ODbL sous la carte est obligatoire**, ne pas la retirer.
+
+Deux solutions écartées, et pourquoi :
+
+- **embed OpenStreetMap** : exige WebGL, et laisse un cadre blanc avec un message d'erreur quand
+  celui-ci manque. Vérifié, le rendu échoue sans accélération graphique.
+- **embed Google Maps** : cookies tiers, donc consentement obligatoire pour une profession
+  réglementée. C'était la raison du chargement au clic, dispositif désormais supprimé.
 
 ### Effets
 
