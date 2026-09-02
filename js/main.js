@@ -27,33 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }).observe(sentinel);
     }
 
-    /* --- Carte : chargement au clic ------------------------------------
-       Tant que le visiteur n'a pas cliqué, aucune requête ne part vers
-       Google : pas de cookie tiers, donc pas de bandeau de consentement
-       à prévoir. Pour la charger d'emblée, appeler loadMap() ici même, 
-       mais il faudra alors traiter le consentement.
-       ------------------------------------------------------------------ */
-
-    const mapBox = document.getElementById('map');
-    const mapBtn = document.getElementById('map-load');
-
-    function loadMap() {
-        if (!mapBox || mapBox.dataset.loaded) return;
-        mapBox.dataset.loaded = 'true';
-
-        const frame = document.createElement('iframe');
-        frame.src = mapBox.dataset.src;
-        frame.title = 'Plan d’accès au cabinet, 76 rue de la Pompe à Paris';
-        frame.loading = 'lazy';
-        frame.referrerPolicy = 'no-referrer-when-downgrade';
-        frame.allow = 'fullscreen';
-
-        mapBox.appendChild(frame);
-        if (mapBtn) mapBtn.remove();
-    }
-
-    if (mapBtn) mapBtn.addEventListener('click', loadMap);
-
     /* --- Révélations au défilement ------------------------------------
        Respecte prefers-reduced-motion : dans ce cas on affiche tout
        immédiatement, sans observer quoi que ce soit.
