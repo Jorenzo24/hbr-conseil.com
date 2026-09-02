@@ -624,11 +624,11 @@ a { color: inherit; }
     pointer-events: none;
 }
 
-.band-light {
-    /* On redefinit les jetons au lieu de reecrire chaque composant :
-       .label, .display, .h-sm, .why__rule suivent automatiquement.
-       Creme chaud plutot que blanc pur, pour rester dans la meme
-       famille chromatique que le reste du site. */
+/* .is-light inverse les jetons dans sa portee : n'importe quelle section
+   peut le porter et tous ses composants suivent, sans etre reecrits en
+   version claire. Creme chaud plutot que blanc pur, pour rester dans la
+   meme famille chromatique que le reste du site. */
+.is-light {
     --paper:       #1A1410;
     --paper-2:     #4E443B;
     --muted:       #857868;
@@ -638,13 +638,21 @@ a { color: inherit; }
     --tan:         #7A4A28;
     --accent-dim:  #B99A76;
 
+    /* Les teintes de specialite sont assombries : calees pour un fond
+       sombre, elles passaient inapercues sur la creme. */
+    --h-bnc:  #5E7486;
+    --h-lmnp: #96693B;
+    --h-agri: #5F6C46;
+
     background: #F6F1E9;
     color: var(--paper-2);
     border-top: 1px solid #E3D9CA;
     border-bottom: 1px solid #E3D9CA;
+}
 
-    /* Plus courte que les autres sections : elle sert de respiration,
-       pas de chapitre. */
+/* Habillage propre a la bande des expertises : plus courte que les autres
+   sections, elle sert de respiration et non de chapitre. */
+.band-light {
     padding-block: clamp(2.75rem, 5.5vw, 4.5rem);
     position: relative;
     overflow: hidden;

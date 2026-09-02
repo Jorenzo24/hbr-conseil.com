@@ -144,13 +144,18 @@ Le site est sombre de bout en bout, sauf la section **Pourquoi nous choisir**, p
 page pour casser la succession de fonds sombres. Fond crème chaud `#F6F1E9`, pas blanc pur, pour
 rester dans la même famille chromatique.
 
-Technique : la classe `.band-light` **redéfinit les jetons de couleur dans sa propre portée**
-(`--paper`, `--paper-2`, `--muted`, `--hairline`, `--hairline-hi`, `--brown-lit`, `--tan`). Les
-composants existants (`.label`, `.display`, `.h-sm`, `.why__glyph`) suivent automatiquement, sans
-qu'aucun d'eux ait à être réécrit en version claire. Pour ajouter un composant à cette section, le
-styler avec les jetons habituels et il s'inversera tout seul.
+Technique : la classe **`.is-light`** redéfinit les jetons de couleur dans sa propre portée
+(`--paper`, `--paper-2`, `--muted`, `--hairline`, `--hairline-hi`, `--brown-lit`, `--tan`, et les
+trois teintes de spécialité). Les composants existants suivent automatiquement, sans qu'aucun
+d'eux ait à être réécrit en version claire. Pour éclaircir une section, lui ajouter `.is-light`,
+retirer `.section--deep`, et c'est tout.
 
-Une seule section claire dans la page. En ajouter d'autres casserait l'effet de respiration.
+`.band-light` est distincte : elle ne porte que l'habillage propre à la bande des expertises,
+rembourrage réduit et guilloché. Les deux se cumulent sur cette section.
+
+Deux sections claires à ce jour, **Les expertises** et **Trois domaines de spécialisation**, qui
+alternent avec les sections sombres dans la moitié haute de la page. La moitié basse (méthode,
+prestations, contact) reste sombre d'un bloc.
 
 Elle porte un **guilloche** en filigrane, `assets/guilloche.svg`, l'entrelacs grave des titres et
 des certificats. Trace en SVG par un script (rosettes hypotrochoides imbriquees), 48 Ko.
@@ -166,7 +171,10 @@ replie dans l'angle inferieur droit, sinon il passe au milieu de la colonne de l
 
 Regles de composition de cette section, posees par Joseph :
 
-- pas de barre verticale `.rule-spine` ni de sur-titre `.label`, le H2 suffit
+- **plus aucune barre verticale `.rule-spine` sur le site.** Joseph l'a fait retirer deux fois,
+  elle a donc été supprimée de toutes les sections. La classe reste définie dans le CSS mais
+  n'est plus employée. Ne pas la réintroduire.
+- pas de sur-titre `.label` sur la bande des expertises, le H2 suffit
 - pas de « a Paris » dans le H2, deja present dans le H1 et sans objet pour un cabinet national
 - **les quatre titres tiennent sur une ligne et les quatre textes sur trois lignes**, sinon les
   blocs se desalignent et la section prend de la hauteur pour rien. Attention aux mots longs
