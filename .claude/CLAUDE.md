@@ -169,7 +169,14 @@ Regles de composition de cette section, posees par Joseph :
 - pas de barre verticale `.rule-spine` ni de sur-titre `.label`, le H2 suffit
 - pas de « a Paris » dans le H2, deja present dans le H1 et sans objet pour un cabinet national
 - **les quatre titres tiennent sur une ligne et les quatre textes sur trois lignes**, sinon les
-  blocs se desalignent et la section prend de la hauteur pour rien
+  blocs se desalignent et la section prend de la hauteur pour rien. Attention aux mots longs
+  (« amortissement », « retrocessions ») qui font passer un texte de trois a quatre lignes a
+  nombre de caracteres egal : verifier au rendu, pas au comptage
+- **du concret, pas des categories**. Une premiere version parlait d'« un avis », « un
+  interlocuteur », « trois fiscalites » : des mots creux, et les quatre titres avaient tous la
+  meme construction, ce qui sonnait mecanique. Nommer les choses reelles du metier, la 2035, le
+  GAEC, la SELARL, l'amortissement du mobilier, l'epargne de precaution, l'adresse. Varier aussi
+  la construction des titres d'un bloc a l'autre
 - pas d'icones, un filet court `.why__rule` a la place
 - **pas de quadrillage** : seuls les filets verticaux entre colonnes, jamais de trait en haut
   ni en bas de la grille, et un rembourrage bas pour que les filets descendent sous le texte
