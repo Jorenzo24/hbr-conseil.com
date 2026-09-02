@@ -172,6 +172,13 @@ Regles de composition de cette section, posees par Joseph :
   blocs se desalignent et la section prend de la hauteur pour rien. Attention aux mots longs
   (« amortissement », « retrocessions ») qui font passer un texte de trois a quatre lignes a
   nombre de caracteres egal : verifier au rendu, pas au comptage
+- **registre sobre, jamais commercial.** Regle posee par Joseph : « on n'essaie pas de vendre du
+  reve, on essaie de passer pour des gens serieux ». Bannir les titres a effet et les formules a
+  balancier, « Le conseil d'abord, la saisie ensuite », « Un generaliste, et trois terrains ou la
+  technique fait vraiment la difference », « Un premier echange ne coute rien et clarifie
+  beaucoup ». Un titre de section nomme ce que la section contient, rien de plus : « Le deroule
+  d'une mission », « Le detail des prestations », « Prendre rendez-vous ». Dans les textes,
+  nommer des documents, des regimes et des echeances plutot que des benefices.
 - **du concret, pas des categories**. Une premiere version parlait d'« un avis », « un
   interlocuteur », « trois fiscalites » : des mots creux, et les quatre titres avaient tous la
   meme construction, ce qui sonnait mecanique. Nommer les choses reelles du metier, la 2035, le
