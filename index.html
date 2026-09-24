@@ -23,55 +23,32 @@
     <meta property="og:image" content="https://hbr-conseil.com/assets/img/hero-paris-1400.webp">
     <meta name="twitter:card" content="summary_large_image">
 
-    <meta name="theme-color" content="#0A0807">
+    <meta name="theme-color" content="#0F2740">
 
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="assets/favicon.ico" sizes="32x32">
 
-    <link rel="preload" href="assets/fonts/newsreader-var-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-    <link rel="stylesheet" href="css/style.css?v=20260902i">
+    <link rel="stylesheet" href="css/style.css?v=20260924a">
 
-    <!-- TODO : JSON-LD AccountingService. L'adresse est désormais connue, mais
-         la raison sociale exacte, le téléphone et le numéro d'inscription à
-         l'Ordre manquent encore. Volontairement laissé en commentaire : pas de
-         données structurées à moitié inventées, Google les prendrait au mot.
-         Code postal 75116, confirme par OpenStreetMap.
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "AccountingService",
-      "name": "…",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "76 rue de la Pompe",
-        "postalCode": "75116",
-        "addressLocality": "Paris",
-        "addressCountry": "FR"
-      },
-      "telephone": "…",
-      "areaServed": "FR",
-      "url": "https://…/"
-    }
-    </script>
-    -->
+    <!-- TODO : JSON-LD AccountingService. Adresse connue, il manque la raison
+         sociale exacte, le telephone et le numero d'inscription a l'Ordre.
+         Laisse en commentaire : pas de donnees structurees a moitie inventees. -->
 </head>
 <body>
-
-<div class="grain" aria-hidden="true"></div>
 
 <header class="masthead" id="masthead">
     <div class="shell masthead__inner">
         <a class="wordmark" href="index.html">
             <span class="wordmark__name">HBR Conseil</span>
-            <span class="wordmark__rule" aria-hidden="true"></span>
+            <span class="wordmark__dot" aria-hidden="true"></span>
             <span class="wordmark__kind">Expertise comptable</span>
         </a>
         <nav class="nav" aria-label="Navigation principale">
+            <a href="#expertises">Expertises</a>
             <a href="#cabinet">Le cabinet</a>
-            <a href="#specialites">Spécialités</a>
+            <a href="#domaines">Domaines</a>
             <a href="#methode">Méthode</a>
             <a href="#contact">Contact</a>
         </nav>
@@ -80,115 +57,113 @@
 
 <main>
 
-    <!-- ============================================================
-         Hero. Reste sur l'activité standard d'un cabinet, plus de
-         liste des trois spécialités ici, elles arrivent plus bas.
-         Le H1 porte « cabinet d'expertise comptable à Paris » une
-         seule fois : c'est la requête de cette page, et d'aucune autre.
-         ============================================================ -->
+    <!-- 01 ─ Hero pleine hauteur, photo plein cadre -->
     <section class="hero">
-        <div class="hero__text">
-            <p class="hero__eyebrow">
-                <span class="label label--tan">Expertise comptable</span>
-                <span class="sep" aria-hidden="true"></span>
-                <span class="label">Sociétés, indépendants et exploitations</span>
+        <div class="hero__bg" aria-hidden="true">
+            <img src="assets/img/hero-paris-1400.webp"
+                 srcset="assets/img/hero-paris-700.webp 700w, assets/img/hero-paris-1400.webp 1400w"
+                 sizes="100vw" width="1400" height="1900" fetchpriority="high" alt="">
+        </div>
+        <div class="shell hero__inner">
+            <p class="eyebrow">Cabinet d'expertise comptable</p>
+            <h1 class="display d-hero">Vos décisions, <em>nos chiffres</em></h1>
+            <p class="hero__lede">
+                Comptabilité, fiscalité, social et juridique, pour les sociétés commerciales, les
+                professions libérales et les exploitations agricoles.
             </p>
-
-            <h1 class="display h-xl">
-                Cabinet d'<em>expertise comptable</em> à Paris
-            </h1>
-
-            <p class="lede">
-                Comptabilité, fiscalité, social et juridique, pour les sociétés commerciales,
-                les professions libérales et les exploitations agricoles.
-            </p>
-
             <div class="cta-row">
-                <a class="btn btn--solid" href="#contact">Prendre rendez-vous</a>
-                <a class="btn btn--ghost" href="#cabinet">Le cabinet</a>
+                <a class="btn btn--coral" href="#contact">Prendre rendez-vous</a>
+                <a class="btn btn--ghost-light" href="#cabinet">Le cabinet</a>
             </div>
         </div>
+        <span class="hero__tick" aria-hidden="true"></span>
+    </section>
 
-        <div class="hero__media">
-            <div class="duo">
-                <img src="assets/img/hero-paris-1400.webp"
-                     srcset="assets/img/hero-paris-700.webp 700w, assets/img/hero-paris-1400.webp 1400w"
-                     sizes="(min-width: 62rem) 45vw, 100vw"
-                     width="1400" height="1900"
-                     fetchpriority="high"
-                     alt="Immeuble haussmannien à l'angle d'une rue parisienne, à la tombée du jour, fenêtres éclairées.">
+    <!-- 02 ─ Chiffres cles, bandeau bleu chevauchant le hero -->
+    <section class="figures" aria-label="Le cabinet en chiffres">
+        <div class="shell">
+            <div class="figures__band reveal">
+                <div class="figure">
+                    <span class="figure__label">Année de création</span>
+                    <span class="figure__value"><span class="todo">à compléter</span></span>
+                </div>
+                <div class="figure">
+                    <span class="figure__label">Collaborateurs</span>
+                    <span class="figure__value"><span class="todo">à compléter</span></span>
+                </div>
+                <div class="figure">
+                    <span class="figure__label">Domaines de spécialité</span>
+                    <span class="figure__value">3</span>
+                </div>
+                <div class="figure">
+                    <span class="figure__label">Périmètre</span>
+                    <span class="figure__value">France</span>
+                </div>
             </div>
-            <div class="hero__frame" aria-hidden="true"></div>
         </div>
     </section>
 
-    <!-- ============================================================
-         Pourquoi nous choisir. Seule section claire du site, placee
-         haut dans la page pour casser la succession de fonds sombres.
-         Les jetons de couleur sont redefinis dans la portee de la
-         section, ce qui permet de reutiliser les memes classes sans
-         ecrire une seconde fois chaque composant.
-         ============================================================ -->
-    <section class="section is-light band-light" id="pourquoi">
+    <!-- 03 ─ Expertises, colonnes numerotees -->
+    <section class="section" id="expertises">
         <div class="shell">
             <div class="section__head reveal">
-                <h2 class="display h-lg">Les <i class="cursive">expertises</i> de votre cabinet</h2>
+                <span class="sec-num">01</span>
+                <p class="eyebrow">Ce que nous faisons</p>
+                <h2 class="display d-xl">Les expertises de votre cabinet</h2>
             </div>
 
-            <div class="why">
-
-                <article class="why__item reveal">
-                    <span class="rule-mark" aria-hidden="true"></span>
-                    <h3 class="h-sm cursive">Création de société</h3>
-                    <p>
-                        Définissons ensemble la forme juridique la plus adaptée à votre cas et
-                        créons votre société.
-                    </p>
+            <div class="expertise">
+                <article class="expertise__item reveal">
+                    <span class="expertise__num">01</span>
+                    <div class="expertise__body">
+                        <h3 class="d-sm">Création de société</h3>
+                        <p>
+                            Définissons ensemble la forme juridique la plus adaptée à votre cas et
+                            créons votre société.
+                        </p>
+                    </div>
                 </article>
-
-                <article class="why__item reveal reveal--d1">
-                    <span class="rule-mark" aria-hidden="true"></span>
-                    <h3 class="h-sm cursive">Suivi comptable</h3>
-                    <p>
-                        Suivi mensuel de la bonne tenue de votre comptabilité et correspondance
-                        avec l'administration.
-                    </p>
+                <article class="expertise__item reveal reveal--d1">
+                    <span class="expertise__num">02</span>
+                    <div class="expertise__body">
+                        <h3 class="d-sm">Suivi comptable</h3>
+                        <p>
+                            Suivi mensuel de la bonne tenue de votre comptabilité et correspondance
+                            avec l'administration.
+                        </p>
+                    </div>
                 </article>
-
-                <article class="why__item reveal reveal--d2">
-                    <span class="rule-mark" aria-hidden="true"></span>
-                    <h3 class="h-sm cursive">Conseil</h3>
-                    <p>
-                        Conseils personnalisés sur votre situation ou vos problématiques
-                        comptables et fiscales.
-                    </p>
+                <article class="expertise__item reveal reveal--d2">
+                    <span class="expertise__num">03</span>
+                    <div class="expertise__body">
+                        <h3 class="d-sm">Conseil</h3>
+                        <p>
+                            Conseils personnalisés sur votre situation ou vos problématiques
+                            comptables et fiscales.
+                        </p>
+                    </div>
                 </article>
-
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-         Le cabinet : remontée avant les spécialités. Chevauchement de
-         la carte texte sur l'image, obtenu en grille.
-         ============================================================ -->
-    <section class="section" id="cabinet">
+    <!-- 04 ─ Le cabinet, partition asymetrique -->
+    <section class="section" id="cabinet" style="padding-top: 0;">
         <div class="shell">
-            <div class="cabinet">
-                <div class="cabinet__media duo reveal">
+            <div class="about">
+                <div class="about__media shot reveal">
                     <img src="assets/img/cabinet-salle-1800.webp"
                          srcset="assets/img/cabinet-salle-900.webp 900w, assets/img/cabinet-salle-1800.webp 1800w"
-                         sizes="(min-width: 62rem) 66vw, 100vw"
+                         sizes="(min-width: 56rem) 58vw, 100vw"
                          width="1800" height="1200" loading="lazy"
-                         alt="Salle de réunion lambrissée de bois sombre, longue table et lustre ancien.">
+                         alt="Salle de réunion lambrissée, longue table et lustre ancien.">
                 </div>
-
-                <div class="cabinet__card reveal reveal--d1">
-                    <p class="label">Le cabinet</p>
-                    <h2 class="display h-md">Un cabinet indépendant, à Paris et à distance</h2>
-                    <p class="pull-quote">
-                        Chaque mission fait l'objet d'une lettre de mission, qui fixe le périmètre des
-                        travaux et les honoraires avant leur début.
+                <div class="about__panel reveal reveal--d1">
+                    <p class="eyebrow">Le cabinet</p>
+                    <h2 class="display d-lg">Un cabinet indépendant, à Paris et à distance</h2>
+                    <p class="about__quote">
+                        Chaque mission fait l'objet d'une lettre de mission, qui fixe le périmètre
+                        des travaux et les honoraires avant leur début.
                     </p>
                     <div class="body-text">
                         <p>
@@ -196,8 +171,8 @@
                             libérales, des loueurs en meublé et des exploitations agricoles.
                         </p>
                         <p>
-                            Il reçoit sur rendez-vous à Paris 16e. Les dossiers peuvent aussi être suivis
-                            entièrement à distance, partout en France.
+                            Il reçoit sur rendez-vous à Paris 16e. Les dossiers peuvent aussi être
+                            suivis entièrement à distance, partout en France.
                         </p>
                     </div>
                     <a class="arrow-link" href="#contact">
@@ -211,276 +186,203 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         Spécialités : teasers courts et décalés. Deux phrases chacun :
-         le contenu de fond appartient aux pages piliers.
-
-         TODO : quand les piliers existeront, remplacer href="#contact"
-         par les URL définitives et l'ancre par le libellé propriétaire :
-           /expert-comptable-profession-liberale/
-           /expert-comptable-lmnp/
-           /expert-comptable-agricole/
-         ============================================================ -->
-    <section class="section is-light" id="specialites">
+    <!-- 05 ─ Domaines, panneaux hauts avec libelle sur l'image -->
+    <section class="section" id="domaines">
         <div class="shell">
             <div class="section__head reveal">
-                <p class="label">Trois spécialités</p>
-                <h2 class="display h-lg">
-                    Trois domaines de spécialisation
-                </h2>
+                <span class="sec-num">02</span>
+                <p class="eyebrow">Spécialités</p>
+                <h2 class="display d-xl">Trois domaines de spécialisation</h2>
                 <p class="lede">
                     Chacun relève de régimes, de déclarations et d'échéances qui lui sont propres.
                 </p>
             </div>
 
-            <div class="specs">
-
-                <article class="spec reveal">
-                    <a class="spec__media duo duo--scrim" href="#contact" style="--tint: var(--h-bnc);" aria-label="Professions libérales et BNC">
-                        <img src="assets/img/specialite-bnc-1100.webp"
-                             sizes="(min-width: 56rem) 30vw, 100vw"
+            <div class="fields">
+                <article class="field reveal">
+                    <a class="field__media shot shot--deep" href="#contact" aria-label="Professions libérales">
+                        <img src="assets/img/specialite-bnc-1100.webp" sizes="(min-width: 56rem) 31vw, 100vw"
                              width="1100" height="1375" loading="lazy"
-                             alt="Bureaux sombres en enfilade devant de grandes baies vitrées donnant sur la ville.">
-                        <span class="duo__caption">
-                            <span class="dot" aria-hidden="true"></span>
-                            <span class="label">Professions libérales</span>
+                             alt="Bureaux en enfilade devant de grandes baies vitrées.">
+                        <span class="field__over">
+                            <span class="eyebrow">Professions libérales</span>
+                            <span class="d-sm">Médecins, avocats, kinés, consultants</span>
                         </span>
                     </a>
-                    <div class="spec__text">
-                        <span class="spec__hue" style="--tint: var(--h-bnc);" aria-hidden="true"></span>
-                        <h3 class="h-sm">Médecins, avocats, kinés, consultants</h3>
-                        <p>
-                            Déclaration 2035, micro-BNC ou déclaration contrôlée, rétrocessions, caisses
+                    <p class="field__text">
+                        Déclaration 2035, micro-BNC ou déclaration contrôlée, rétrocessions, caisses
                         de retraite obligatoires.
-                        </p>
-                    </div>
+                    </p>
                 </article>
 
-                <article class="spec reveal reveal--d1">
-                    <a class="spec__media duo duo--scrim" href="#contact" style="--tint: var(--h-lmnp);" aria-label="Location meublée et LMNP">
-                        <img src="assets/img/specialite-lmnp-1100.webp"
-                             sizes="(min-width: 56rem) 30vw, 100vw"
+                <article class="field reveal reveal--d1">
+                    <a class="field__media shot shot--deep" href="#contact" aria-label="Location meublée">
+                        <img src="assets/img/specialite-lmnp-1100.webp" sizes="(min-width: 56rem) 31vw, 100vw"
                              width="1100" height="1375" loading="lazy"
-                             alt="Séjour d'un appartement meublé en fin de journée, lumière chaude et mobilier clair.">
-                        <span class="duo__caption">
-                            <span class="dot" aria-hidden="true"></span>
-                            <span class="label">Location meublée</span>
+                             alt="Séjour d'un appartement meublé en fin de journée.">
+                        <span class="field__over">
+                            <span class="eyebrow">Location meublée</span>
+                            <span class="d-sm">Loueurs en meublé, LMNP et LMP</span>
                         </span>
                     </a>
-                    <div class="spec__text">
-                        <span class="spec__hue" style="--tint: var(--h-lmnp);" aria-hidden="true"></span>
-                        <h3 class="h-sm">Loueurs en meublé, LMNP et LMP</h3>
-                        <p>
-                            Amortissements, micro-BIC ou régime réel, plus-value de cession. Dossiers
+                    <p class="field__text">
+                        Amortissements, micro-BIC ou régime réel, plus-value de cession. Dossiers
                         suivis à distance, partout en France.
-                        </p>
-                    </div>
+                    </p>
                 </article>
 
-                <article class="spec reveal reveal--d2">
-                    <a class="spec__media duo duo--scrim" href="#contact" style="--tint: var(--h-agri);" aria-label="Exploitations agricoles">
-                        <img src="assets/img/specialite-agriculture-1100.webp"
-                             sizes="(min-width: 56rem) 30vw, 100vw"
+                <article class="field reveal reveal--d2">
+                    <a class="field__media shot shot--deep" href="#contact" aria-label="Agriculture">
+                        <img src="assets/img/specialite-agriculture-1100.webp" sizes="(min-width: 56rem) 31vw, 100vw"
                              width="1100" height="1375" loading="lazy"
-                             alt="Coteau planté de vignes émergeant d'une mer de brume au lever du jour.">
-                        <span class="duo__caption">
-                            <span class="dot" aria-hidden="true"></span>
-                            <span class="label">Agriculture</span>
+                             alt="Coteau planté de vignes émergeant de la brume.">
+                        <span class="field__over">
+                            <span class="eyebrow">Agriculture</span>
+                            <span class="d-sm">Exploitations, GAEC et EARL</span>
                         </span>
                     </a>
-                    <div class="spec__text">
-                        <span class="spec__hue" style="--tint: var(--h-agri);" aria-hidden="true"></span>
-                        <h3 class="h-sm">Exploitations, GAEC et EARL</h3>
-                        <p>
-                            Déduction pour épargne de précaution, TVA agricole, cotisations MSA,
-                        transmission du foncier. Exploitations suivies partout en France.
-                        </p>
-                    </div>
+                    <p class="field__text">
+                        Déduction pour épargne de précaution, TVA agricole, cotisations MSA,
+                        transmission du foncier.
+                    </p>
                 </article>
-
             </div>
 
-            <div class="cta-row cta-row--end reveal">
-                <a class="btn btn--solid" href="#contact">Prendre rendez-vous</a>
+            <div class="cta-row reveal" style="margin-top: clamp(2.5rem, 5vw, 3.75rem);">
+                <a class="btn btn--coral" href="#contact">Prendre rendez-vous</a>
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-         Méthode : l'image d'escalier reste en place au défilement
-         pendant que les étapes défilent. Visuel abstrait à rythme
-         (des marches) plutôt qu'une photo de réunion illustrative.
-         ============================================================ -->
-    <section class="section" id="methode">
+    <!-- 06 ─ Deroule d'une mission, ligne de temps -->
+    <section class="section" id="methode" style="background: var(--paper-2);">
         <div class="shell">
             <div class="section__head reveal">
-                <p class="label">Comment nous travaillons</p>
-                <h2 class="display h-lg">Le déroulé d'une mission</h2>
+                <span class="sec-num">03</span>
+                <p class="eyebrow">Comment nous travaillons</p>
+                <h2 class="display d-xl">Le déroulé d'une mission</h2>
             </div>
 
-            <div class="method-wrap">
-                <figure class="method-figure reveal">
-                    <div class="method-figure__media duo">
-                        <img src="assets/img/methode-escalier-1100.webp"
-                             srcset="assets/img/methode-escalier-600.webp 600w, assets/img/methode-escalier-1100.webp 1100w"
-                             sizes="(min-width: 62rem) 34vw, 100vw"
-                             width="1100" height="1500" loading="lazy"
-                             alt="Volée de marches dans une cage d'escalier sombre, éclairée par une main courante lumineuse.">
-                    </div>
-                </figure>
-
-                <div class="method">
-                    <div class="method__step reveal">
-                        <div class="method__body">
-                            <h3 class="h-sm">Premier échange</h3>
-                            <p>
-                                Un rendez-vous, au cabinet ou en visio, pour comprendre votre activité et
-                                votre situation fiscale. Sans engagement et sans facturation.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="method__step reveal reveal--d1">
-                        <div class="method__body">
-                            <h3 class="h-sm">Diagnostic écrit</h3>
-                            <p>
-                                État de l'existant, points à revoir, arbitrages ouverts à court terme. Le tout
-                                remis sous forme de document écrit.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="method__step reveal reveal--d2">
-                        <div class="method__body">
-                            <h3 class="h-sm">Mise en place</h3>
-                            <p>
-                                Régime, forme juridique, outils de tenue, calendrier des obligations.
-                                Une lettre de mission détaille le périmètre et les honoraires avant de
-                                commencer.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="method__step reveal reveal--d3">
-                        <div class="method__body">
-                            <h3 class="h-sm">Suivi dans l'année</h3>
-                            <p>
-                                Des points réguliers dans l'année, aux échéances déclaratives et avant la
-                                clôture de l'exercice.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+            <div class="process">
+                <article class="step reveal">
+                    <span class="step__num">Étape 01</span>
+                    <h3 class="d-sm">Premier échange</h3>
+                    <p>
+                        Un rendez-vous, au cabinet ou en visio, pour comprendre votre activité et
+                        votre situation fiscale. Sans engagement et sans facturation.
+                    </p>
+                </article>
+                <article class="step reveal reveal--d1">
+                    <span class="step__num">Étape 02</span>
+                    <h3 class="d-sm">Diagnostic écrit</h3>
+                    <p>
+                        État de l'existant, points à revoir, arbitrages ouverts à court terme. Le
+                        tout remis sous forme de document écrit.
+                    </p>
+                </article>
+                <article class="step reveal reveal--d2">
+                    <span class="step__num">Étape 03</span>
+                    <h3 class="d-sm">Mise en place</h3>
+                    <p>
+                        Régime, forme juridique, outils de tenue, calendrier des obligations. Une
+                        lettre de mission détaille le périmètre et les honoraires.
+                    </p>
+                </article>
+                <article class="step reveal reveal--d3">
+                    <span class="step__num">Étape 04</span>
+                    <h3 class="d-sm">Suivi dans l'année</h3>
+                    <p>
+                        Des points réguliers dans l'année, aux échéances déclaratives et avant la
+                        clôture de l'exercice.
+                    </p>
+                </article>
             </div>
         </div>
     </section>
 
-
-    <!-- ============================================================
-         Prestations. Blocs à filets avec glyphe tracé, en remplacement
-         de la liste en lignes qui faisait tableau. Six entrées pour une
-         grille pleine en trois colonnes.
-         ============================================================ -->
-    <section class="section section--deep" id="prestations">
+    <!-- 07 ─ Prestations, tableau mis en forme -->
+    <section class="section" id="prestations">
         <div class="shell">
             <div class="section__head reveal">
-                <p class="label">Prestations</p>
-                <h2 class="display h-lg">Le détail des prestations</h2>
+                <span class="sec-num">04</span>
+                <p class="eyebrow">Prestations</p>
+                <h2 class="display d-xl">Le détail des missions</h2>
             </div>
 
-            <div class="missions">
-
-                <article class="mission reveal">
-                    <span class="rule-mark" aria-hidden="true"></span>                    <h3 class="h-sm cursive">Bilan et liasse fiscale</h3>
-                    <p>Comptes annuels, révision, télétransmission aux impôts.</p>
-                </article>
-
-                <article class="mission reveal reveal--d1">
-                    <span class="rule-mark" aria-hidden="true"></span>                    <h3 class="h-sm cursive">Déclarations de TVA</h3>
-                    <p>Mensuelles, trimestrielles, régimes et taux particuliers.</p>
-                </article>
-
-                <article class="mission reveal reveal--d2">
-                    <span class="rule-mark" aria-hidden="true"></span>                    <h3 class="h-sm cursive">Paie et social</h3>
-                    <p>Bulletins, DSN, contrats de travail, formalités d'embauche.</p>
-                </article>
-
-                <article class="mission reveal">
-                    <span class="rule-mark" aria-hidden="true"></span>                    <h3 class="h-sm cursive">Création de société</h3>
-                    <p>Choix de la forme, statuts, immatriculation, apports.</p>
-                </article>
-
-                <article class="mission reveal reveal--d1">
-                    <span class="rule-mark" aria-hidden="true"></span>                    <h3 class="h-sm cursive">Prévisionnel et financement</h3>
-                    <p>Plans de trésorerie, dossiers bancaires, business plan.</p>
-                </article>
-
-                <article class="mission reveal reveal--d2">
-                    <span class="rule-mark" aria-hidden="true"></span>                    <h3 class="h-sm cursive">Juridique annuel</h3>
-                    <p>Approbation des comptes, assemblées, registres à jour.</p>
-                </article>
-
+            <div class="table-wrap reveal">
+                <table class="tbl">
+                    <thead>
+                        <tr>
+                            <th scope="col">Mission</th>
+                            <th scope="col">Ce qu'elle recouvre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Bilan et liasse fiscale</td><td>Comptes annuels, révision, télétransmission aux impôts.</td></tr>
+                        <tr><td>Déclarations de TVA</td><td>Mensuelles, trimestrielles, régimes et taux particuliers.</td></tr>
+                        <tr><td>Paie et social</td><td>Bulletins, DSN, contrats de travail, formalités d'embauche.</td></tr>
+                        <tr><td>Création de société</td><td>Choix de la forme, statuts, immatriculation, apports.</td></tr>
+                        <tr><td>Prévisionnel et financement</td><td>Plans de trésorerie, dossiers bancaires, business plan.</td></tr>
+                        <tr><td>Juridique annuel</td><td>Approbation des comptes, assemblées, registres à jour.</td></tr>
+                    </tbody>
+                </table>
             </div>
 
-            <div class="cta-row cta-row--end reveal">
-                <a class="btn btn--solid" href="#contact">Demander une proposition</a>
+            <div class="cta-row reveal" style="margin-top: clamp(2.25rem, 4vw, 3rem);">
+                <a class="btn btn--line" href="#contact">Demander une proposition</a>
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-         Contact : téléphone et courriel encore à venir (un courriel au
-         nom de domaine sera créé). L'adresse, elle, est connue.
-         ============================================================ -->
-    <section class="section contact is-light" id="contact">
+    <!-- 08 ─ Contact, bloc bleu et carte en vis-a-vis -->
+    <section class="section contact" id="contact">
         <div class="shell">
             <div class="contact__grid">
                 <div class="reveal">
-                    <p class="label" style="margin-block: 1.25rem 1rem;">Contact</p>
-                    <h2 class="display h-lg">Prendre rendez-vous</h2>
-                    <p class="lede" style="margin-top: 1.5rem;">
+                    <p class="eyebrow">Contact</p>
+                    <h2 class="display d-xl" style="margin-block: 1.25rem 1.5rem;">Prendre rendez-vous</h2>
+                    <p class="lede" style="color: rgba(255,255,255,0.76);">
                         Décrivez votre situation en deux lignes, nous vous répondons avec un créneau
                         et les points à préparer.
                     </p>
-                    <div class="cta-row" style="margin-top: 2rem;">
-                        <a class="btn btn--solid" href="#contact">Écrire au cabinet</a>
+
+                    <div class="contact__lines" style="margin-top: 2.25rem;">
+                        <div class="contact__line">
+                            <span class="k">Adresse</span>
+                            <span class="v">76 rue de la Pompe, 75116 Paris</span>
+                        </div>
+                        <div class="contact__line">
+                            <span class="k">Téléphone</span>
+                            <span class="v"><span class="todo">à compléter</span></span>
+                        </div>
+                        <div class="contact__line">
+                            <span class="k">Courriel</span>
+                            <span class="v"><span class="todo">au nom de domaine</span></span>
+                        </div>
+                    </div>
+
+                    <div class="cta-row" style="margin-top: 2.25rem;">
+                        <a class="btn btn--coral" href="#contact">Écrire au cabinet</a>
                     </div>
                 </div>
 
-                <div class="contact__lines reveal reveal--d1">
-                    <div class="contact__line">
-                        <span class="label">Adresse</span>
-                        <span class="val">76 rue de la Pompe<br>75116 Paris</span>
+                <div class="reveal reveal--d1">
+                    <!-- Embed Google Maps, charge directement. Sa reponse ne depose
+                         aucun cookie, verifie. L'IP du visiteur reste transmise a
+                         Google, a mentionner dans la politique de confidentialite. -->
+                    <div class="map">
+                        <iframe
+                            src="https://www.google.com/maps?q=76+rue+de+la+Pompe,+75116+Paris&amp;z=16&amp;output=embed"
+                            title="Plan d'accès au cabinet, 76 rue de la Pompe à Paris"
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
                     </div>
-                    <div class="contact__line">
-                        <span class="label">Téléphone</span>
-                        <span class="val"><span class="todo">à compléter</span></span>
-                    </div>
-                    <div class="contact__line">
-                        <span class="label">Courriel</span>
-                        <span class="val"><span class="todo">au nom de domaine</span></span>
-                    </div>
-                    <div class="contact__line">
-                        <span class="label">Périmètre</span>
-                        <span class="val">Rendez-vous à Paris, dossiers suivis partout en France</span>
-                    </div>
+                    <p class="map__legend">
+                        <span>76 rue de la Pompe, 75116 Paris</span>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=76+rue+de+la+Pompe+75116+Paris"
+                           target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
+                    </p>
                 </div>
             </div>
-
-            <!-- Embed Google Maps, charge directement. Verifie : sa reponse ne
-                 depose aucun cookie. L'adresse IP du visiteur reste toutefois
-                 transmise a Google, point a mentionner dans la politique de
-                 confidentialite. Les fonds libres au rendu comparable (CARTO
-                 Voyager, Positron) exigent desormais une cle d'API. -->
-            <div class="map reveal">
-                <iframe
-                    src="https://www.google.com/maps?q=76+rue+de+la+Pompe,+75116+Paris&amp;z=16&amp;output=embed"
-                    title="Plan d'accès au cabinet, 76 rue de la Pompe à Paris"
-                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                    allowfullscreen></iframe>
-            </div>
-            <p class="map__legend">
-                <span>76 rue de la Pompe, 75116 Paris</span>
-                <a href="https://www.google.com/maps/search/?api=1&amp;query=76+rue+de+la+Pompe+75116+Paris"
-                   target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
-            </p>
         </div>
     </section>
 
@@ -492,23 +394,23 @@
             <div class="footer-col">
                 <a class="wordmark" href="index.html">
                     <span class="wordmark__name">HBR Conseil</span>
+                    <span class="wordmark__dot" aria-hidden="true"></span>
                 </a>
                 <p style="max-width: 34ch; font-size: 0.9375rem;">
-                    Cabinet d'expertise comptable à Paris. Comptabilité, fiscalité, social
-                    et conseil.
+                    Cabinet d'expertise comptable à Paris. Comptabilité, fiscalité, social et
+                    conseil.
                 </p>
             </div>
             <div class="footer-col">
-                <p class="label">Spécialités</p>
-                <a href="#specialites">Professions libérales</a>
-                <a href="#specialites">Location meublée</a>
-                <a href="#specialites">Agriculture</a>
+                <p class="eyebrow">Spécialités</p>
+                <a href="#domaines">Professions libérales</a>
+                <a href="#domaines">Location meublée</a>
+                <a href="#domaines">Agriculture</a>
             </div>
             <div class="footer-col">
-                <p class="label">Cabinet</p>
+                <p class="eyebrow">Cabinet</p>
                 <a href="#cabinet">Le cabinet</a>
                 <a href="#methode">Méthode</a>
-                <a href="#pourquoi">Pourquoi nous choisir</a>
                 <a href="#prestations">Prestations</a>
                 <a href="#contact">Contact</a>
             </div>
@@ -522,6 +424,6 @@
     </div>
 </footer>
 
-<script src="js/main.js?v=20260902i"></script>
+<script src="js/main.js?v=20260924a"></script>
 </body>
 </html>
