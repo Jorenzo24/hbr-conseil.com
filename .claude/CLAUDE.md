@@ -51,260 +51,65 @@ du plus critique (le `noindex`).
 
 ## Système de design
 
-Registre visé : **cabinet haut de gamme, sobre**. Le repère est le grand livre relié, réglures,
-alignements, cuir et acajou : et non le noir-et-or qui est devenu le cliché du site « premium ».
+⚠️ **Refonte du 24 septembre 2026.** La direction sombre (noir chaud, marron, Newsreader,
+guilloché, duotone marron) a été **abandonnée** à la demande du client, qui a désigné
+https://nsassocies.com comme référence et a choisi d'en reprendre aussi les couleurs. Ne pas
+réintroduire l'ancienne charte.
 
-### Palette (jetons dans `css/style.css`, section 3)
+Registre visé : **cabinet corporate établi**, clair dominant, bleu de nuit et corail.
 
-Le noir est **chaud**, biaisé vers le marron plutôt que vers le bleu : c'est ce qui empêche le
-marron de paraître plaqué sur du gris.
+### Palette (section 3 de `css/style.css`)
 
 | Rôle | Jeton | Valeur |
 |---|---|---|
-| Fond | `--void` | `#0A0807` |
-| Surface / surface haute | `--deep` / `--raise` | `#12100D` / `#1B1712` |
-| Filets | `--hairline` / `--hairline-hi` | `#2B2520` / `#3D352E` |
-| Marron profond → cognac | `--brown-deep` / `--brown` / `--brown-lit` | `#4A2F1E` / `#7A4E30` / `#A9754C` |
-| Accents clairs | `--tan` / `--champagne` | `#C9A47C` / `#E8D5BE` |
-| Encres | `--paper` / `--paper-2` / `--muted` | `#F4EFE8` / `#C6BAAC` / `#8C7F72` |
-| Teintes de spécialité | `--h-bnc` / `--h-lmnp` / `--h-agri` | `#8FA2AE` / `#C9A47C` / `#8A9469` |
+| Fonds clairs | `--paper` / `--paper-2` / `--paper-3` | `#F7F9FC` / `#EDF2F8` / `#E3EAF3` |
+| Bleu de nuit, encre et sections sombres | `--navy` / `--navy-2` / `--navy-3` | `#0F2740` / `#17385A` / `#24507A` |
+| Encres | `--ink` / `--ink-2` / `--muted` | `#0F2740` / `#47596F` / `#7C8B9D` |
+| Filets | `--hairline` / `--hairline-2` | `#DCE4EE` / `#C6D2E0` |
+| **Accent unique** | `--coral` / `--coral-deep` / `--coral-pale` | `#DF5660` / `#BE414B` / `#F7E4E5` |
 
-Jamais de blanc pur ni de noir pur. Les trois teintes de spécialité sont deux terres et une note
-froide, pour se distinguer sans se battre.
+Jamais de blanc pur : le blanc légèrement bleuté tient la page avec le bleu de nuit. **Un seul
+accent**, le corail, employé avec parcimonie : filets de libellés, numéros, survols, un mot dans
+le titre du hero. Jamais en aplat de fond large.
 
 ### Typographie
 
-- **Newsreader** (serif variable 300 à 600) pour les titres, via la classe `.display` et
-  l'échelle `.h-xl` / `.h-lg` / `.h-md` / `.h-sm`. Utiliser `font-variation-settings: 'opsz'`
-  selon la taille de rendu.
-- **Archivo** (variable 400 à 600) pour le texte courant et l'interface.
-- ⚠️ `.btn--solid` fixe sa couleur de texte en dur (`#F6F1E9`) et **non** `var(--paper)`. Dans une
-  section `.is-light` ce jeton est inverse, et le libelle passait en marron fonce sur fond marron.
-- **Newsreader Italic** pour les touches calligraphiques, classe `.cursive`. Vraie italique
-  cursive, pas une inclinaison synthetique. Employee sur un fragment du H2 de la section claire
-  et sur ses quatre sous-titres. Fichier degraisse a 15 Ko : axes figes (`opsz` 28, `wght` 400)
-  puis sous-ensemble latin plus accents francais, via `fontTools`. L'original variable pesait
-  144 Ko.
-- Libellés : classe `.label`, capitales, `letter-spacing: 0.18em`, petite taille.
-- Chiffres alignés : `font-variant-numeric: tabular-nums`.
+**Une seule famille, Archivo variable**, avec ses deux axes : la graisse (100 à 900) et surtout
+la **largeur** (62 à 125 %). Le contraste typographique vient de l'axe de largeur, titres très
+étendus contre texte de labeur normal, plutôt que d'une seconde famille. 88 Ko pour toute la
+palette typographique.
 
-### Traitement d'image : duotone marron
+- `.display` avec `.d-hero` / `.d-xl` / `.d-lg` / `.d-md` / `.d-sm` : `wdth` 116, `wght` 680
+- `.eyebrow` : `wdth` 92, capitales, `letter-spacing` 0.2em, corail, précédé d'un filet de 2px
+- `.sec-num` : numérotation éditoriale, `wdth` 120, très grand corps, couleur `--hairline`
+- Texte courant : `wdth` 100, `wght` 400
 
-Section 5 de `style.css`. Un dégradé marron dans le conteneur `.duo`, l'image par-dessus en
-`mix-blend-mode: luminosity`. **La couleur vient du calque, pas de la photo** : n'importe quelle
-image s'intègre, ce qui compte puisque les visuels actuels sont provisoires.
+### Traitement d'image
 
-Variantes : `.duo--scrim` (voile bas pour asseoir un libellé), et `--tint` en style inline pour
-le voile de teinte propre à chaque spécialité.
+Les photos disponibles sont **chaudes** (elles avaient été choisies pour la charte marron). Elles
+sont donc fortement désaturées et refroidies pour ne pas jurer avec le bleu :
+`saturate(0.28) contrast(1.06) hue-rotate(-8deg)`, plus un voile bleu en `::after`. Variante
+`.shot--deep` pour poser un libellé sur l'image. Quand les vraies photos du cabinet arriveront,
+revoir ces valeurs.
 
-### La page d'accueil reste généraliste
+### Composition
 
-Règle posée par Joseph : **l'accueil parle de l'activité standard d'un cabinet d'expertise
-comptable**, pas des spécialités. Celles-ci ne sont qu'un teaser, placé bas dans la page. Ne pas
-réintroduire de liste de spécialités dans le hero.
+Règle posée par la skill `design-premium` : **deux sections consécutives ne partagent jamais la
+même structure**. État actuel :
 
-Ordre des sections (une section supplémentaire viendra s'insérer avant les spécialités) :
+| # | Section | Composition |
+|---|---|---|
+| 01 | Hero | pleine hauteur, photo plein cadre, accroche posée dessus |
+| 02 | Chiffres clés | bandeau bleu qui **chevauche** le hero |
+| 03 | Expertises | trois colonnes numérotées |
+| 04 | Le cabinet | partition asymétrique, panneau chevauchant l'image |
+| 05 | Domaines | trois panneaux hauts en escalier, libellé sur l'image |
+| 06 | Méthode | ligne de temps, horizontale au-dessus de 56rem |
+| 07 | Prestations | tableau mis en forme |
+| 08 | Contact | bloc bleu, carte en vis-à-vis |
 
-1. Hero, généraliste
-2. **Pourquoi nous choisir**, 4 raisons, seule section sur fond clair
-3. Le cabinet
-4. Trois spécialités *(une section viendra se glisser au-dessus)*
-5. Méthode, 4 étapes et un visuel qui reste en place au défilement
-6. Prestations, 6 blocs à filets
-7. Contact et plan d'accès
-
-La section 2 était au départ un bandeau de 4 points courts. Elle est devenue une vraie section de
-raisons, sur le modèle des pages « pourquoi nous choisir » des cabinets en ligne. Contraintes qui
-subsistent : aucune comparaison avec des confrères, aucune promesse de résultat, aucune note ni
-avis tant qu'il n'y en a pas de réels, et aucun chiffre inventé d'ancienneté ou de portefeuille.
-Ne pas y remettre la mention de l'Ordre, jugée inutile, ni « Paris » seul, les rendez-vous
-n'étant pas tous sur place.
-
-### Écriture : aucun marqueur IA
-
-⚠️ **Règle universelle posée par Joseph.** Aucun tiret cadratin (U+2014) ni demi-cadratin
-(U+2013), nulle part : texte visible, balises `title`, meta descriptions, commentaires de code,
-documentation. Une virgule, un point ou une parenthèse à la place.
-
-Éviter aussi les tics qui trahissent un texte généré :
-
-- les tournures en balancier, « ce n'est pas X, c'est Y », « X, pas Y », « plutôt que »
-- les énumérations systématiquement en trois termes
-- les deux-points qui créent un effet d'annonce
-- les adverbes de posture répétés, « volontairement », « délibérément »
-- les emoji en tête de section dans le contenu visible
-
-Vérification rapide avant tout commit :
-
-```
-grep -rn "$(printf '\u2014\\|\u2013')" . --exclude-dir=.git
-```
-
-### La section claire, et comment elle est faite
-
-Le site est sombre de bout en bout, sauf la section **Pourquoi nous choisir**, posée haut dans la
-page pour casser la succession de fonds sombres. Fond crème chaud `#F6F1E9`, pas blanc pur, pour
-rester dans la même famille chromatique.
-
-Technique : la classe **`.is-light`** redéfinit les jetons de couleur dans sa propre portée
-(`--paper`, `--paper-2`, `--muted`, `--hairline`, `--hairline-hi`, `--brown-lit`, `--tan`, et les
-trois teintes de spécialité). Les composants existants suivent automatiquement, sans qu'aucun
-d'eux ait à être réécrit en version claire. Pour éclaircir une section, lui ajouter `.is-light`,
-retirer `.section--deep`, et c'est tout.
-
-`.band-light` est distincte : elle ne porte que l'habillage propre à la bande des expertises,
-rembourrage réduit et guilloché. Les deux se cumulent sur cette section.
-
-Trois sections claires à ce jour, **Les expertises**, **Trois domaines de spécialisation** et
-**Contact**, qui alternent avec les sections sombres. Ajouter `.is-light` à une section et retirer
-`.section--deep` suffit. Cas particulier, `.contact.is-light` réécrit son dégradé, la même opacité
-de brun virait au brun sale sur fond clair.
-
-Elle porte un **guilloche** en filigrane, `assets/guilloche.svg`, l'entrelacs grave des titres et
-des certificats. Trace en SVG par un script (rosettes hypotrochoides imbriquees), 48 Ko.
-
-⚠️ **Piege du guilloche.** Une rosace `x = A cos t + B cos(f t)` a une symetrie d'ordre `f+1`.
-Melanger deux familles de symetries incompatibles (par exemple `f=9` donc ordre 10, et `f=13`
-donc ordre 14) ne laisse que le diviseur commun, ici 2, et la figure parait bancale. Les
-dephasages arbitraires cassent la symetrie de la meme facon. Regle : **une seule symetrie, ou des
-multiples entre eux** (`f=9` et `f=19`, ordres 10 et 20), et aucun dephasage. Verifier que le
-`viewBox` contient le rayon maximal `A + B`, sinon les lobes exterieurs sont rognes. C'est ce
-qui donne de la matiere a la section, un aplat seul faisait maquette inachevee. Sur mobile il se
-replie dans l'angle inferieur droit, sinon il passe au milieu de la colonne de lecture.
-
-Regles de composition de cette section, posees par Joseph :
-
-- **plus aucune barre verticale `.rule-spine` sur le site.** Joseph l'a fait retirer deux fois,
-  elle a donc été supprimée de toutes les sections. La classe reste définie dans le CSS mais
-  n'est plus employée. Ne pas la réintroduire.
-- pas de sur-titre `.label` sur la bande des expertises, le H2 suffit
-- pas de « a Paris » dans le H2, deja present dans le H1 et sans objet pour un cabinet national
-- **les quatre titres tiennent sur une ligne et les quatre textes sur trois lignes**, sinon les
-  blocs se desalignent et la section prend de la hauteur pour rien. Attention aux mots longs
-  (« amortissement », « retrocessions ») qui font passer un texte de trois a quatre lignes a
-  nombre de caracteres egal : verifier au rendu, pas au comptage
-- **registre sobre, jamais commercial.** Regle posee par Joseph : « on n'essaie pas de vendre du
-  reve, on essaie de passer pour des gens serieux ». Bannir les titres a effet et les formules a
-  balancier, « Le conseil d'abord, la saisie ensuite », « Un generaliste, et trois terrains ou la
-  technique fait vraiment la difference », « Un premier echange ne coute rien et clarifie
-  beaucoup ». Un titre de section nomme ce que la section contient, rien de plus : « Le deroule
-  d'une mission », « Le detail des prestations », « Prendre rendez-vous ». Dans les textes,
-  nommer des documents, des regimes et des echeances plutot que des benefices.
-- **du concret, pas des categories**. Une premiere version parlait d'« un avis », « un
-  interlocuteur », « trois fiscalites » : des mots creux, et les quatre titres avaient tous la
-  meme construction, ce qui sonnait mecanique. Nommer les choses reelles du metier, la 2035, le
-  GAEC, la SELARL, l'amortissement du mobilier, l'epargne de precaution, l'adresse. Varier aussi
-  la construction des titres d'un bloc a l'autre
-- pas d'icones nulle part, un filet court `.rule-mark` a la place. La section **Prestations** a
-  ete refaite sur ce modele : ses cellules encadrees faisaient quadrillage et ses glyphes
-  encadres reprenaient exactement ce qui avait deja ete refuse ailleurs
-- appel a l'action en fin de section pour **Trois domaines de spécialisation** et **Le détail des
-  prestations**, classe `.cta-row .cta-row--end`
-- pas de mention « Page détaillée en préparation » sur les cartes de spécialité
-- **pas de quadrillage** : seuls les filets verticaux entre colonnes, jamais de trait en haut
-  ni en bas de la grille, et un rembourrage bas pour que les filets descendent sous le texte
-- le titre de cette section est plus petit que les autres titres de section, elle sert de
-  respiration et n'a pas a peser comme un chapitre
-
-### Plan d'accès : embed Google Maps
-
-Le client voulait le rendu visuel de Google Maps. Constat apres essais : **le seul moyen d'avoir
-le design Google Maps, c'est Google Maps**. Les fonds raster libres au rendu comparable (CARTO
-Voyager, CARTO Positron) exigent desormais une cle d'API et renvoient une tuile filigranee
-« API KEY REQUIRED » sans elle. Le fond OpenStreetMap standard a un style tres reconnaissable,
-juge trop eloigne.
-
-L'embed utilise (`google.com/maps?q=...&output=embed`) ne demande pas de cle. **Mesure faite : sa
-reponse ne depose aucun cookie.** En revanche l'adresse IP du visiteur est transmise a Google,
-point a mentionner dans la politique de confidentialite du site.
-
-Solutions essayees puis ecartees, ne pas y revenir sans raison :
-
-- **embed OpenStreetMap** : exige WebGL, cadre blanc avec message d'erreur quand il manque
-- **plan statique compose depuis les tuiles OSM** : fiable et sans tiers, mais style OSM refuse
-- **chargement au clic** : reglait la question du consentement, mais le client veut la carte
-  visible d'emblee
-
-### Effets
-
-- **Grain** : bruit fractal SVG en `data:` URI, superposition fixe à 4 % d'opacité. Casse
-  l'aplat numérique des grands fonds sombres.
-- **Chevauchements** : obtenus **en grille** (`grid-column` / `grid-row` sur la même cellule),
-  jamais en `position: absolute` : pas de recouvrement accidentel au redimensionnement.
-- **Révélations au défilement** : classe `.reveal` + `IntersectionObserver`, avec
-  `.reveal--d1/d2/d3` pour l'échelonnement. Garde-fou `.no-js` : si `main.js` ne se charge pas,
-  rien ne reste invisible.
-- `prefers-reduced-motion` est respecté partout : tout s'affiche, plus aucune transition.
-
-### Ressources
-
-Voir `assets/CREDITS.md` : sources et licences des images, polices auto-hébergées, chaîne de
-conversion WebP, régénération du favicon.
-
-### ⚠️ Deux pièges CSS déjà rencontrés
-
-**`aspect-ratio` + `max-height` sur un bloc → Chrome déduit la LARGEUR.** Au lieu de laisser
-le bloc remplir l'espace disponible, il calcule `largeur = max-height × ratio`. La carte faisait
-768 px (30rem × 1,6) au lieu de 1120. Solution, ne jamais combiner les deux, poser
-`aspect-ratio` sur mobile, puis `aspect-ratio: auto` + une `height` fixe au-dessus du point de
-rupture.
-
-**Enfants de grille : `min-width: 0`.** Ils valent `min-width: auto` par défaut, donc leur largeur
-min-content peut élargir la piste au-delà du conteneur. Une liste de jetons appliqués aux enfants
-de grille du site existe en section 8 de `style.css`, l'étendre à tout nouvel enfant de grille.
-
-### Points de rupture et responsif
-
-| Largeur | Ce qui change |
-|---|---|
-| < 24rem (384px) | l'enseigne se reduit au seul nom, le filet et « Expertise comptable » sont masques, sinon l'en-tete se disloque sur deux lignes |
-| 48rem (768px) | `.why`, `.missions` et `.specs` passent a **2 colonnes**, sinon la moitie de la largeur reste vide sur tablette. L'image de la methode passe en 16/10, un portrait 4/5 pleine largeur donnait une image immense |
-| 56rem (896px) | `.why` et `.missions` passent a 3 colonnes, `.specs` aussi avec son decalage en escalier |
-| 62rem (992px) | navigation visible, hero en deux colonnes, methode en deux colonnes avec image collante, chevauchement de la carte cabinet |
-
-**Verification du debordement horizontal.** `body` porte `overflow-x: hidden`, qui masque le
-symptome sans regler la cause : ne jamais se fier a l'oeil. Methode fiable, injecter une sonde
-dans une copie de la page, l'afficher dans des iframes de largeurs variees et lire les mesures :
-
-```js
-const d = document.documentElement;
-const deborde = Math.max(d.scrollWidth, document.body.scrollWidth) > d.clientWidth + 1;
-```
-
-Derniere campagne, 320, 360, 390, 414, 480, 540, 640, 768, 834, 900, 1024 et 1180 px : aucun
-debordement.
-
-### ⚠️ Vérifier le rendu mobile : le piège de Chrome headless
-
-`--window-size=390,…` **ne donne pas un viewport de 390 px**. Chrome (ancien mode *et*
-`--headless=new`) plafonne la fenêtre à **500 px de large minimum** sur macOS : la page est mise
-en page à 500 px, puis l'image est simplement recadrée à 390. Résultat : du texte paraît coupé à
-droite et on croit à un débordement horizontal qui n'existe pas. Mesuré :
-`innerWidth === clientWidth === scrollWidth === 500`.
-
-**Contournement** : encapsuler le site dans une iframe à la largeur voulue, qui établit son
-propre viewport (GitHub Pages n'envoie pas `X-Frame-Options`, le cadrage fonctionne) :
-
-```html
-<!-- /tmp/harness.html -->
-<style>html,body{margin:0}iframe{width:390px;height:5600px;border:0;display:block}</style>
-<iframe src="https://jorenzo24.github.io/hbr-conseil.com/"></iframe>
-```
-
-```
-chrome --headless --hide-scrollbars --force-prefers-reduced-motion \
-       --window-size=500,5600 --virtual-time-budget=12000 \
-       --screenshot=/tmp/m390.png file:///tmp/harness.html
-magick /tmp/m390.png -crop 390x5600+0+0 +repage /tmp/m390c.png
-```
-
-Deux autres points pour capturer utilement :
-
-- **`--force-prefers-reduced-motion` est indispensable** : sinon les éléments `.reveal` restent à
-  `opacity: 0` (l'`IntersectionObserver` ne se déclenche jamais hors viewport) et toutes les
-  sections apparaissent noires sur la capture.
-- Chrome **ne rend pas la main** après `--screenshot` : l'image est bien écrite, il faut tuer le
-  processus (`pkill -f "user-data-dir=…"`).
+Interdits hérités de la skill : cartes arrondies à ombre portée, icônes de librairie, dégradés
+violets ou bleus type SaaS, responsive « par défaut ».
 
 ## Conventions
 

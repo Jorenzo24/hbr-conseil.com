@@ -29,20 +29,20 @@ Chaîne de conversion utilisée :
 `magick <src> -strip -resize "LxH^" -gravity center -extent "LxH" -quality 92 tmp.jpg`
 puis `cwebp -q 78 -m 6 tmp.jpg -o <dest>.webp`
 
-## Polices : auto-hébergées
+## Polices : auto-hébergée
 
 | Fichier | Famille | Licence |
 |---|---|---|
-| `fonts/newsreader-var-latin.woff2` | Newsreader (variable, 300 à 600) | SIL Open Font License 1.1 |
-| `fonts/archivo-var-latin.woff2` | Archivo (variable, 400 à 600) | SIL Open Font License 1.1 |
+| `fonts/archivo-var-latin.woff2` | Archivo variable, axes `wght` 100 à 900 et `wdth` 62 à 125 % | SIL Open Font License 1.1 |
 
-Sous-ensemble **latin uniquement** : suffisant pour le français, y compris `œ`
-(U+0153). L'italique de Newsreader a été volontairement écartée : 144 Ko pour un
-usage ponctuel.
+Sous-ensemble **latin uniquement**, suffisant pour le français. Une seule famille pour tout le
+site : le contraste typographique vient de l'axe de largeur.
 
-⚠️ **Pas de Google Fonts en CDN** : requête vers un serveur tiers, dépendance
-réseau au chargement, et zone grise RGPD. Les fichiers sont servis depuis ce
-dossier.
+Newsreader, employée par l'ancienne charte sombre, a été retirée lors de la refonte du
+24 septembre 2026.
+
+⚠️ **Pas de Google Fonts en CDN** : requête vers un serveur tiers, dépendance réseau au
+chargement, et zone grise RGPD. Le fichier est servi depuis ce dossier.
 
 ## Favicon
 
