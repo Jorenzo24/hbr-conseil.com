@@ -143,9 +143,16 @@ La section a donc été refaite en composition asymétrique :
   56rem, moins à gauche pour ne pas toucher le bloc corail), un filet corail qui se déploie sous
   la ligne, la flèche qui se remplit et le titre qui se fonce d'un ton.
 
-La section est ceinte d'un **cadre bleu de nuit de 3px** (`.expertises__frame`). Son rembourrage
-est exposé en variable `--frame-pad`, et **l'aplat de survol s'en sert** pour déborder jusqu'au
-cadre, exactement, et pas au-delà.
+La section est ceinte d'un **cadre bleu de nuit de 9px** (`.expertises__frame`), **sans
+rembourrage** : le bloc corail touche le trait sur trois côtés. Le fond corail est porté par
+`.expertises__aside`, le conteneur, et non par l'élément collé : le conteneur s'étire sur toute la
+hauteur de la rangée, donc l'aplat va d'un bord à l'autre du cadre.
+
+Ce sont les lignes de droite qui portent leur propre rembourrage, exposé en variable
+`--frame-pad`, dont **l'aplat de survol se sert** pour déborder jusqu'au cadre, exactement, et pas
+au-delà.
+
+Pas de filet au-dessus de la première ligne ni sous la dernière : le cadre en tient lieu.
 
 ⚠️ C'est le point sensible de la section. L'aplat déborde par marges négatives : s'il dépasse le
 cadre, ou la gouttière quand il n'y avait pas de cadre, il provoque un débordement horizontal sur
