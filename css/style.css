@@ -491,13 +491,16 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
    le survol fait deborder un aplat au-dela de la gouttiere.
    ------------------------------------------------------------------- */
 
-/* La section deborde du conteneur commun : elle n'est pas bornee a 82rem
-   comme le reste de la page, et sa gouttiere est proportionnelle. Le bloc
-   encadre respire donc moins de blanc autour de lui, et le fait d'etre plus
-   large que les autres sections devient un parti pris. */
+/* Plein cadre. La section ne connait ni le conteneur commun ni la
+   gouttiere : elle touche les deux bords de l'ecran, et son rembourrage
+   haut est supprime pour qu'elle vienne au contact du hero. */
+.expertises {
+    padding-top: 0;
+}
+
 .expertises > .shell {
     max-width: none;
-    padding-inline: clamp(1.25rem, 4vw, 4.5rem);
+    padding-inline: 0;
 }
 
 /* Cadre bleu qui ceint toute la section. Son rembourrage est expose en
@@ -547,9 +550,10 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
 .expertises__sticky {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     gap: 1.3rem;
-    padding: clamp(1.5rem, 2.9vw, 2.375rem);
+    padding: clamp(1.75rem, 3.4vw, 3rem);
 }
 
 .expertises__sticky .display { color: #FFF; }
@@ -875,7 +879,7 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     .expertises__sticky { position: sticky; top: clamp(5rem, 16vh, 10rem); }
 
     .exp-list {
-        padding: var(--frame-pad) var(--frame-pad) var(--frame-pad) clamp(1.75rem, 3vw, 2.75rem);
+        padding: var(--frame-pad) clamp(2rem, 3.6vw, 3.5rem) var(--frame-pad) clamp(1.75rem, 3vw, 2.75rem);
     }
 
     /* A gauche, l'aplat n'a que peu de place avant le bloc corail : il ne
