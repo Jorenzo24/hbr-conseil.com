@@ -98,8 +98,8 @@ même structure**. État actuel :
 
 | # | Section | Composition |
 |---|---|---|
-| 01 | Hero | pleine hauteur, photo plein cadre, marque posée dessus |
-| 02 | Expertises | trois colonnes numérotées |
+| 01 | Hero | pleine hauteur, photo plein cadre, marque **centrée** |
+| 02 | Expertises | colonne collante à gauche, grandes lignes cliquables à droite |
 | 03 | Le cabinet | partition asymétrique, panneau chevauchant l'image |
 | 04 | Domaines | trois panneaux hauts en escalier, libellé sur l'image |
 | 05 | Méthode | ligne de temps, horizontale au-dessus de 56rem |
@@ -123,12 +123,32 @@ Joseph rejette tout ce qui signale un site généré. Verdicts déjà rendus, à
 À la place, l'en-tête de section est un dispositif de presse : un filet 1px en haut, le titre à
 gauche, un chapô à droite au-delà de 56rem (`.section__head.split`).
 
+### Leçon : retirer un dispositif ne suffit pas
+
+La numérotation portait à elle seule la structure de la section Expertises. Une fois retirée, il
+restait trois colonnes égales nues, qui faisaient gabarit encore plus qu'avant. **Trois colonnes
+égales sont la signature du gabarit** : quand on enlève un dispositif, il faut recomposer la
+section, pas se contenter de la soustraction.
+
+La section a donc été refaite en composition asymétrique :
+
+- à gauche une colonne **collante** (`position: sticky`) qui porte le titre, le chapô et l'appel
+  à l'action. Elle a besoin d'un conteneur étiré, `.expertises__aside`, pour avoir de la course.
+- à droite trois **grandes lignes cliquables** pleine largeur, chacune avec son titre en grand
+  corps, une ligne de mots-clés en capitales, la description et un bouton fléché.
+- au survol, un aplat déborde de part et d'autre de la gouttière (`inset: 0 calc(-1 * var(--gutter))`),
+  le titre passe en corail et la flèche avance.
+
 ### Le hero, et deux choses à ne pas y remettre
 
 Le H1 est **institutionnel** : la marque d'abord et en très grand, « HBR » en corail sur une
 ligne, « Conseil » en blanc sur la suivante, puis « Cabinet d'expertise comptable à Paris » en
 plus petit. Les deux parties sont dans le **même H1**, la marque dans un `span` : c'est le
 sous-titre qui porte la requête de la page, il ne doit donc pas sortir du H1.
+
+Le hero est **entièrement centré**, verticalement et horizontalement. Le voile a été repris en
+conséquence : il était appuyé à gauche pour un texte aligné à gauche, il est désormais radial et
+centré.
 
 La marque tient sur **une seule ligne**, et le sous-titre est calé exactement sur sa largeur.
 Ce calage est fait par `js/main.js` : la taille de police étant linéaire, une seule mesure suffit,

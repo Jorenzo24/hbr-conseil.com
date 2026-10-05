@@ -30,7 +30,7 @@
 
     <link rel="preload" href="assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-    <link rel="stylesheet" href="css/style.css?v=20261005b">
+    <link rel="stylesheet" href="css/style.css?v=20261005c">
 
     <!-- TODO : JSON-LD AccountingService. Adresse connue, il manque la raison
          sociale exacte, le telephone et le numero d'inscription a l'Ordre.
@@ -80,46 +80,74 @@
         </div>
     </section>
 
-    <!-- 02 ─ Expertises, colonnes numerotees -->
-    <section class="section" id="expertises">
-        <div class="shell">
-            <div class="section__head reveal split">
-                <h2 class="display d-xl">Les expertises de votre cabinet</h2>
-                <p class="section__intro">
-                    De la constitution de la société au conseil courant, le cabinet couvre
-                    l'ensemble des obligations comptables, fiscales et sociales.
-                </p>
+    <!-- 02 ─ Expertises. Composition asymetrique : colonne de gauche
+         collante qui porte le titre et l'appel a l'action, colonne de
+         droite en grandes lignes cliquables. Ni trois colonnes egales,
+         ni numerotation. -->
+    <section class="section expertises" id="expertises">
+        <div class="shell expertises__grid">
+
+            <div class="expertises__aside">
+                <div class="expertises__sticky reveal">
+                    <h2 class="display d-xl">Les expertises de votre cabinet</h2>
+                    <p class="section__intro">
+                        De la constitution de la société au conseil courant, le cabinet couvre
+                        l'ensemble des obligations comptables, fiscales et sociales.
+                    </p>
+                    <a class="btn btn--line" href="#contact">Prendre rendez-vous</a>
+                </div>
             </div>
 
-            <div class="expertise">
-                <article class="expertise__item reveal">
-                    <div class="expertise__body">
-                        <h3 class="d-sm">Création de société</h3>
-                        <p>
+            <ul class="exp-list">
+                <li class="exp reveal">
+                    <a class="exp__row" href="#contact">
+                        <span class="exp__title">Création de société</span>
+                        <span class="exp__tags">Forme juridique &middot; Statuts &middot; Immatriculation</span>
+                        <span class="exp__text">
                             Définissons ensemble la forme juridique la plus adaptée à votre cas et
                             créons votre société.
-                        </p>
-                    </div>
-                </article>
-                <article class="expertise__item reveal reveal--d1">
-                    <div class="expertise__body">
-                        <h3 class="d-sm">Suivi comptable</h3>
-                        <p>
+                        </span>
+                        <span class="exp__go" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M5 12h13M12 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </a>
+                </li>
+
+                <li class="exp reveal reveal--d1">
+                    <a class="exp__row" href="#contact">
+                        <span class="exp__title">Suivi comptable</span>
+                        <span class="exp__tags">Tenue &middot; TVA &middot; Bilan &middot; Liasse fiscale</span>
+                        <span class="exp__text">
                             Suivi mensuel de la bonne tenue de votre comptabilité et correspondance
                             avec l'administration.
-                        </p>
-                    </div>
-                </article>
-                <article class="expertise__item reveal reveal--d2">
-                    <div class="expertise__body">
-                        <h3 class="d-sm">Conseil</h3>
-                        <p>
+                        </span>
+                        <span class="exp__go" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M5 12h13M12 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </a>
+                </li>
+
+                <li class="exp reveal reveal--d2">
+                    <a class="exp__row" href="#contact">
+                        <span class="exp__title">Conseil</span>
+                        <span class="exp__tags">Régimes &middot; Arbitrages &middot; Transmission</span>
+                        <span class="exp__text">
                             Conseils personnalisés sur votre situation ou vos problématiques
                             comptables et fiscales.
-                        </p>
-                    </div>
-                </article>
-            </div>
+                        </span>
+                        <span class="exp__go" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M5 12h13M12 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
         </div>
     </section>
 
@@ -397,6 +425,6 @@
     </div>
 </footer>
 
-<script src="js/main.js?v=20261005b"></script>
+<script src="js/main.js?v=20261005c"></script>
 </body>
 </html>
