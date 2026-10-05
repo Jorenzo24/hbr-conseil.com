@@ -80,8 +80,7 @@ la **largeur** (62 à 125 %). Le contraste typographique vient de l'axe de large
 palette typographique.
 
 - `.display` avec `.d-hero` / `.d-xl` / `.d-lg` / `.d-md` / `.d-sm` : `wdth` 116, `wght` 680
-- `.eyebrow` : `wdth` 92, capitales, `letter-spacing` 0.2em, corail, précédé d'un filet de 2px
-- `.sec-num` : numérotation éditoriale, `wdth` 120, très grand corps, couleur `--hairline`
+- `.eyebrow` : `wdth` 94, capitales, `letter-spacing` 0.16em, couleur `--muted`, **sans filet**
 - Texte courant : `wdth` 100, `wght` 400
 
 ### Traitement d'image
@@ -107,6 +106,23 @@ même structure**. État actuel :
 | 06 | Prestations | tableau mis en forme |
 | 07 | Contact | bloc bleu, carte en vis-à-vis |
 
+### ⚠️ Ce qui est banni comme « marqueur IA »
+
+Joseph rejette tout ce qui signale un site généré. Verdicts déjà rendus, à ne pas réintroduire :
+
+- **la numérotation éditoriale des sections**, 01 / 02 / 03, et les numéros d'items ou d'étapes.
+  La skill `design-premium` la demande, le client la refuse : **le client prime**.
+- **le petit filet horizontal devant les sur-titres**, et toute barre verticale décorative. Trois
+  rejets sur trois chartes différentes.
+- **les slogans tournés**, type « Vos décisions, nos chiffres ». Registre institutionnel.
+- **les sur-titres qui paraphrasent le titre juste en dessous**, « Spécialités » au-dessus de
+  « Trois domaines de spécialisation ». Supprimés partout, le titre suffit. Les `.eyebrow`
+  restants ne subsistent que là où ils **portent une information** : libellés sur les images de
+  spécialité, intitulés de colonnes du pied de page.
+
+À la place, l'en-tête de section est un dispositif de presse : un filet 1px en haut, le titre à
+gauche, un chapô à droite au-delà de 56rem (`.section__head.split`).
+
 ### Le hero, et deux choses à ne pas y remettre
 
 Le H1 est **institutionnel** : la marque d'abord et en très grand, « HBR » en corail sur une
@@ -114,8 +130,11 @@ ligne, « Conseil » en blanc sur la suivante, puis « Cabinet d'expertise compt
 plus petit. Les deux parties sont dans le **même H1**, la marque dans un `span` : c'est le
 sous-titre qui porte la requête de la page, il ne doit donc pas sortir du H1.
 
-Le découpage sur deux lignes est **verrouillé** en `display: block`. Laissé au retour
-automatique, il se cassait à une largeur différente selon l'écran.
+La marque tient sur **une seule ligne**, et le sous-titre est calé exactement sur sa largeur.
+Ce calage est fait par `js/main.js` : la taille de police étant linéaire, une seule mesure suffit,
+on lit la largeur naturelle à une taille de référence puis on applique le rapport. Le CSS porte un
+repli en `clamp()` si le script ne tourne pas. Le recalage est rejoué sur `resize` et après
+`document.fonts.ready`, sinon la mesure est faite avec la police de secours.
 
 ⚠️ Deux éléments ont été retirés et ne doivent pas revenir :
 

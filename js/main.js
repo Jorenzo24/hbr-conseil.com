@@ -27,6 +27,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }).observe(sentinel);
     }
 
+
+    /* --- Hero : marque et sous-titre cales a la meme largeur ------------
+       La taille de police etant lineaire, une seule mesure suffit : on lit
+       la largeur naturelle a une taille de reference, puis on applique le
+       rapport. Le CSS porte un repli si ce script ne tourne pas.
+       ------------------------------------------------------------------ */
+
+    const brand = document.getElementById('brand');
+    const kicker = document.getElementById('kicker');
+
+    if (brand && kicker) {
+        const caler = () => {
+            const dispo = brand.parentElement.clientWidth;
+            if (!dispo) return;
+
+            [brand, kicker].forEach((el) => {
+                el.style.fontSize = '100px';
+                const naturelle = el.scrollWidth;
+                if (!naturelle) { el.style.fontSize = ''; return; }
+                // 0.5px de marge : evite qu'un arrondi sous-pixel ne declenche
+                // un retour a la ligne malgre le white-space: nowrap.
+                el.style.fontSize = ((dispo - 0.5) / naturelle * 100) + 'px';
+            });
+        };
+
+        caler();
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(caler);
+        addEventListener('resize', caler);
+    }
+
     /* --- Révélations au défilement ------------------------------------
        Respecte prefers-reduced-motion : dans ce cas on affiche tout
        immédiatement, sans observer quoi que ce soit.
