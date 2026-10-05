@@ -491,6 +491,15 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
    le survol fait deborder un aplat au-dela de la gouttiere.
    ------------------------------------------------------------------- */
 
+/* La section deborde du conteneur commun : elle n'est pas bornee a 82rem
+   comme le reste de la page, et sa gouttiere est proportionnelle. Le bloc
+   encadre respire donc moins de blanc autour de lui, et le fait d'etre plus
+   large que les autres sections devient un parti pris. */
+.expertises > .shell {
+    max-width: none;
+    padding-inline: clamp(1.25rem, 4vw, 4.5rem);
+}
+
 /* Cadre bleu qui ceint toute la section. Son rembourrage est expose en
    variable : l'aplat de survol s'en sert pour deborder jusqu'au cadre,
    exactement, et pas au-dela. */
