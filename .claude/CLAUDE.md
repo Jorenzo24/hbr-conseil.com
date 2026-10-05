@@ -99,14 +99,36 @@ même structure**. État actuel :
 
 | # | Section | Composition |
 |---|---|---|
-| 01 | Hero | pleine hauteur, photo plein cadre, accroche posée dessus |
-| 02 | Chiffres clés | bandeau bleu qui **chevauche** le hero |
-| 03 | Expertises | trois colonnes numérotées |
-| 04 | Le cabinet | partition asymétrique, panneau chevauchant l'image |
-| 05 | Domaines | trois panneaux hauts en escalier, libellé sur l'image |
-| 06 | Méthode | ligne de temps, horizontale au-dessus de 56rem |
-| 07 | Prestations | tableau mis en forme |
-| 08 | Contact | bloc bleu, carte en vis-à-vis |
+| 01 | Hero | pleine hauteur, photo plein cadre, marque posée dessus |
+| 02 | Expertises | trois colonnes numérotées |
+| 03 | Le cabinet | partition asymétrique, panneau chevauchant l'image |
+| 04 | Domaines | trois panneaux hauts en escalier, libellé sur l'image |
+| 05 | Méthode | ligne de temps, horizontale au-dessus de 56rem |
+| 06 | Prestations | tableau mis en forme |
+| 07 | Contact | bloc bleu, carte en vis-à-vis |
+
+### Le hero, et deux choses à ne pas y remettre
+
+Le H1 est **institutionnel** : la marque d'abord et en très grand, « HBR » en corail sur une
+ligne, « Conseil » en blanc sur la suivante, puis « Cabinet d'expertise comptable à Paris » en
+plus petit. Les deux parties sont dans le **même H1**, la marque dans un `span` : c'est le
+sous-titre qui porte la requête de la page, il ne doit donc pas sortir du H1.
+
+Le découpage sur deux lignes est **verrouillé** en `display: block`. Laissé au retour
+automatique, il se cassait à une largeur différente selon l'écran.
+
+⚠️ Deux éléments ont été retirés et ne doivent pas revenir :
+
+- **un slogan tourné** du type « Vos décisions, nos chiffres ». Jugé « tournure IA qui a essayé
+  de faire quelque chose d'original ». Le registre est institutionnel, pas publicitaire.
+- **le filet vertical corail** en bas du hero. « Ça fait trop IA, on voit ça sur tous les sites ».
+  C'est le même verdict que sur l'ancienne `.rule-spine`, deux chartes de suite.
+
+### Bandeau de chiffres clés : retiré
+
+Repris de la référence, il a été supprimé parce que les données disponibles ne tenaient pas la
+comparaison. Ne le réintroduire que si le cabinet fournit une année de création et un nombre de
+collaborateurs réels.
 
 Interdits hérités de la skill : cartes arrondies à ombre portée, icônes de librairie, dégradés
 violets ou bleus type SaaS, responsive « par défaut ».

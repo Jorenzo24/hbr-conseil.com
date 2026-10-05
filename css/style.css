@@ -430,7 +430,7 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     min-height: 100svh;
     display: flex;
     align-items: flex-end;
-    padding-block: clamp(6rem, 14vh, 10rem) clamp(7rem, 16vh, 11rem);
+    padding-block: clamp(6rem, 14vh, 10rem) clamp(4.5rem, 11vh, 7.5rem);
     isolation: isolate;
 }
 
@@ -449,56 +449,40 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
 .hero__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.75rem; }
 .hero .eyebrow { color: #FFF; }
 .hero .eyebrow::before { background: var(--coral); }
-.hero .display { color: #FFF; max-width: 17ch; }
-.hero .display em { font-style: normal; color: var(--coral); }
-.hero__lede { color: rgba(255, 255, 255, 0.82); max-width: 44ch; font-size: clamp(1rem, 1.4vw, 1.125rem); }
-
-/* Filet vertical file depuis le bas, rappel du trait des libelles. */
-.hero__tick {
-    position: absolute;
-    left: var(--gutter);
-    bottom: 0;
-    width: 1px;
-    height: clamp(2.5rem, 7vh, 4.5rem);
-    background: linear-gradient(to bottom, transparent, var(--coral));
+.hero__title {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.6rem, 1.4vw, 1.1rem);
+    margin: 0;
 }
 
-/* 8.2  Chiffres cles : bandeau bleu qui chevauche le hero */
-
-.figures { position: relative; z-index: 2; margin-top: clamp(-7rem, -9vw, -4.5rem); }
-
-.figures__band {
-    background: var(--navy);
-    padding: clamp(2.25rem, 4vw, 3.25rem) clamp(1.5rem, 4vw, 3.5rem);
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0;
-}
-
-.figure { padding-block: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.13); min-width: 0; }
-.figure:first-child { border-top: 0; padding-top: 0; }
-
-.figure__label {
-    display: block;
-    font-size: 0.625rem;
-    font-variation-settings: 'wdth' 92, 'wght' 620;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 0.5rem;
-}
-
-.figure__value {
-    display: block;
-    font-size: clamp(2rem, 4vw, 3.25rem);
-    font-variation-settings: 'wdth' 118, 'wght' 700;
-    line-height: 0.95;
-    letter-spacing: -0.03em;
+.hero__brand {
+    font-size: clamp(3rem, 8.6vw, 6.75rem);
+    font-variation-settings: 'wdth' 116, 'wght' 720;
+    line-height: 0.98;
+    letter-spacing: -0.032em;
     color: #FFF;
-    font-variant-numeric: tabular-nums;
 }
 
-.figure__value .todo { vertical-align: 0.5em; margin-left: 0.4rem; }
+/* Verrouille sur deux lignes : laisse au retour automatique, le bloc se
+   cassait a une largeur differente selon l'ecran. */
+.hero__brand-a,
+.hero__brand-b { display: block; }
+
+.hero__brand-a { color: var(--coral); }
+.hero__brand-b { color: #FFF; }
+
+/* Sous-titre : c'est lui qui porte la requete de la page, il reste donc
+   dans le H1 et non dans un paragraphe. */
+.hero__kicker {
+    display: block;
+    font-size: clamp(1.0625rem, 2vw, 1.625rem);
+    font-variation-settings: 'wdth' 104, 'wght' 480;
+    letter-spacing: 0.005em;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.92);
+}
+.hero__lede { color: rgba(255, 255, 255, 0.82); max-width: 44ch; font-size: clamp(1rem, 1.4vw, 1.125rem); }
 
 /* 8.3  Expertises : trois colonnes numerotees */
 
@@ -704,16 +688,11 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
 }
 
 @media (min-width: 40rem) {
-    .figures__band { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.5rem; }
-    .figure:nth-child(2) { border-top: 0; padding-top: 0; }
     .expertise { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 3rem; }
     .fields { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
 }
 
 @media (min-width: 56rem) {
-    .figures__band { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .figure { border-top: 0; padding-top: 0; }
-
     .expertise { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 3rem; }
 
     .fields { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.75rem; }
