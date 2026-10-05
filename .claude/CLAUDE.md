@@ -143,10 +143,17 @@ La section a donc été refaite en composition asymétrique :
   56rem, moins à gauche pour ne pas toucher le bloc corail), un filet corail qui se déploie sous
   la ligne, la flèche qui se remplit et le titre qui se fonce d'un ton.
 
-⚠️ **Cette section n'est pas bornée au conteneur commun.** `.expertises > .shell` écrase
-`max-width` et pose une gouttière proportionnelle, `clamp(1.25rem, 4vw, 4.5rem)`. Le bloc encadré
-respire donc moins de blanc autour de lui que les autres sections, et cet écart de largeur est un
-parti pris, pas un oubli.
+⚠️ **Cette section est en plein cadre et ne connaît ni le conteneur commun ni la gouttière.**
+`.expertises > .shell` écrase `max-width` et met `padding-inline: 0` : le cadre touche les deux
+bords de l'écran. Le rembourrage haut de la section est supprimé pour qu'elle vienne au contact
+du hero. C'est un parti pris, pas un oubli, et il ne faut pas la « réaligner » sur les autres.
+
+Le trait bleu du cadre se fond avec le bas du hero, également bleu. C'est voulu. Ce qui rend le
+cadre lisible malgré cela, c'est le **filet blanc intérieur**, qui dessine la limite là où le
+bleu se confond.
+
+Le contenu du bloc corail est centré sur les **deux axes**. Aligné à gauche, il se mettait à
+flotter dès que le bloc s'élargissait.
 
 La section est ceinte d'un **cadre bleu de nuit** (`.expertises__frame`), **sans rembourrage** :
 le bloc corail touche le trait sur trois côtés. Épaisseur fluide, `clamp(14px, 3.2vw, 45px)` :
