@@ -506,9 +506,21 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.5rem;
-    padding-top: clamp(1.5rem, 3vw, 2.25rem);
-    border-top: 1px solid var(--hairline-2);
+    gap: 1.4rem;
+    background: var(--coral);
+    color: rgba(255, 255, 255, 0.88);
+    padding: clamp(1.75rem, 3.6vw, 2.75rem);
+}
+
+.expertises__sticky .display { color: #FFF; }
+.expertises__sticky .section__intro { color: rgba(255, 255, 255, 0.88); }
+
+/* Sur le corail, le bouton vire au blanc plein pour rester lisible. */
+.expertises__sticky .btn--ghost-light:hover,
+.expertises__sticky .btn--ghost-light:focus-visible {
+    background: #FFF;
+    color: var(--coral);
+    border-color: #FFF;
 }
 
 .expertises__sticky .display {
@@ -557,11 +569,9 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     font-variation-settings: 'wdth' 110, 'wght' 660;
     line-height: 1.04;
     letter-spacing: -0.026em;
-    color: var(--ink);
+    color: var(--coral);
     transition: color var(--t) var(--ease);
 }
-
-.exp:hover .exp__title { color: var(--coral); }
 
 .exp__tags {
     grid-column: 1;
@@ -584,23 +594,45 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     grid-row: 1 / 2;
     width: 2.75rem;
     height: 2.75rem;
-    border: 1px solid var(--hairline-2);
+    border: 1px solid var(--coral-pale);
     display: grid;
     place-items: center;
-    color: var(--ink);
+    color: var(--coral);
     transition: border-color var(--t) var(--ease), background var(--t) var(--ease),
                 color var(--t) var(--ease);
 }
 
 .exp__go svg { width: 1.1rem; height: 1.1rem; transition: transform var(--t) var(--ease); }
 
-.exp:hover .exp__go {
+.exp:hover .exp__title,
+.exp:focus-within .exp__title { color: var(--coral-deep); }
+
+.exp:hover .exp__go,
+.exp:focus-within .exp__go {
     background: var(--coral);
     border-color: var(--coral);
     color: #FFF;
 }
 
 .exp:hover .exp__go svg { transform: translateX(0.2rem); }
+
+/* Filet corail qui se deploie sous la ligne survolee. Discret, mais il
+   signale laquelle des trois est active. */
+.exp::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 1px;
+    width: 100%;
+    background: var(--coral);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 420ms var(--ease);
+}
+
+.exp:hover::after,
+.exp:focus-within::after { transform: scaleX(1); }
 
 /* 8.4  Le cabinet : partition asymetrique, l'image deborde a gauche */
 
@@ -798,6 +830,10 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
 .expertises__aside { min-width: 0; }
 
 .expertises__sticky { position: sticky; top: 7rem; }
+
+    /* A gauche, l'aplat n'a que peu de place avant le bloc corail : il ne
+       deborde franchement que du cote droit, ou il y a la gouttiere. */
+    .exp::before { inset: 0 calc(-1 * var(--gutter)) 0 -1.25rem; }
 
     .exp__row {
         grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) auto;

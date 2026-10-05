@@ -136,8 +136,16 @@ La section a donc été refaite en composition asymétrique :
   à l'action. Elle a besoin d'un conteneur étiré, `.expertises__aside`, pour avoir de la course.
 - à droite trois **grandes lignes cliquables** pleine largeur, chacune avec son titre en grand
   corps, une ligne de mots-clés en capitales, la description et un bouton fléché.
-- au survol, un aplat déborde de part et d'autre de la gouttière (`inset: 0 calc(-1 * var(--gutter))`),
-  le titre passe en corail et la flèche avance.
+- la colonne de gauche est un **bloc corail plein**, texte en blanc, bouton en contour blanc qui
+  se remplit au survol.
+- **titres et flèches sont en corail par défaut**, et non au survol. Le survol apporte autre
+  chose : un aplat pâle qui déborde (`inset: 0 calc(-1 * var(--gutter)) 0 -1.25rem` au-delà de
+  56rem, moins à gauche pour ne pas toucher le bloc corail), un filet corail qui se déploie sous
+  la ligne, la flèche qui se remplit et le titre qui se fonce d'un ton.
+
+⚠️ L'aplat de survol déborde jusqu'au bord de la gouttière, **exactement**, jamais au-delà, sinon
+il provoque un débordement horizontal. Vérifié en forçant `opacity: 1` sur `.exp::before` et en
+mesurant de 320 à 1680px.
 
 ### Le hero, et deux choses à ne pas y remettre
 
