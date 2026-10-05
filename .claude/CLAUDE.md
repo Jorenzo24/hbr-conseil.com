@@ -143,6 +143,11 @@ La section a donc été refaite en composition asymétrique :
   56rem, moins à gauche pour ne pas toucher le bloc corail), un filet corail qui se déploie sous
   la ligne, la flèche qui se remplit et le titre qui se fonce d'un ton.
 
+⚠️ **Cette section n'est pas bornée au conteneur commun.** `.expertises > .shell` écrase
+`max-width` et pose une gouttière proportionnelle, `clamp(1.25rem, 4vw, 4.5rem)`. Le bloc encadré
+respire donc moins de blanc autour de lui que les autres sections, et cet écart de largeur est un
+parti pris, pas un oubli.
+
 La section est ceinte d'un **cadre bleu de nuit** (`.expertises__frame`), **sans rembourrage** :
 le bloc corail touche le trait sur trois côtés. Épaisseur fluide, `clamp(14px, 3.2vw, 45px)` :
 45px sur grand écran, mais réduite sur mobile où elle mangeait presque le quart de la largeur.
