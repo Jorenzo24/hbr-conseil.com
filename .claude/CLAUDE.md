@@ -143,8 +143,17 @@ La section a donc été refaite en composition asymétrique :
   56rem, moins à gauche pour ne pas toucher le bloc corail), un filet corail qui se déploie sous
   la ligne, la flèche qui se remplit et le titre qui se fonce d'un ton.
 
-La section est ceinte d'un **cadre bleu de nuit de 9px** (`.expertises__frame`), **sans
-rembourrage** : le bloc corail touche le trait sur trois côtés. Le fond corail est porté par
+La section est ceinte d'un **cadre bleu de nuit** (`.expertises__frame`), **sans rembourrage** :
+le bloc corail touche le trait sur trois côtés. Épaisseur fluide, `clamp(14px, 3.2vw, 45px)` :
+45px sur grand écran, mais réduite sur mobile où elle mangeait presque le quart de la largeur.
+
+Un **filet blanc de 2px** sépare le cadre de l'intérieur, surtout visible contre le corail. Il est
+posé en pseudo-élément et non en `box-shadow: inset` : l'ombre intérieure aurait été masquée par
+le bloc corail, qui est un enfant.
+
+Le contenu de la colonne corail est **centré verticalement** (`align-items: center` sur le
+conteneur). Collé en haut, il paraissait déséquilibré quand la section tenait entièrement à
+l'écran. L'élément collé ne prend le relais qu'au défilement, à `clamp(5rem, 16vh, 10rem)`. Le fond corail est porté par
 `.expertises__aside`, le conteneur, et non par l'élément collé : le conteneur s'étire sur toute la
 hauteur de la rangée, donc l'aplat va d'un bord à l'autre du cadre.
 

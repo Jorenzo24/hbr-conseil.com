@@ -495,9 +495,24 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
    variable : l'aplat de survol s'en sert pour deborder jusqu'au cadre,
    exactement, et pas au-dela. */
 .expertises__frame {
-    --frame-pad: clamp(1.25rem, 2.6vw, 2.375rem);
-    border: 9px solid var(--navy);
+    --frame-pad: clamp(1rem, 2.1vw, 1.875rem);
+    position: relative;
+    /* 45px sur grand ecran, mais le trait se reduit sur mobile : a 390px
+       il mangeait 90px sur 390, soit presque le quart de la largeur. */
+    border: clamp(14px, 3.2vw, 45px) solid var(--navy);
     padding: 0;
+}
+
+/* Filet blanc entre le cadre bleu et l'interieur. Un box-shadow interieur
+   serait masque par le bloc corail, qui est un enfant : il faut un
+   pseudo-element pose au-dessus. */
+.expertises__frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid #FFF;
+    pointer-events: none;
+    z-index: 3;
 }
 
 .expertises__grid {
@@ -509,8 +524,13 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
 /* Le fond corail est porte par le conteneur, pas par l'element colle :
    le conteneur s'etire sur toute la hauteur de la rangee, donc l'aplat
    va d'un bord a l'autre du cadre. */
+/* Le conteneur centre son contenu : quand la section tient entierement a
+   l'ecran, le texte se place au milieu du bloc corail au lieu de rester
+   plaque en haut. L'element colle prend le relais au defilement. */
 .expertises__aside {
     min-width: 0;
+    display: flex;
+    align-items: center;
     background: var(--coral);
     color: rgba(255, 255, 255, 0.88);
 }
@@ -519,8 +539,8 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.4rem;
-    padding: clamp(1.75rem, 3.4vw, 2.75rem);
+    gap: 1.3rem;
+    padding: clamp(1.5rem, 2.9vw, 2.375rem);
 }
 
 .expertises__sticky .display { color: #FFF; }
@@ -594,9 +614,9 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
 
 .exp__tags {
     grid-column: 1;
-    font-size: 0.6875rem;
-    font-variation-settings: 'wdth' 94, 'wght' 620;
-    letter-spacing: 0.12em;
+    font-size: 0.625rem;
+    font-variation-settings: 'wdth' 92, 'wght' 620;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--muted);
 }
@@ -843,7 +863,7 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     .step:first-child::before, .step:last-child::before { display: none; }
 
     .expertises__grid { grid-template-columns: minmax(0, 0.74fr) minmax(0, 1.26fr); gap: 0; }
-    .expertises__sticky { position: sticky; top: 7rem; }
+    .expertises__sticky { position: sticky; top: clamp(5rem, 16vh, 10rem); }
 
     .exp-list {
         padding: var(--frame-pad) var(--frame-pad) var(--frame-pad) clamp(1.75rem, 3vw, 2.75rem);
@@ -855,7 +875,7 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
 
     .exp__row {
         grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) auto;
-        gap: 0.5rem 1.75rem;
+        gap: 0.5rem 1.5rem;
         align-items: center;
     }
 
