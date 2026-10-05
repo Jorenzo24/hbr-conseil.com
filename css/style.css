@@ -496,29 +496,31 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
    exactement, et pas au-dela. */
 .expertises__frame {
     --frame-pad: clamp(1.25rem, 2.6vw, 2.375rem);
-    border: 3px solid var(--navy);
-    padding: var(--frame-pad);
+    border: 9px solid var(--navy);
+    padding: 0;
 }
 
 .expertises__grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: clamp(2.5rem, 5vw, 4rem);
+    gap: 0;
 }
 
-/* Conteneur de la colonne collante. Il s'etire sur la hauteur de la
-   rangee, ce qui donne a l'element colle la course dont il a besoin.
-   Sans lui, position: sticky n'aurait aucun effet. */
-.expertises__aside { min-width: 0; }
+/* Le fond corail est porte par le conteneur, pas par l'element colle :
+   le conteneur s'etire sur toute la hauteur de la rangee, donc l'aplat
+   va d'un bord a l'autre du cadre. */
+.expertises__aside {
+    min-width: 0;
+    background: var(--coral);
+    color: rgba(255, 255, 255, 0.88);
+}
 
 .expertises__sticky {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 1.4rem;
-    background: var(--coral);
-    color: rgba(255, 255, 255, 0.88);
-    padding: clamp(1.75rem, 3.6vw, 2.75rem);
+    padding: clamp(1.75rem, 3.4vw, 2.75rem);
 }
 
 .expertises__sticky .display { color: #FFF; }
@@ -538,7 +540,11 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
 }
 .expertises__sticky .section__intro { max-width: 38ch; }
 
-.exp-list { display: flex; flex-direction: column; }
+.exp-list {
+    display: flex;
+    flex-direction: column;
+    padding: var(--frame-pad);
+}
 
 .exp {
     position: relative;
@@ -546,7 +552,11 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     border-top: 1px solid var(--hairline);
 }
 
-.exp:last-child { border-bottom: 1px solid var(--hairline); }
+/* Le cadre fait office de bordure haute et basse : le filet de la premiere
+   ligne ferait doublon, et il n'y en a plus du tout sous la derniere.
+   ⚠️ Declare APRES la regle de base : a specificite egale, c'est la derniere
+   declaration qui l'emporte, pas la plus precise. */
+.exp:first-child { border-top: 0; }
 
 /* Aplat de survol qui deborde de part et d'autre de la gouttiere : la
    ligne se detache du bloc de texte au lieu de s'y fondre. */
@@ -832,13 +842,12 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     .step::after { top: -5px; left: 0; }
     .step:first-child::before, .step:last-child::before { display: none; }
 
-    .expertises__grid { grid-template-columns: minmax(0, 0.74fr) minmax(0, 1.26fr); gap: 3rem; }
-    /* Conteneur de la colonne collante. Il s'etire sur la hauteur de la
-   rangee, ce qui donne a l'element colle la course dont il a besoin.
-   Sans lui, position: sticky n'aurait aucun effet. */
-.expertises__aside { min-width: 0; }
+    .expertises__grid { grid-template-columns: minmax(0, 0.74fr) minmax(0, 1.26fr); gap: 0; }
+    .expertises__sticky { position: sticky; top: 7rem; }
 
-.expertises__sticky { position: sticky; top: 7rem; }
+    .exp-list {
+        padding: var(--frame-pad) var(--frame-pad) var(--frame-pad) clamp(1.75rem, 3vw, 2.75rem);
+    }
 
     /* A gauche, l'aplat n'a que peu de place avant le bloc corail : il ne
        deborde pleinement que du cote droit, jusqu'au cadre. */
