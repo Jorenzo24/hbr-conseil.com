@@ -30,7 +30,7 @@
 
     <link rel="preload" href="assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-    <link rel="stylesheet" href="css/style.css?v=20261005a">
+    <link rel="stylesheet" href="css/style.css?v=20261005b">
 
     <!-- TODO : JSON-LD AccountingService. Adresse connue, il manque la raison
          sociale exacte, le telephone et le numero d'inscription a l'Ordre.
@@ -66,8 +66,8 @@
         </div>
         <div class="shell hero__inner">
             <h1 class="hero__title">
-                <span class="hero__brand"><span class="hero__brand-a">HBR</span> <span class="hero__brand-b">Conseil</span></span>
-                <span class="hero__kicker">Cabinet d'expertise comptable à Paris</span>
+                <span class="hero__brand" id="brand"><span class="hero__brand-a">HBR</span> <span class="hero__brand-b">Conseil</span></span>
+                <span class="hero__kicker" id="kicker">Cabinet d'expertise comptable à Paris</span>
             </h1>
             <p class="hero__lede">
                 Comptabilité, fiscalité, social et juridique, pour les sociétés commerciales, les
@@ -83,15 +83,16 @@
     <!-- 02 ─ Expertises, colonnes numerotees -->
     <section class="section" id="expertises">
         <div class="shell">
-            <div class="section__head reveal">
-                <span class="sec-num">01</span>
-                <p class="eyebrow">Ce que nous faisons</p>
+            <div class="section__head reveal split">
                 <h2 class="display d-xl">Les expertises de votre cabinet</h2>
+                <p class="section__intro">
+                    De la constitution de la société au conseil courant, le cabinet couvre
+                    l'ensemble des obligations comptables, fiscales et sociales.
+                </p>
             </div>
 
             <div class="expertise">
                 <article class="expertise__item reveal">
-                    <span class="expertise__num">01</span>
                     <div class="expertise__body">
                         <h3 class="d-sm">Création de société</h3>
                         <p>
@@ -101,7 +102,6 @@
                     </div>
                 </article>
                 <article class="expertise__item reveal reveal--d1">
-                    <span class="expertise__num">02</span>
                     <div class="expertise__body">
                         <h3 class="d-sm">Suivi comptable</h3>
                         <p>
@@ -111,7 +111,6 @@
                     </div>
                 </article>
                 <article class="expertise__item reveal reveal--d2">
-                    <span class="expertise__num">03</span>
                     <div class="expertise__body">
                         <h3 class="d-sm">Conseil</h3>
                         <p>
@@ -136,7 +135,6 @@
                          alt="Salle de réunion lambrissée, longue table et lustre ancien.">
                 </div>
                 <div class="about__panel reveal reveal--d1">
-                    <p class="eyebrow">Le cabinet</p>
                     <h2 class="display d-lg">Un cabinet indépendant, à Paris et à distance</h2>
                     <p class="about__quote">
                         Chaque mission fait l'objet d'une lettre de mission, qui fixe le périmètre
@@ -166,12 +164,11 @@
     <!-- 04 ─ Domaines, panneaux hauts avec libelle sur l'image -->
     <section class="section" id="domaines">
         <div class="shell">
-            <div class="section__head reveal">
-                <span class="sec-num">02</span>
-                <p class="eyebrow">Spécialités</p>
+            <div class="section__head reveal split">
                 <h2 class="display d-xl">Trois domaines de spécialisation</h2>
-                <p class="lede">
+                <p class="section__intro">
                     Chacun relève de régimes, de déclarations et d'échéances qui lui sont propres.
+                    Ce sont les dossiers sur lesquels le cabinet passe le plus de temps.
                 </p>
             </div>
 
@@ -234,15 +231,16 @@
     <!-- 05 ─ Deroule d'une mission, ligne de temps -->
     <section class="section" id="methode" style="background: var(--paper-2);">
         <div class="shell">
-            <div class="section__head reveal">
-                <span class="sec-num">03</span>
-                <p class="eyebrow">Comment nous travaillons</p>
+            <div class="section__head reveal split">
                 <h2 class="display d-xl">Le déroulé d'une mission</h2>
+                <p class="section__intro">
+                    Le premier rendez-vous est sans engagement. La lettre de mission n'intervient
+                    qu'une fois le périmètre arrêté.
+                </p>
             </div>
 
             <div class="process">
                 <article class="step reveal">
-                    <span class="step__num">Étape 01</span>
                     <h3 class="d-sm">Premier échange</h3>
                     <p>
                         Un rendez-vous, au cabinet ou en visio, pour comprendre votre activité et
@@ -250,7 +248,6 @@
                     </p>
                 </article>
                 <article class="step reveal reveal--d1">
-                    <span class="step__num">Étape 02</span>
                     <h3 class="d-sm">Diagnostic écrit</h3>
                     <p>
                         État de l'existant, points à revoir, arbitrages ouverts à court terme. Le
@@ -258,7 +255,6 @@
                     </p>
                 </article>
                 <article class="step reveal reveal--d2">
-                    <span class="step__num">Étape 03</span>
                     <h3 class="d-sm">Mise en place</h3>
                     <p>
                         Régime, forme juridique, outils de tenue, calendrier des obligations. Une
@@ -266,7 +262,6 @@
                     </p>
                 </article>
                 <article class="step reveal reveal--d3">
-                    <span class="step__num">Étape 04</span>
                     <h3 class="d-sm">Suivi dans l'année</h3>
                     <p>
                         Des points réguliers dans l'année, aux échéances déclaratives et avant la
@@ -280,10 +275,12 @@
     <!-- 06 ─ Prestations, tableau mis en forme -->
     <section class="section" id="prestations">
         <div class="shell">
-            <div class="section__head reveal">
-                <span class="sec-num">04</span>
-                <p class="eyebrow">Prestations</p>
+            <div class="section__head reveal split">
                 <h2 class="display d-xl">Le détail des missions</h2>
+                <p class="section__intro">
+                    Toutes sont assurées en interne, qu'elles relèvent du comptable, du fiscal, du
+                    social ou du juridique.
+                </p>
             </div>
 
             <div class="table-wrap reveal">
@@ -316,8 +313,7 @@
         <div class="shell">
             <div class="contact__grid">
                 <div class="reveal">
-                    <p class="eyebrow">Contact</p>
-                    <h2 class="display d-xl" style="margin-block: 1.25rem 1.5rem;">Prendre rendez-vous</h2>
+                        <h2 class="display d-xl" style="margin-block: 1.25rem 1.5rem;">Prendre rendez-vous</h2>
                     <p class="lede" style="color: rgba(255,255,255,0.76);">
                         Décrivez votre situation en deux lignes, nous vous répondons avec un créneau
                         et les points à préparer.
@@ -401,6 +397,6 @@
     </div>
 </footer>
 
-<script src="js/main.js?v=20261005a"></script>
+<script src="js/main.js?v=20261005b"></script>
 </body>
 </html>

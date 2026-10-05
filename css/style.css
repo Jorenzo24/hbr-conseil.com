@@ -120,25 +120,16 @@ body {
     color: var(--ink);
 }
 
+/* Libelle sobre, sans filet d'accroche : le petit tiret horizontal devant
+   les sur-titres est devenu un tic, on s'en passe. */
 .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
+    display: block;
     font-size: 0.6875rem;
-    font-variation-settings: 'wdth' 92, 'wght' 620;
-    letter-spacing: 0.2em;
+    font-variation-settings: 'wdth' 94, 'wght' 620;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--coral);
+    color: var(--muted);
 }
-
-.eyebrow::before {
-    content: "";
-    width: 1.75rem;
-    height: 2px;
-    background: var(--coral);
-}
-
-.eyebrow--plain::before { display: none; }
 
 .lede {
     font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
@@ -169,23 +160,21 @@ a { color: inherit; }
 .section { padding-block: var(--section-y); }
 
 .section__head {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem;
+    padding-top: clamp(1.5rem, 3vw, 2.25rem);
+    border-top: 1px solid var(--hairline-2);
     margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
 }
 
-.section__head .display { max-width: 20ch; }
+.section__head .display { max-width: 18ch; }
 
-/* Numerotation editoriale, en tres grand corps etendu et tres pale. */
-.sec-num {
-    font-size: clamp(3.5rem, 7vw, 6rem);
-    font-variation-settings: 'wdth' 120, 'wght' 700;
-    line-height: 0.8;
-    letter-spacing: -0.04em;
-    color: var(--hairline);
-    font-variant-numeric: tabular-nums;
-    user-select: none;
+.section__intro {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 44ch;
 }
 
 .btn {
@@ -447,6 +436,7 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
 }
 
 .hero__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.75rem; }
+.hero__inner > * { max-width: 100%; }
 .hero .eyebrow { color: #FFF; }
 .hero .eyebrow::before { background: var(--coral); }
 .hero__title {
@@ -456,18 +446,18 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     margin: 0;
 }
 
+/* Marque et sous-titre sont cales a la meme largeur par js/main.js, qui
+   mesure puis calcule la taille. Les valeurs ci-dessous sont le repli si
+   le script ne tourne pas : proportions approchantes, jamais de casse. */
 .hero__brand {
-    font-size: clamp(3rem, 8.6vw, 6.75rem);
+    display: block;
+    white-space: nowrap;
+    font-size: clamp(2.5rem, 11.5vw, 8rem);
     font-variation-settings: 'wdth' 116, 'wght' 720;
     line-height: 0.98;
     letter-spacing: -0.032em;
     color: #FFF;
 }
-
-/* Verrouille sur deux lignes : laisse au retour automatique, le bloc se
-   cassait a une largeur differente selon l'ecran. */
-.hero__brand-a,
-.hero__brand-b { display: block; }
 
 .hero__brand-a { color: var(--coral); }
 .hero__brand-b { color: #FFF; }
@@ -476,10 +466,11 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
    dans le H1 et non dans un paragraphe. */
 .hero__kicker {
     display: block;
-    font-size: clamp(1.0625rem, 2vw, 1.625rem);
-    font-variation-settings: 'wdth' 104, 'wght' 480;
-    letter-spacing: 0.005em;
-    line-height: 1.2;
+    white-space: nowrap;
+    font-size: clamp(0.8125rem, 3.35vw, 2.3rem);
+    font-variation-settings: 'wdth' 104, 'wght' 440;
+    letter-spacing: 0.002em;
+    line-height: 1.25;
     color: rgba(255, 255, 255, 0.92);
 }
 .hero__lede { color: rgba(255, 255, 255, 0.82); max-width: 44ch; font-size: clamp(1rem, 1.4vw, 1.125rem); }
@@ -492,19 +483,6 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     min-width: 0;
     padding-block: 2rem;
     border-top: 1px solid var(--hairline);
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0 1.5rem;
-    align-items: start;
-}
-
-.expertise__num {
-    font-size: 0.75rem;
-    font-variation-settings: 'wdth' 96, 'wght' 700;
-    letter-spacing: 0.1em;
-    color: var(--coral);
-    font-variant-numeric: tabular-nums;
-    padding-top: 0.35rem;
 }
 
 .expertise__body { display: flex; flex-direction: column; gap: 0.6rem; min-width: 0; }
@@ -592,16 +570,6 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     background: var(--paper);
     border: 2px solid var(--coral);
     border-radius: 50%;
-}
-
-.step__num {
-    display: block;
-    font-size: 0.6875rem;
-    font-variation-settings: 'wdth' 94, 'wght' 700;
-    letter-spacing: 0.16em;
-    color: var(--coral);
-    font-variant-numeric: tabular-nums;
-    margin-bottom: 0.4rem;
 }
 
 .step p { font-size: 0.9375rem; max-width: 52ch; margin-top: 0.45rem; }
@@ -708,6 +676,12 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     .step::before { display: none; }
     .step::after { top: -5px; left: 0; }
     .step:first-child::before, .step:last-child::before { display: none; }
+
+    .section__head.split {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+        gap: 3.5rem;
+        align-items: end;
+    }
 
     .contact__grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 4rem; align-items: center; }
     .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
