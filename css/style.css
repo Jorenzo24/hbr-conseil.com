@@ -491,6 +491,15 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
    le survol fait deborder un aplat au-dela de la gouttiere.
    ------------------------------------------------------------------- */
 
+/* Cadre bleu qui ceint toute la section. Son rembourrage est expose en
+   variable : l'aplat de survol s'en sert pour deborder jusqu'au cadre,
+   exactement, et pas au-dela. */
+.expertises__frame {
+    --frame-pad: clamp(1.25rem, 2.6vw, 2.375rem);
+    border: 3px solid var(--navy);
+    padding: var(--frame-pad);
+}
+
 .expertises__grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -524,7 +533,7 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
 }
 
 .expertises__sticky .display {
-    font-size: clamp(1.875rem, 3.4vw, 2.75rem);
+    font-size: clamp(1.75rem, 2.9vw, 2.375rem);
     max-width: 14ch;
 }
 .expertises__sticky .section__intro { max-width: 38ch; }
@@ -544,7 +553,7 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
 .exp::before {
     content: "";
     position: absolute;
-    inset: 0 calc(-1 * var(--gutter));
+    inset: 0 calc(-1 * var(--frame-pad));
     background: var(--paper-2);
     opacity: 0;
     z-index: -1;
@@ -577,7 +586,7 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     grid-column: 1;
     font-size: 0.6875rem;
     font-variation-settings: 'wdth' 94, 'wght' 620;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--muted);
 }
@@ -823,7 +832,7 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     .step::after { top: -5px; left: 0; }
     .step:first-child::before, .step:last-child::before { display: none; }
 
-    .expertises__grid { grid-template-columns: minmax(0, 0.76fr) minmax(0, 1.24fr); gap: 4rem; }
+    .expertises__grid { grid-template-columns: minmax(0, 0.74fr) minmax(0, 1.26fr); gap: 3rem; }
     /* Conteneur de la colonne collante. Il s'etire sur la hauteur de la
    rangee, ce qui donne a l'element colle la course dont il a besoin.
    Sans lui, position: sticky n'aurait aucun effet. */
@@ -832,12 +841,12 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
 .expertises__sticky { position: sticky; top: 7rem; }
 
     /* A gauche, l'aplat n'a que peu de place avant le bloc corail : il ne
-       deborde franchement que du cote droit, ou il y a la gouttiere. */
-    .exp::before { inset: 0 calc(-1 * var(--gutter)) 0 -1.25rem; }
+       deborde pleinement que du cote droit, jusqu'au cadre. */
+    .exp::before { inset: 0 calc(-1 * var(--frame-pad)) 0 -1.25rem; }
 
     .exp__row {
         grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) auto;
-        gap: 0.5rem 2.25rem;
+        gap: 0.5rem 1.75rem;
         align-items: center;
     }
 

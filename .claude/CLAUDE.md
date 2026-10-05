@@ -143,9 +143,15 @@ La section a donc été refaite en composition asymétrique :
   56rem, moins à gauche pour ne pas toucher le bloc corail), un filet corail qui se déploie sous
   la ligne, la flèche qui se remplit et le titre qui se fonce d'un ton.
 
-⚠️ L'aplat de survol déborde jusqu'au bord de la gouttière, **exactement**, jamais au-delà, sinon
-il provoque un débordement horizontal. Vérifié en forçant `opacity: 1` sur `.exp::before` et en
-mesurant de 320 à 1680px.
+La section est ceinte d'un **cadre bleu de nuit de 3px** (`.expertises__frame`). Son rembourrage
+est exposé en variable `--frame-pad`, et **l'aplat de survol s'en sert** pour déborder jusqu'au
+cadre, exactement, et pas au-delà.
+
+⚠️ C'est le point sensible de la section. L'aplat déborde par marges négatives : s'il dépasse le
+cadre, ou la gouttière quand il n'y avait pas de cadre, il provoque un débordement horizontal sur
+toute la page. Toujours le vérifier en forçant `opacity: 1` sur `.exp::before`, puis en mesurant
+de 320 à 1680px, **1312px inclus**, largeur à laquelle le conteneur atteint son maximum et où la
+marge extérieure devient nulle.
 
 ### Le hero, et deux choses à ne pas y remettre
 
