@@ -173,6 +173,23 @@ décalée et en corail**, en écho à la descente en escalier des trois panneaux
 ainsi partie de la composition au lieu de se poser dessus. Les sections Méthode et Prestations
 n'ont plus que leur titre, elles attendent chacune leur propre traitement.
 
+### ⚠️ Ne jamais supprimer un intervalle de CSS par index
+
+**Régression du 6 octobre 2026.** En retirant les anciennes règles de la timeline, j'ai coupé le
+fichier de `.step {` jusqu'à `.contact__grid {`. **Tout le bloc desktop de la section Expertises
+se trouvait entre les deux** et a disparu avec. La section est restée cassée sur deux
+déploiements : plus de deux colonnes, bloc corail à pleine largeur, lignes empilées en dessous.
+
+Pourquoi ça n'a pas été vu : seules les sections qui venaient d'être modifiées avaient été
+capturées.
+
+Deux règles qui en découlent :
+
+1. **Supprimer un bloc par son ouverture et sa fermeture**, jamais par l'index du sélecteur
+   suivant. N'importe quoi peut se trouver entre les deux.
+2. **Capturer la page entière après chaque modification**, pas seulement la section touchée. Une
+   vignette de la page complète réduite à 300px de large suffit à repérer une section effondrée.
+
 ### Leçon : retirer un dispositif ne suffit pas
 
 La numérotation portait à elle seule la structure de la section Expertises. Une fois retirée, il
