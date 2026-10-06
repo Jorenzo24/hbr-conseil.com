@@ -30,7 +30,7 @@
 
     <link rel="preload" href="assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-    <link rel="stylesheet" href="css/style.css?v=20261006a">
+    <link rel="stylesheet" href="css/style.css?v=20261006b">
 
     <!-- TODO : JSON-LD AccountingService. Adresse connue, il manque la raison
          sociale exacte, le telephone et le numero d'inscription a l'Ordre.
@@ -261,40 +261,48 @@
     </section>
 
     <!-- 05 ─ Deroule d'une mission, ligne de temps -->
-    <section class="section" id="methode" style="background: var(--paper-2);">
+    <section class="section process-section" id="methode">
         <div class="shell">
             <div class="section__head reveal">
-                <h2 class="display d-xl">Le déroulé d'une mission</h2>
+                <h2 class="display d-xl">Le déroulé d'une <em>mission</em></h2>
             </div>
 
             <div class="process">
                 <article class="step reveal">
+                    <span class="step__mark" aria-hidden="true"></span>
                     <h3 class="d-sm">Premier échange</h3>
                     <p>
                         Un rendez-vous, au cabinet ou en visio, pour comprendre votre activité et
                         votre situation fiscale. Sans engagement et sans facturation.
                     </p>
+                    <span class="step__get">Sans engagement</span>
                 </article>
                 <article class="step reveal reveal--d1">
+                    <span class="step__mark" aria-hidden="true"></span>
                     <h3 class="d-sm">Diagnostic écrit</h3>
                     <p>
                         État de l'existant, points à revoir, arbitrages ouverts à court terme. Le
                         tout remis sous forme de document écrit.
                     </p>
+                    <span class="step__get">Un document remis</span>
                 </article>
                 <article class="step reveal reveal--d2">
+                    <span class="step__mark" aria-hidden="true"></span>
                     <h3 class="d-sm">Mise en place</h3>
                     <p>
                         Régime, forme juridique, outils de tenue, calendrier des obligations. Une
                         lettre de mission détaille le périmètre et les honoraires.
                     </p>
+                    <span class="step__get">Lettre de mission</span>
                 </article>
                 <article class="step reveal reveal--d3">
+                    <span class="step__mark" aria-hidden="true"></span>
                     <h3 class="d-sm">Suivi dans l'année</h3>
                     <p>
                         Des points réguliers dans l'année, aux échéances déclaratives et avant la
                         clôture de l'exercice.
                     </p>
+                    <span class="step__get">Points réguliers</span>
                 </article>
             </div>
         </div>
@@ -421,6 +429,6 @@
     </div>
 </footer>
 
-<script src="js/main.js?v=20261006a"></script>
+<script src="js/main.js?v=20261006b"></script>
 </body>
 </html>
