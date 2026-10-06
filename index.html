@@ -30,7 +30,7 @@
 
     <link rel="preload" href="assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-    <link rel="stylesheet" href="css/style.css?v=20261005j">
+    <link rel="stylesheet" href="css/style.css?v=20261006a">
 
     <!-- TODO : JSON-LD AccountingService. Adresse connue, il manque la raison
          sociale exacte, le telephone et le numero d'inscription a l'Ordre.
@@ -194,15 +194,12 @@
     </section>
 
     <!-- 04 ─ Domaines, panneaux hauts avec libelle sur l'image -->
-    <section class="section" id="domaines">
+    <section class="section domaines" id="domaines">
         <div class="shell">
-            <div class="section__head reveal split">
-                <h2 class="display d-xl">Trois domaines de spécialisation</h2>
-                <p class="section__intro">
-                    Chacun relève de régimes, de déclarations et d'échéances qui lui sont propres.
-                    Ce sont les dossiers sur lesquels le cabinet passe le plus de temps.
-                </p>
-            </div>
+            <h2 class="display d-xl domaines__title reveal">
+                <span>Trois domaines</span>
+                <span class="domaines__title-in">de spécialisation</span>
+            </h2>
 
             <div class="fields">
                 <article class="field reveal">
@@ -215,6 +212,7 @@
                             <span class="d-sm">Médecins, avocats, kinés, consultants</span>
                         </span>
                     </a>
+                    <span class="field__rule" aria-hidden="true"></span>
                     <p class="field__text">
                         Déclaration 2035, micro-BNC ou déclaration contrôlée, rétrocessions, caisses
                         de retraite obligatoires.
@@ -231,6 +229,7 @@
                             <span class="d-sm">Loueurs en meublé, LMNP et LMP</span>
                         </span>
                     </a>
+                    <span class="field__rule" aria-hidden="true"></span>
                     <p class="field__text">
                         Amortissements, micro-BIC ou régime réel, plus-value de cession. Dossiers
                         suivis à distance, partout en France.
@@ -247,6 +246,7 @@
                             <span class="d-sm">Exploitations, GAEC et EARL</span>
                         </span>
                     </a>
+                    <span class="field__rule" aria-hidden="true"></span>
                     <p class="field__text">
                         Déduction pour épargne de précaution, TVA agricole, cotisations MSA,
                         transmission du foncier.
@@ -263,12 +263,8 @@
     <!-- 05 ─ Deroule d'une mission, ligne de temps -->
     <section class="section" id="methode" style="background: var(--paper-2);">
         <div class="shell">
-            <div class="section__head reveal split">
+            <div class="section__head reveal">
                 <h2 class="display d-xl">Le déroulé d'une mission</h2>
-                <p class="section__intro">
-                    Le premier rendez-vous est sans engagement. La lettre de mission n'intervient
-                    qu'une fois le périmètre arrêté.
-                </p>
             </div>
 
             <div class="process">
@@ -307,12 +303,8 @@
     <!-- 06 ─ Prestations, tableau mis en forme -->
     <section class="section" id="prestations">
         <div class="shell">
-            <div class="section__head reveal split">
+            <div class="section__head reveal">
                 <h2 class="display d-xl">Le détail des missions</h2>
-                <p class="section__intro">
-                    Toutes sont assurées en interne, qu'elles relèvent du comptable, du fiscal, du
-                    social ou du juridique.
-                </p>
             </div>
 
             <div class="table-wrap reveal">
@@ -429,6 +421,6 @@
     </div>
 </footer>
 
-<script src="js/main.js?v=20261005j"></script>
+<script src="js/main.js?v=20261006a"></script>
 </body>
 </html>

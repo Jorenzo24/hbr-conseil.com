@@ -83,6 +83,13 @@ palette typographique.
 - `.eyebrow` : `wdth` 94, capitales, `letter-spacing` 0.16em, couleur `--muted`, **sans filet**
 - Texte courant : `wdth` 100, `wght` 400
 
+### Traitement d'image, et le cas du fond bleu
+
+Sur la section Domaines, le traitement général rendait les photos trop sombres : elles se
+confondaient avec le fond bleu. Elles y sont donc **éclaircies** (`brightness(1.12)`) et leur
+voile allégé, pour se détacher comme des planches posées. À refaire si une autre section passe
+sur fond sombre.
+
 ### Traitement d'image
 
 Les photos disponibles sont **chaudes** (elles avaient été choisies pour la charte marron). Elles
@@ -101,7 +108,7 @@ même structure**. État actuel :
 | 01 | Hero | pleine hauteur, photo plein cadre, marque **centrée** |
 | 02 | Expertises | colonne collante à gauche, grandes lignes cliquables à droite |
 | 03 | Le cabinet | partition asymétrique, panneau chevauchant l'image |
-| 04 | Domaines | trois panneaux hauts en escalier, libellé sur l'image |
+| 04 | Domaines | **fond bleu de nuit**, trois panneaux hauts en escalier, libellé sur l'image |
 | 05 | Méthode | ligne de temps, horizontale au-dessus de 56rem |
 | 06 | Prestations | tableau mis en forme |
 | 07 | Contact | bloc bleu, carte en vis-à-vis |
@@ -120,8 +127,14 @@ Joseph rejette tout ce qui signale un site généré. Verdicts déjà rendus, à
   restants ne subsistent que là où ils **portent une information** : libellés sur les images de
   spécialité, intitulés de colonnes du pied de page.
 
-À la place, l'en-tête de section est un dispositif de presse : un filet 1px en haut, le titre à
-gauche, un chapô à droite au-delà de 56rem (`.section__head.split`).
+- ⚠️ **l'en-tête « titre à gauche, chapô à droite ».** Rejeté le 6 octobre 2026 comme gabarit
+  reconnaissable, et la consigne est **permanente, tous sites confondus**. La classe
+  `.section__head.split` a été supprimée. Ne pas la refaire sous un autre nom.
+
+Ce qui l'a remplacé sur la section Domaines : le titre tient sur **deux lignes, la seconde
+décalée et en corail**, en écho à la descente en escalier des trois panneaux. L'en-tête fait
+ainsi partie de la composition au lieu de se poser dessus. Les sections Méthode et Prestations
+n'ont plus que leur titre, elles attendent chacune leur propre traitement.
 
 ### Leçon : retirer un dispositif ne suffit pas
 
