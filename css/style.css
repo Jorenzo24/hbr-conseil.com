@@ -850,41 +850,126 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     color: var(--coral);
 }
 
-/* 8.7  Prestations : tableau mis en forme */
+/* 8.7  Formules : trois blocs ------------------------------------
+   Trois blocs de prix, c'est le gabarit le plus vu du web. Ce qui l'en
+   ecarte ici : angles vifs, aucune ombre portee, aucun badge, aucun
+   decalage vertical. La formule courante se signale par un aplat bleu,
+   et le prix est pose en tres grand corps etendu.
+   ------------------------------------------------------------------- */
 
-.table-wrap { overflow-x: auto; }
+.tarifs__head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
 
-.tbl { width: 100%; border-collapse: collapse; min-width: 34rem; }
+.tarifs__head .display em { font-style: normal; color: var(--coral); }
+.tarifs__note { max-width: 52ch; }
 
-.tbl th {
-    text-align: left;
+.packs {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
+}
+
+.pack {
+    min-width: 0;
+    background: #FFF;
+    padding: clamp(1.75rem, 3.4vw, 2.75rem);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+}
+
+.pack--lead {
+    background: var(--navy);
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.pack__name {
+    font-size: clamp(1.25rem, 2.1vw, 1.625rem);
+    font-variation-settings: 'wdth' 112, 'wght' 680;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+}
+
+.pack--lead .pack__name { color: #FFF; }
+
+.pack__for {
+    font-size: 0.875rem;
+    color: var(--muted);
+    max-width: 30ch;
+}
+
+.pack--lead .pack__for { color: rgba(255, 255, 255, 0.6); }
+
+.pack__price {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-block: 1.1rem 0.5rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--hairline);
+    width: 100%;
+}
+
+.pack--lead .pack__price { border-top-color: rgba(255, 255, 255, 0.18); }
+
+.pack__from,
+.pack__unit {
     font-size: 0.625rem;
     font-variation-settings: 'wdth' 92, 'wght' 620;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--muted);
-    padding: 0 1.5rem 0.9rem 0;
-    border-bottom: 1px solid var(--hairline-2);
 }
 
-.tbl td {
-    padding: 1.15rem 1.5rem 1.15rem 0;
-    border-bottom: 1px solid var(--hairline);
-    vertical-align: top;
-    font-size: 0.9375rem;
-}
+.pack--lead .pack__from,
+.pack--lead .pack__unit { color: rgba(255, 255, 255, 0.55); }
 
-.tbl tr:hover td { background: var(--paper-2); }
-
-.tbl td:first-child {
-    font-variation-settings: 'wdth' 108, 'wght' 620;
+.pack__amount {
+    font-size: clamp(1.875rem, 3.6vw, 2.75rem);
+    font-variation-settings: 'wdth' 118, 'wght' 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
     color: var(--ink);
-    white-space: nowrap;
-    padding-left: 1rem;
-    border-left: 2px solid transparent;
+    font-variant-numeric: tabular-nums;
 }
 
-.tbl tr:hover td:first-child { border-left-color: var(--coral); }
+.pack--lead .pack__amount { color: var(--coral); }
+
+/* Le badge provisoire ne doit pas etre avale par le corps du prix. */
+.pack__amount .todo {
+    font-size: 0.5625rem;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+}
+
+.pack__list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.pack__list li {
+    font-size: 0.9375rem;
+    padding-block: 0.65rem;
+    border-top: 1px solid var(--hairline);
+}
+
+.pack__list li:first-child { border-top: 0; }
+.pack--lead .pack__list li { border-top-color: rgba(255, 255, 255, 0.14); }
+
+.pack .btn { margin-top: auto; }
+
+.pack--lead .btn--line { color: #FFF; border-color: rgba(255, 255, 255, 0.4); }
 
 /* 8.8  Contact : bloc bleu, carte en vis-a-vis */
 
@@ -948,6 +1033,8 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     .about__panel { grid-column: 7 / -1; grid-row: 1; z-index: 2; }
 
     .process { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 2rem; }
+    .packs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
     .process { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
     /* Trait corail qui coiffe la rangee. Pose en z-index superieur : a la
