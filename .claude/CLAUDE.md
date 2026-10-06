@@ -63,6 +63,7 @@ Registre visé : **cabinet corporate établi**, clair dominant, bleu de nuit et 
 | Rôle | Jeton | Valeur |
 |---|---|---|
 | Fonds clairs | `--paper` / `--paper-2` / `--paper-3` | `#F7F9FC` / `#EDF2F8` / `#E3EAF3` |
+| Fonds chauds, section Méthode | `--blush` / `--blush-2` | `#FBF1EF` / `#EFDFDC` |
 | Bleu de nuit, encre et sections sombres | `--navy` / `--navy-2` / `--navy-3` | `#0F2740` / `#17385A` / `#24507A` |
 | Encres | `--ink` / `--ink-2` / `--muted` | `#0F2740` / `#47596F` / `#7C8B9D` |
 | Filets | `--hairline` / `--hairline-2` | `#DCE4EE` / `#C6D2E0` |
@@ -82,6 +83,23 @@ palette typographique.
 - `.display` avec `.d-hero` / `.d-xl` / `.d-lg` / `.d-md` / `.d-sm` : `wdth` 116, `wght` 680
 - `.eyebrow` : `wdth` 94, capitales, `letter-spacing` 0.16em, couleur `--muted`, **sans filet**
 - Texte courant : `wdth` 100, `wght` 400
+
+### La section Méthode, et la notion de « froid »
+
+Elle était sur `--paper-2`, un bleu-gris pâle, avec des filets fins et beaucoup de vide. Jugée
+« vide et froide », au sens propre : toute la palette claire du site tire vers le bleu.
+
+Le remède a donc été **chromatique avant d'être décoratif** : la section passe sur `--blush`, le
+seul fond chaud du site. Les étapes deviennent des panneaux blancs pleins, séparés par un filet
+partagé, et un **trait corail coiffe la rangée**.
+
+⚠️ Ce trait est en `z-index: 3`. Posé à la hauteur des marqueurs, il passait derrière les panneaux
+blancs et ne se voyait que dans les interstices.
+
+Chaque étape porte un marqueur carré corail et une **ligne de livrable** en capitales corail en
+bas de panneau (« Sans engagement », « Un document remis », « Lettre de mission », « Points
+réguliers »). Ces mentions ne sont pas de nouvelles promesses : chacune reprend un élément déjà
+présent dans le texte de l'étape.
 
 ### Traitement d'image, et le cas du fond bleu
 
@@ -109,7 +127,7 @@ même structure**. État actuel :
 | 02 | Expertises | colonne collante à gauche, grandes lignes cliquables à droite |
 | 03 | Le cabinet | partition asymétrique, panneau chevauchant l'image |
 | 04 | Domaines | **fond bleu de nuit**, trois panneaux hauts en escalier, libellé sur l'image |
-| 05 | Méthode | ligne de temps, horizontale au-dessus de 56rem |
+| 05 | Méthode | **fond chaud**, panneaux blancs coiffés d'un trait corail |
 | 06 | Prestations | tableau mis en forme |
 | 07 | Contact | bloc bleu, carte en vis-à-vis |
 
