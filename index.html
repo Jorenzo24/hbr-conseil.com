@@ -30,7 +30,7 @@
 
     <link rel="preload" href="assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-    <link rel="stylesheet" href="css/style.css?v=20261006b">
+    <link rel="stylesheet" href="css/style.css?v=20261006c">
 
     <!-- TODO : JSON-LD AccountingService. Adresse connue, il manque la raison
          sociale exacte, le telephone et le numero d'inscription a l'Ordre.
@@ -308,34 +308,74 @@
         </div>
     </section>
 
-    <!-- 06 ─ Prestations, tableau mis en forme -->
-    <section class="section" id="prestations">
+    <!-- 06 ─ Formules. SQUELETTE PROVISOIRE : montants et contenus sont
+         des placeholders, a valider avec le cabinet. Pas de gabarit SaaS,
+         angles vifs, aucune ombre portee, aucun badge « le plus populaire ».
+         La formule courante se distingue par un aplat bleu, pas par un
+         liseré ni un decalage vertical. -->
+    <section class="section tarifs" id="formules">
         <div class="shell">
-            <div class="section__head reveal">
-                <h2 class="display d-xl">Le détail des missions</h2>
+            <div class="tarifs__head reveal">
+                <h2 class="display d-xl">Nos <em>formules</em></h2>
+                <p class="tarifs__note">
+                    Les honoraires dépendent du volume et de la complexité du dossier. Chaque
+                    mission fait l'objet d'une proposition écrite avant son début.
+                </p>
             </div>
 
-            <div class="table-wrap reveal">
-                <table class="tbl">
-                    <thead>
-                        <tr>
-                            <th scope="col">Mission</th>
-                            <th scope="col">Ce qu'elle recouvre</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Bilan et liasse fiscale</td><td>Comptes annuels, révision, télétransmission aux impôts.</td></tr>
-                        <tr><td>Déclarations de TVA</td><td>Mensuelles, trimestrielles, régimes et taux particuliers.</td></tr>
-                        <tr><td>Paie et social</td><td>Bulletins, DSN, contrats de travail, formalités d'embauche.</td></tr>
-                        <tr><td>Création de société</td><td>Choix de la forme, statuts, immatriculation, apports.</td></tr>
-                        <tr><td>Prévisionnel et financement</td><td>Plans de trésorerie, dossiers bancaires, business plan.</td></tr>
-                        <tr><td>Juridique annuel</td><td>Approbation des comptes, assemblées, registres à jour.</td></tr>
-                    </tbody>
-                </table>
-            </div>
+            <div class="packs">
 
-            <div class="cta-row reveal" style="margin-top: clamp(2.25rem, 4vw, 3rem);">
-                <a class="btn btn--line" href="#contact">Demander une proposition</a>
+                <article class="pack reveal">
+                    <h3 class="pack__name">Indépendant</h3>
+                    <p class="pack__for">Micro-entreprises et professions libérales</p>
+                    <p class="pack__price">
+                        <span class="pack__from">À partir de</span>
+                        <span class="pack__amount">000 &euro; <span class="todo">à définir</span></span>
+                        <span class="pack__unit">par mois</span>
+                    </p>
+                    <ul class="pack__list">
+                        <li>Tenue comptable annuelle</li>
+                        <li>Déclaration 2035 ou 2031</li>
+                        <li>Déclarations de TVA</li>
+                        <li>Un point par trimestre</li>
+                    </ul>
+                    <a class="btn btn--line" href="#contact">Demander une proposition</a>
+                </article>
+
+                <article class="pack pack--lead reveal reveal--d1">
+                    <h3 class="pack__name">Société</h3>
+                    <p class="pack__for">SARL, SAS, SCI et sociétés d'exercice</p>
+                    <p class="pack__price">
+                        <span class="pack__from">À partir de</span>
+                        <span class="pack__amount">000 &euro; <span class="todo">à définir</span></span>
+                        <span class="pack__unit">par mois</span>
+                    </p>
+                    <ul class="pack__list">
+                        <li>Tenue et révision des comptes</li>
+                        <li>Bilan et liasse fiscale</li>
+                        <li>Juridique annuel</li>
+                        <li>Paie en option</li>
+                    </ul>
+                    <a class="btn btn--coral" href="#contact">Demander une proposition</a>
+                </article>
+
+                <article class="pack reveal reveal--d2">
+                    <h3 class="pack__name">Sur mesure</h3>
+                    <p class="pack__for">Groupes, exploitations agricoles, multi-structures</p>
+                    <p class="pack__price">
+                        <span class="pack__from">Honoraires</span>
+                        <span class="pack__amount">Sur devis</span>
+                        <span class="pack__unit">après premier échange</span>
+                    </p>
+                    <ul class="pack__list">
+                        <li>Périmètre défini ensemble</li>
+                        <li>Consolidation et multi-structures</li>
+                        <li>Fiscalité agricole</li>
+                        <li>Accompagnement récurrent</li>
+                    </ul>
+                    <a class="btn btn--line" href="#contact">Demander une proposition</a>
+                </article>
+
             </div>
         </div>
     </section>
@@ -416,7 +456,7 @@
                 <p class="eyebrow">Cabinet</p>
                 <a href="#cabinet">Le cabinet</a>
                 <a href="#methode">Méthode</a>
-                <a href="#prestations">Prestations</a>
+                <a href="#formules">Formules</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
@@ -429,6 +469,6 @@
     </div>
 </footer>
 
-<script src="js/main.js?v=20261006b"></script>
+<script src="js/main.js?v=20261006c"></script>
 </body>
 </html>

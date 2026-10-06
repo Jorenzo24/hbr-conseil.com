@@ -84,6 +84,25 @@ palette typographique.
 - `.eyebrow` : `wdth` 94, capitales, `letter-spacing` 0.16em, couleur `--muted`, **sans filet**
 - Texte courant : `wdth` 100, `wght` 400
 
+### ⚠️ Section Formules : squelette provisoire
+
+Le tableau « Le détail des missions » a été remplacé par trois blocs de formules. **Tout le
+contenu est un placeholder**, posé pour habiller la structure pendant que le client arbitre.
+
+À remplacer avant toute mise en ligne :
+
+- les deux montants, actuellement `000 €` avec un badge « à définir »
+- le découpage en trois formules, Indépendant / Société / Sur mesure
+- le contenu des quatre lignes de chaque formule
+
+Contrainte déontologique sur cette section : afficher des honoraires est autorisé, mais sans
+comparaison avec des confrères, sans superlatif et sans promesse. Le chapô précise déjà que les
+honoraires dépendent du dossier et qu'une proposition écrite précède la mission.
+
+Comment elle évite le gabarit des pages de prix : angles vifs, **aucune ombre portée**, aucun
+badge « le plus populaire », aucun décalage vertical de la formule centrale. Celle-ci se signale
+par un **aplat bleu de nuit**, et le prix est posé en très grand corps étendu.
+
 ### La section Méthode, et la notion de « froid »
 
 Elle était sur `--paper-2`, un bleu-gris pâle, avec des filets fins et beaucoup de vide. Jugée
@@ -128,7 +147,7 @@ même structure**. État actuel :
 | 03 | Le cabinet | partition asymétrique, panneau chevauchant l'image |
 | 04 | Domaines | **fond bleu de nuit**, trois panneaux hauts en escalier, libellé sur l'image |
 | 05 | Méthode | **fond chaud**, panneaux blancs coiffés d'un trait corail |
-| 06 | Prestations | tableau mis en forme |
+| 06 | Formules | trois blocs de prix, **squelette provisoire** |
 | 07 | Contact | bloc bleu, carte en vis-à-vis |
 
 ### ⚠️ Ce qui est banni comme « marqueur IA »
