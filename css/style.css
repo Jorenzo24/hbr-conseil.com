@@ -711,10 +711,64 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     border-left: 2px solid var(--coral);
 }
 
-/* 8.5  Domaines : trois panneaux hauts, le libelle pose sur l'image */
+/* 8.5  Domaines : fond bleu, trois panneaux en escalier ------------
+   En-tete sans gabarit : pas de titre a gauche et de chapo a droite. Le
+   titre tient sur deux lignes, la seconde decalee et en corail, en echo
+   a la descente des trois panneaux.
+   ------------------------------------------------------------------- */
+
+.domaines {
+    background: var(--navy);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.domaines__title {
+    display: flex;
+    flex-direction: column;
+    color: #FFF;
+    max-width: none;
+    margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.domaines__title-in {
+    margin-left: clamp(1.25rem, 7vw, 8rem);
+    color: var(--coral);
+}
+
+.domaines .d-sm { color: #FFF; }
+.domaines .field__text { color: rgba(255, 255, 255, 0.68); }
+/* Sur fond bleu, le traitement general rendait les photos trop sombres :
+   elles se confondaient avec la section. On les eclaircit et on allege le
+   voile pour qu'elles se detachent comme des planches posees. */
+.domaines .shot { background: var(--navy-2); }
+
+.domaines .shot img {
+    filter: saturate(0.36) contrast(1.06) brightness(1.12) hue-rotate(-8deg);
+}
+
+.domaines .shot--deep::after {
+    background: linear-gradient(180deg, rgba(15, 39, 64, 0.10) 0%, rgba(15, 39, 64, 0.88) 100%);
+}
+
+.domaines a.shot:hover img {
+    filter: saturate(0.5) contrast(1.06) brightness(1.2) hue-rotate(-8deg);
+}
+
+/* Filet corail qui s'allonge au survol du panneau. */
+.field__rule {
+    display: block;
+    width: 2.25rem;
+    height: 2px;
+    background: var(--coral);
+    transition: width var(--t) var(--ease);
+}
+
+.field:hover .field__rule { width: 4.5rem; }
+.field:hover .d-sm { color: var(--coral); }
 
 .fields { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
-.field { min-width: 0; display: flex; flex-direction: column; gap: 1.1rem; }
+.field { min-width: 0; display: flex; flex-direction: column; gap: 1rem; }
+.field .d-sm { transition: color var(--t) var(--ease); }
 .field__media { aspect-ratio: 3 / 4; }
 
 .field__over {
@@ -896,12 +950,6 @@ a.shot:hover img { transform: scale(1.04); filter: saturate(0.42) contrast(1.06)
     .exp__tags  { grid-column: 1; grid-row: 2; }
     .exp__text  { grid-column: 2; grid-row: 1 / 3; }
     .exp__go    { grid-column: 3; grid-row: 1 / 3; }
-
-    .section__head.split {
-        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-        gap: 3.5rem;
-        align-items: end;
-    }
 
     .contact__grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 4rem; align-items: center; }
     .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
