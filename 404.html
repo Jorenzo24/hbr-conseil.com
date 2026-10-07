@@ -19,14 +19,16 @@
         html { font-size: 16px; -webkit-text-size-adjust: 100%; }
 
         body {
-            --ground: #0A0807;
-            --hairline: #2B2520;
-            --ink: #F4EFE8;
-            --ink-2: #C6BAAC;
-            --muted: #8C7F72;
-            --accent: #C9A47C;
-            --accent-dim: #7A4E30;
-            --serif: "Hoefler Text", "Iowan Old Style", Palatino, Georgia, serif;
+            /* Charte du 24 septembre 2026 : clair, bleu de nuit, corail.
+               Valeurs recopiees en dur, cette page ne charge aucun CSS. */
+            --ground: #F7F9FC;
+            --hairline: #DCE4EE;
+            --ink: #0F2740;
+            --ink-2: #47596F;
+            --muted: #7C8B9D;
+            --accent: #DF5660;
+            --accent-dim: #BE414B;
+            --serif: 'Archivo', ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
             --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 
             background: var(--ground);
@@ -75,13 +77,15 @@
         .code {
             font-family: var(--serif);
             font-size: clamp(5rem, 20vw, 10rem);
+            font-weight: 700;
             line-height: 0.85;
-            color: var(--accent-dim);
+            letter-spacing: -0.04em;
+            color: var(--accent);
         }
 
         h1 {
             font-family: var(--serif);
-            font-weight: 400;
+            font-weight: 650;
             font-size: clamp(1.5rem, 4vw, 2rem);
             color: var(--ink);
             text-wrap: balance;

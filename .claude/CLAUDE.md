@@ -3,6 +3,20 @@
 Site vitrine d'un **cabinet d'expertise comptable**. Prestation client : le donneur d'ordre est
 le comptable, qui valide les textes. Profession réglementée, voir la section Déontologie.
 
+## Où en est le projet (7 octobre 2026)
+
+**Seule la page d'accueil existe.** Elle est aboutie et validée par le client section par section.
+Aucune des 12 pages du plan SEO n'est écrite.
+
+Prochaines étapes possibles, dans l'ordre d'utilité :
+
+1. Le premier pilier, `/expert-comptable-profession-liberale/`. Bloqué sur une seule chose :
+   savoir quels métiers BNC le cabinet suit réellement, sinon la page sonnera creux.
+2. Les vrais contenus de la section Formules, à arbitrer avec le client.
+3. Téléphone, courriel, raison sociale et numéro d'Ordre, pour activer le JSON-LD et retirer les
+   badges « à compléter ».
+4. Les photos réelles du cabinet, qui remplaceront les placeholders Unsplash.
+
 ## Phase actuelle : PREVIEW sur GitHub Pages
 
 Le domaine définitif n'est pas encore arrêté. Le site est publié temporairement sur GitHub Pages
@@ -120,20 +134,20 @@ bas de panneau (« Sans engagement », « Un document remis », « Lettre de mis
 réguliers »). Ces mentions ne sont pas de nouvelles promesses : chacune reprend un élément déjà
 présent dans le texte de l'étape.
 
-### Traitement d'image, et le cas du fond bleu
-
-Sur la section Domaines, le traitement général rendait les photos trop sombres : elles se
-confondaient avec le fond bleu. Elles y sont donc **éclaircies** (`brightness(1.12)`) et leur
-voile allégé, pour se détacher comme des planches posées. À refaire si une autre section passe
-sur fond sombre.
-
 ### Traitement d'image
 
-Les photos disponibles sont **chaudes** (elles avaient été choisies pour la charte marron). Elles
-sont donc fortement désaturées et refroidies pour ne pas jurer avec le bleu :
+Les photos disponibles sont **chaudes**, elles avaient été choisies pour la charte marron
+abandonnée. Elles sont donc fortement désaturées et refroidies pour ne pas jurer avec le bleu :
 `saturate(0.28) contrast(1.06) hue-rotate(-8deg)`, plus un voile bleu en `::after`. Variante
-`.shot--deep` pour poser un libellé sur l'image. Quand les vraies photos du cabinet arriveront,
-revoir ces valeurs.
+`.shot--deep` pour poser un libellé sur l'image.
+
+**Cas du fond bleu.** Sur la section Domaines, ce traitement rendait les photos trop sombres :
+elles se confondaient avec le fond. Elles y sont **éclaircies** (`brightness(1.12)`) et leur voile
+allégé, pour se détacher comme des planches posées. À refaire si une autre section passe sur fond
+sombre.
+
+⚠️ Quand les vraies photos du cabinet arriveront, **revoir toutes ces valeurs** : elles compensent
+la chaleur des placeholders, pas une intention esthétique.
 
 ### Composition
 
@@ -303,7 +317,7 @@ dans **toutes** les pages qui les référencent, sinon les visiteurs récurrents
 périmé pendant un mois.
 
 Format `?v=AAAAMMJJx` : date du jour + lettre de version (a, b, c…) pour plusieurs modifs le même
-jour. Version actuelle : **`20260817a`**.
+jour. Version actuelle : **`20261007a`**.
 
 ## SEO
 
@@ -442,8 +456,8 @@ Le texte final est validé par le cabinet, au besoin auprès de son conseil rég
 
 ## Décisions arrêtées
 
-- **Adresse du cabinet : 76 rue de la Pompe, Paris 16ᵉ.** ⚠️ Code postal à confirmer : 75016
-  (générique du 16ᵉ) ou 75116 (partie nord). Actuellement 75016 sur le site.
+- **Adresse du cabinet : 76 rue de la Pompe, 75116 Paris.** Code postal **confirmé** par
+  géocodage Nominatim, c'est bien 75116 et non 75016.
 - **Silo agricole : angle exploitant** (et non investisseur/patrimonial). Donc formes sociétaires,
   TVA agricole, DEP, MSA, installation, transmission d'exploitation. Pas de GFA/GFV ni de
   démembrement pour investisseurs parisiens.
@@ -471,9 +485,18 @@ hbr-conseil.com/
 ├── .gitignore
 ├── robots.txt              # ⚠️ Disallow: / pendant la phase preview
 ├── sitemap.xml
-├── index.html
-├── 404.html                # autonome, styles en ligne
+├── index.html              # la seule page du site à ce jour
+├── 404.html                # autonome, styles en ligne, charte recopiée en dur
 ├── css/style.css
 ├── js/main.js
-└── assets/                 # images, favicon, og-image
+└── assets/
+    ├── CREDITS.md          # sources, licences, procédures de régénération
+    ├── favicon.svg + .ico  # monogramme H, bleu de nuit et corail
+    ├── fonts/
+    │   └── archivo-var-latin.woff2
+    └── img/                # 5 placeholders Unsplash, à remplacer
 ```
+
+⚠️ **`404.html` recopie la charte en dur** dans ses styles en ligne, puisqu'elle ne charge aucun
+CSS. Elle a été oubliée lors de la refonte du 24 septembre et est restée en noir et marron
+pendant deux semaines. **À chaque changement de charte, la reprendre aussi.**
